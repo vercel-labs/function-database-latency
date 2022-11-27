@@ -1,6 +1,6 @@
 import { Kysely } from "kysely";
 import { PlanetScaleDialect } from "kysely-planetscale";
-import { NextResponse as Response } from "next/server";
+import { NextRequest as Request, NextResponse as Response } from "next/server";
 
 export const config = {
   runtime: "experimental-edge",
@@ -26,13 +26,15 @@ const db = new Kysely<Database>({
 
 const start = Date.now();
 
-export default async function api() {
+export default async function api(req: Request) {
   const time = Date.now();
   const persons = await db
     .selectFrom("employees")
     .select(["emp_no", "first_name", "last_name"])
     .limit(10)
     .execute();
+
+  console.log(Object.fromEntries(req.headers.entries()));
 
   return Response.json(
     {
