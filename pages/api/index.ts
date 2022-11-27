@@ -34,9 +34,16 @@ export default async function api() {
     .limit(10)
     .execute();
 
-  return Response.json({
-    persons,
-    elapsed: Date.now() - time,
-    aliveSince: Date.now() - start,
-  });
+  return Response.json(
+    {
+      persons,
+      elapsed: Date.now() - time,
+      isCold: start === time,
+    },
+    {
+      headers: {
+        "x-edge-is-cold": start === time ? "1" : "0",
+      },
+    }
+  );
 }
