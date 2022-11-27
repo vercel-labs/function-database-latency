@@ -28,19 +28,19 @@ const start = Date.now();
 
 export default async function api(req: Request) {
   const time = Date.now();
-  const persons = await db
+  const data = await db
     .selectFrom("employees")
     .select(["emp_no", "first_name", "last_name"])
     .limit(10)
     .execute();
 
-  console.log(Object.fromEntries(req.headers.entries()));
-
   return Response.json(
     {
-      persons,
-      elapsed: Date.now() - time,
-      isCold: start === time,
+      data,
+      queryDuration: Date.now() - time,
+      invocationIsCold: start === time,
+      invocationRegion:
+        (req.headers.get("x-vercel-id") ?? "").split(":")[0] || null,
     },
     {
       headers: {
