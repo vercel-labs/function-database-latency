@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
+import "@tremor/react/dist/esm/tremor.css";
 
-// default _app override for next.js
 export default function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
