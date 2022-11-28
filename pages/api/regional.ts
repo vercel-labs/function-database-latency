@@ -1,6 +1,6 @@
 export const config = {
   runtime: "experimental-edge",
-  region: "iad",
+  regions: "iad",
 };
 
 export { default } from "./global";
