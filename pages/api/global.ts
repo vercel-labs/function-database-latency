@@ -34,15 +34,13 @@ export default async function api(req: Request) {
     .limit(10)
     .execute();
 
-  console.log(Object.fromEntries(req.headers.entries()));
-
   return Response.json(
     {
       data,
       queryDuration: Date.now() - time,
       invocationIsCold: start === time,
       invocationRegion:
-        (req.headers.get("x-vercel-id") ?? "").split(":")[0] || null,
+        (req.headers.get("x-vercel-id") ?? "").split(":")[1] || null,
     },
     {
       headers: {
