@@ -160,8 +160,8 @@ export default function Page() {
         {data.regional.length || data.global.length ? (
           <ColGrid numCols={ 1 } numColsMd={ 2 } gapX="gap-x-5" gapY="gap-y-5">
             <Card>
-              <Title>Latency distribution (processing time)</Title>
-              <Text height="h-12">
+              <Title truncate={ true }>Latency distribution (processing time)</Title>
+              <Text height="h-16">
                 This is how long it takes for the serverless function to run the
                 queries and return the result.
               </Text>
@@ -187,8 +187,8 @@ export default function Page() {
               />
             </Card>
             <Card>
-              <Title>Latency distribution (end-to-end)</Title>
-              <Text height="h-12">
+              <Title truncate={ true }>Latency distribution (end-to-end)</Title>
+              <Text height="h-16">
                 This is the total latency between
               </Text>
 
