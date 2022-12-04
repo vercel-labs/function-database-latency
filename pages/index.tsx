@@ -4,6 +4,8 @@ import { useCallback, useState } from "react";
 
 const ATTEMPTS = 10;
 
+type Region = "regional" | "global";
+
 export default function Page() {
   const [isTestRunning, setIsTestRunning] = useState(false);
   const [shouldTestGlobal, setShouldTestGlobal] = useState(true);
@@ -13,12 +15,16 @@ export default function Page() {
     global: [],
   });
 
-  const runTest = useCallback(async (type) => {
+  const runTest = useCallback(async (type: Region) => {
     try {
       const start = Date.now();
-      await fetch(`/api/${type}`);
+      const res = await fetch(`/api/${type}`);
+      const data = await res.json();
       const end = Date.now();
-      return end - start;
+      return {
+        ...data,
+        elapsed: end - start,
+      };
     } catch (e) {
       // instead of retrying we just give up
       return null;
@@ -41,6 +47,8 @@ export default function Page() {
         globalValue = await runTest("global");
       }
 
+      console.log(globalValue, regionalValue);
+
       setData((data) => {
         return {
           ...data,
@@ -54,7 +62,7 @@ export default function Page() {
   }, [runTest, shouldTestGlobal, shouldTestRegional]);
 
   return (
-    <main className="p-6 max-w-3xl flex flex-col gap-3">
+    <main className="p-6 max-w-5xl flex flex-col gap-3">
       <h1 className="text-2xl font-bold">PlanetScale Edge latency</h1>
       <p>
         This demo tries to show the different latency characteristics of using
@@ -151,15 +159,46 @@ export default function Page() {
         </div>
 
         {data.regional.length || data.global.length ? (
-          <div>
+          <div className="flex gap-3">
             <Card>
-              <Title>Latency distribution</Title>
+              <Title>Latency distribution (processing time)</Title>
+              <p className="text-gray-500 text-sm">
+                This is how long it takes for the serverless function to run the
+                queries and return the result.
+              </p>
+
               <AreaChart
                 data={new Array(ATTEMPTS).fill(0).map((_, i) => {
                   return {
                     attempt: `#${i + 1}`,
-                    Regional: data.regional[i] ?? null,
-                    Global: data.global[i] ?? null,
+                    Regional: data.regional[i]
+                      ? data.regional[i].queryDuration
+                      : null,
+                    Global: data.global[i]
+                      ? data.global[i].queryDuration
+                      : null,
+                  };
+                })}
+                dataKey="attempt"
+                categories={["Global", "Regional"]}
+                colors={["indigo", "cyan"]}
+                valueFormatter={dataFormatter}
+                marginTop="mt-6"
+                yAxisWidth="w-12"
+              />
+            </Card>
+            <Card>
+              <Title>Latency distribution (end-to-end)</Title>
+              <p className="text-gray-500 text-sm"></p>
+
+              <AreaChart
+                data={new Array(ATTEMPTS).fill(0).map((_, i) => {
+                  return {
+                    attempt: `#${i + 1}`,
+                    Regional: data.regional[i]
+                      ? data.regional[i].elapsed
+                      : null,
+                    Global: data.global[i] ? data.global[i].elapsed : null,
                   };
                 })}
                 dataKey="attempt"
