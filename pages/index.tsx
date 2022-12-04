@@ -94,8 +94,8 @@ export default function Page() {
             they&apos;re global, but it&apos;s possible to express a region
             preference via the <Code className="text-xs">region</Code> setting.
           </p>
-          <p className="text-sm flex gap-3">
-            <label className="flex items-center gap-2">
+          <p className="text-sm flex gap-3 flex-wrap gap-y-1">
+            <label className="flex items-center gap-2 whitespace-nowrap">
               <input
                 type="checkbox"
                 disabled
@@ -106,7 +106,7 @@ export default function Page() {
               />{" "}
               Test global function
             </label>
-            <label className="flex items-center gap-2">
+            <label className="flex items-center gap-2 whitespace-nowrap">
               <input
                 type="checkbox"
                 disabled
@@ -153,7 +153,7 @@ export default function Page() {
           <Button
             text="Run Test"
             handleClick={onRunTest}
-            disabled={isTestRunning}
+            loading={isTestRunning}
           />
         </div>
 
