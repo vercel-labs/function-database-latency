@@ -128,8 +128,8 @@ export default function Page() {
             is single-region, due to having multiple roundtrips to a single
             server that&apos;s distant from the user.
           </p>
-          <p className="text-sm flex gap-3">
-            <label className="flex items-center gap-2">
+          <p className="text-sm flex gap-3 flex-wrap gap-y-1">
+            <label className="flex items-center gap-2 whitespace-nowrap">
               <input
                 disabled
                 type="radio"
@@ -139,11 +139,11 @@ export default function Page() {
               />{" "}
               Single query (no waterfall)
             </label>
-            <label className="flex items-center gap-2">
+            <label className="flex items-center gap-2 whitespace-nowrap">
               <input disabled type="radio" name="queries" value="2" /> 2 serial
               queries
             </label>
-            <label className="flex items-center gap-2">
+            <label className="flex items-center gap-2 whitespace-nowrap">
               <input disabled type="radio" name="queries" value="5" /> 5 serial
               queries
             </label>
@@ -159,7 +159,7 @@ export default function Page() {
         </div>
 
         {data.regional.length || data.global.length ? (
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-col md:flex-row">
             <Card>
               <Title>Latency distribution (processing time)</Title>
               <p className="text-gray-500 text-sm">
@@ -189,7 +189,9 @@ export default function Page() {
             </Card>
             <Card>
               <Title>Latency distribution (end-to-end)</Title>
-              <p className="text-gray-500 text-sm"></p>
+              <p className="text-gray-500 text-sm">
+                This is the total latency between
+              </p>
 
               <AreaChart
                 data={new Array(ATTEMPTS).fill(0).map((_, i) => {
