@@ -154,7 +154,7 @@ export default function Page() {
           <Button
             text="Run Test"
             handleClick={onRunTest}
-            disabled={isTestRunning}
+            loading={isTestRunning}
           />
         </div>
 
