@@ -9,15 +9,16 @@ export default function Page() {
   const [isTestRunning, setIsTestRunning] = useState(false);
   const [shouldTestGlobal, setShouldTestGlobal] = useState(true);
   const [shouldTestRegional, setShouldTestRegional] = useState(true);
+  const [queryCount, setQueryCount] = useState(1);
   const [data, setData] = useState({
     regional: [],
     global: [],
   });
 
-  const runTest = useCallback(async (type: Region) => {
+  const runTest = useCallback(async (type: Region, queryCount: number) => {
     try {
       const start = Date.now();
-      const res = await fetch(`/api/${type}`);
+      const res = await fetch(`/api/${type}?count=${queryCount}`);
       const data = await res.json();
       const end = Date.now();
       return {
@@ -39,14 +40,12 @@ export default function Page() {
       let globalValue = null;
 
       if (shouldTestRegional) {
-        regionalValue = await runTest("regional");
+        regionalValue = await runTest("regional", queryCount);
       }
 
       if (shouldTestGlobal) {
-        globalValue = await runTest("global");
+        globalValue = await runTest("global", queryCount);
       }
-
-      console.log(globalValue, regionalValue);
 
       setData((data) => {
         return {
@@ -58,7 +57,7 @@ export default function Page() {
     }
 
     setIsTestRunning(false);
-  }, [runTest, shouldTestGlobal, shouldTestRegional]);
+  }, [runTest, queryCount, shouldTestGlobal, shouldTestRegional]);
 
   return (
     <main className="p-6 max-w-5xl flex flex-col gap-3">
@@ -130,21 +129,33 @@ export default function Page() {
           <p className="text-sm flex gap-3 flex-wrap gap-y-1">
             <label className="flex items-center gap-2 whitespace-nowrap">
               <input
-                disabled
                 type="radio"
                 name="queries"
                 value="1"
-                defaultChecked
+                onChange={() => setQueryCount(1)}
+                checked={queryCount === 1}
               />{" "}
               Single query (no waterfall)
             </label>
             <label className="flex items-center gap-2 whitespace-nowrap">
-              <input disabled type="radio" name="queries" value="2" /> 2 serial
-              queries
+              <input
+                type="radio"
+                name="queries"
+                value="2"
+                onChange={() => setQueryCount(2)}
+                checked={queryCount === 2}
+              />{" "}
+              2 serial queries
             </label>
             <label className="flex items-center gap-2 whitespace-nowrap">
-              <input disabled type="radio" name="queries" value="5" /> 5 serial
-              queries
+              <input
+                type="radio"
+                name="queries"
+                value="5"
+                onChange={() => setQueryCount(5)}
+                checked={queryCount === 5}
+              />{" "}
+              5 serial queries
             </label>
           </p>
         </div>
@@ -158,12 +169,15 @@ export default function Page() {
         </div>
 
         {data.regional.length || data.global.length ? (
-          <ColGrid numCols={ 1 } numColsMd={ 2 } gapX="gap-x-5" gapY="gap-y-5">
+          <ColGrid numCols={1} numColsMd={2} gapX="gap-x-5" gapY="gap-y-5">
             <Card>
-              <Title truncate={ true }>Latency distribution (processing time)</Title>
+              <Title truncate={true}>
+                Latency distribution (processing time)
+              </Title>
               <Text height="h-14">
                 This is how long it takes for the serverless function to run the
-                queries and return the result.
+                queries and return the result. Your internet connections{" "}
+                <b>will not</b> influence these results.
               </Text>
 
               <AreaChart
@@ -187,9 +201,12 @@ export default function Page() {
               />
             </Card>
             <Card>
-              <Title truncate={ true }>Latency distribution (end-to-end)</Title>
+              <Title truncate={true}>Latency distribution (end-to-end)</Title>
               <Text height="h-14">
-                This is the total latency between
+                This is the total latency from the client&apos;s perspective. It
+                considers the total roundtrip between browser and edge. Your
+                internet connection and location <b>will</b> influence these
+                results.
               </Text>
 
               <AreaChart

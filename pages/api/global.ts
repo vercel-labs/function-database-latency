@@ -27,12 +27,17 @@ const db = new Kysely<Database>({
 const start = Date.now();
 
 export default async function api(req: Request) {
+  const count = toNumber(new URL(req.url).searchParams.get("count"));
   const time = Date.now();
-  const data = await db
-    .selectFrom("employees")
-    .select(["emp_no", "first_name", "last_name"])
-    .limit(10)
-    .execute();
+
+  let data = null;
+  for (let i = 0; i < count; i++) {
+    data = await db
+      .selectFrom("employees")
+      .select(["emp_no", "first_name", "last_name"])
+      .limit(10)
+      .execute();
+  }
 
   return Response.json(
     {
@@ -48,4 +53,11 @@ export default async function api(req: Request) {
       },
     }
   );
+}
+
+// convert a query parameter to a number
+// also apply a min and a max
+function toNumber(queryParam: string | null, min = 1, max = 5) {
+  const num = Number(queryParam);
+  return Number.isNaN(num) ? null : Math.min(Math.max(num, min), max);
 }
