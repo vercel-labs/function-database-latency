@@ -1,5 +1,4 @@
-import { Card, Title, AreaChart } from "@tremor/react";
-import { Button } from "@tremor/react";
+import { Button, Card, Title, AreaChart, ColGrid, Text } from "@tremor/react";
 import { useCallback, useState } from "react";
 
 const ATTEMPTS = 10;
@@ -159,13 +158,13 @@ export default function Page() {
         </div>
 
         {data.regional.length || data.global.length ? (
-          <div className="flex gap-3 flex-col md:flex-row">
+          <ColGrid numCols={ 1 } numColsMd={ 2 } gapX="gap-x-5" gapY="gap-y-5">
             <Card>
-              <Title>Latency distribution (processing time)</Title>
-              <p className="text-gray-500 text-sm">
+              <Title truncate={ true }>Latency distribution (processing time)</Title>
+              <Text height="h-14">
                 This is how long it takes for the serverless function to run the
                 queries and return the result.
-              </p>
+              </Text>
 
               <AreaChart
                 data={new Array(ATTEMPTS).fill(0).map((_, i) => {
@@ -188,10 +187,10 @@ export default function Page() {
               />
             </Card>
             <Card>
-              <Title>Latency distribution (end-to-end)</Title>
-              <p className="text-gray-500 text-sm">
+              <Title truncate={ true }>Latency distribution (end-to-end)</Title>
+              <Text height="h-14">
                 This is the total latency between
-              </p>
+              </Text>
 
               <AreaChart
                 data={new Array(ATTEMPTS).fill(0).map((_, i) => {
@@ -211,7 +210,7 @@ export default function Page() {
                 yAxisWidth="w-12"
               />
             </Card>
-          </div>
+          </ColGrid>
         ) : null}
       </form>
     </main>
