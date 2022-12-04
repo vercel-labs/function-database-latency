@@ -175,7 +175,7 @@ export default function Page() {
                 Latency distribution (processing time)
               </Title>
               <Text height="h-14">
-                This is how long it takes for the serverless function to run the
+                This is how long it takes for the edge function to run the
                 queries and return the result. Your internet connections{" "}
                 <b>will not</b> influence these results.
               </Text>
