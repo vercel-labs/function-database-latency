@@ -1,5 +1,7 @@
 import { Button, Card, Title, AreaChart, ColGrid, Text } from "@tremor/react";
 import { useCallback, useState } from "react";
+import { Dropdown, DropdownItem } from "@tremor/react";
+import { ShoppingCartIcon, DatabaseIcon } from "@heroicons/react/solid";
 
 const ATTEMPTS = 10;
 
@@ -10,26 +12,32 @@ export default function Page() {
   const [shouldTestGlobal, setShouldTestGlobal] = useState(true);
   const [shouldTestRegional, setShouldTestRegional] = useState(true);
   const [queryCount, setQueryCount] = useState(1);
+  const [dataService, setDataService] = useState("planetscale");
   const [data, setData] = useState({
     regional: [],
     global: [],
   });
 
-  const runTest = useCallback(async (type: Region, queryCount: number) => {
-    try {
-      const start = Date.now();
-      const res = await fetch(`/api/${type}?count=${queryCount}`);
-      const data = await res.json();
-      const end = Date.now();
-      return {
-        ...data,
-        elapsed: end - start,
-      };
-    } catch (e) {
-      // instead of retrying we just give up
-      return null;
-    }
-  }, []);
+  const runTest = useCallback(
+    async (dataService: string, type: Region, queryCount: number) => {
+      try {
+        const start = Date.now();
+        const res = await fetch(
+          `/api/${dataService}-${type}?count=${queryCount}`
+        );
+        const data = await res.json();
+        const end = Date.now();
+        return {
+          ...data,
+          elapsed: end - start,
+        };
+      } catch (e) {
+        // instead of retrying we just give up
+        return null;
+      }
+    },
+    []
+  );
 
   const onRunTest = useCallback(async () => {
     setIsTestRunning(true);
@@ -40,11 +48,11 @@ export default function Page() {
       let globalValue = null;
 
       if (shouldTestRegional) {
-        regionalValue = await runTest("regional", queryCount);
+        regionalValue = await runTest(dataService, "regional", queryCount);
       }
 
       if (shouldTestGlobal) {
-        globalValue = await runTest("global", queryCount);
+        globalValue = await runTest(dataService, "global", queryCount);
       }
 
       setData((data) => {
@@ -57,39 +65,45 @@ export default function Page() {
     }
 
     setIsTestRunning(false);
-  }, [runTest, queryCount, shouldTestGlobal, shouldTestRegional]);
+  }, [runTest, queryCount, dataService, shouldTestGlobal, shouldTestRegional]);
 
   return (
     <main className="p-6 max-w-5xl flex flex-col gap-3">
-      <h1 className="text-2xl font-bold">PlanetScale Edge latency</h1>
+      <h1 className="text-2xl font-bold">Edge &lt;&gt; Data latency</h1>
       <p>
-        This demo tries to show the different latency characteristics of using
-        the PlanetScale SDK{" "}
-        <Code>
-          <ExternalLink href="https://github.com/planetscale/database-js">
-            @planetscale/database
-          </ExternalLink>
-        </Code>{" "}
-        in combination with{" "}
-        <Code>
-          <ExternalLink href="https://github.com/koskimas/kysely">
-            kysely
-          </ExternalLink>
-        </Code>{" "}
-        with the{" "}
-        <Code>
-          <ExternalLink href="https://github.com/depot/kysely-planetscale">
-            kysely-planetscale
-          </ExternalLink>
-        </Code>{" "}
-        dialect. Check the{" "}
-        <ExternalLink href="https://github.com/vercel-labs/planetscale-test">
-          <GitHubLogo /> source code
-        </ExternalLink>{" "}
-        here.
+        This demo helps observe the latency characteristics of querying
+        different popular data services from varying compute locations.
       </p>
 
       <form className="flex flex-col gap-5 bg-gray-100 p-5 my-5">
+        <div className="flex flex-col gap-1">
+          <p className="font-bold">Data service</p>
+          <p className="text-gray-500 text-sm">
+            Vercel Edge Functions support multiple regions. By default
+            they&apos;re global, but it&apos;s possible to express a region
+            preference via the <Code className="text-xs">region</Code> setting.
+          </p>
+
+          <div className="py-1 inline-flex">
+            <Dropdown
+              defaultValue="planetscale"
+              handleSelect={(v) => setDataService(v)}
+              maxWidth="max-w-xs"
+            >
+              <DropdownItem
+                value="planetscale"
+                text="PlanetScale (Kysely + Serverless SDK)"
+                icon={DatabaseIcon}
+              />
+              <DropdownItem
+                value="shopify"
+                text="Shopify (Storefront GraphQL API)"
+                icon={ShoppingCartIcon}
+              />
+            </Dropdown>
+          </div>
+        </div>
+
         <div className="flex flex-col gap-1">
           <p className="font-bold">Location</p>
           <p className="text-gray-500 text-sm">
@@ -274,5 +288,19 @@ function ExternalLink({ href, children }) {
     >
       {children}
     </a>
+  );
+}
+
+function PlanetScaleIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 256 256"
+    >
+      <path d="M256 128.044c-.024 70.657-57.299 127.932-127.956 127.956ZM128 0c51.977 0 96.719 30.98 116.765 75.483L75.483 244.765a127.791 127.791 0 0 1-20.636-11.715L159.897 128H128l-90.51 90.51C14.327 195.345 0 163.345 0 128C0 57.308 57.308 0 128 0Z" />
+    </svg>
   );
 }
