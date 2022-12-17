@@ -3,7 +3,7 @@ import { PlanetScaleDialect } from "kysely-planetscale";
 import { NextRequest as Request, NextResponse as Response } from "next/server";
 
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "edge",
 };
 
 interface EmployeeTable {

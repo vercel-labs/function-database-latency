@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.6",
     "@planetscale/database": "^1.4.1",
     "@tremor/react": "^1.2.2",
     "@types/node": "18.11.9",
@@ -18,7 +19,7 @@
     "eslint-config-next": "13.0.4",
     "kysely": "^0.22.0",
     "kysely-planetscale": "^1.1.0",
-    "next": "13.0.4",
+    "next": "13.0.7",
     "postcss": "^8.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
