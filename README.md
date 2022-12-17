@@ -1,5 +1,11 @@
-# Readme
+# Edge Database Latency
 
-A latency test between PlanetScale and Vercel Edge Functions.
+This demo helps observe the latency characteristics of querying different popular data services from varying compute locations.
 
-https://ps-edge.vercel.app/
+https://edge-data-latency.vercel.app/
+
+## Providers
+
+- Planetscale (Kysely + Serverless SDK)
+- Shopify (Storefront GraphQL API)
+- Neon (In Progress)
