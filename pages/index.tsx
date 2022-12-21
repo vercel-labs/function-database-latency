@@ -2,6 +2,7 @@ import { Button, Card, Title, AreaChart, ColGrid, Text } from "@tremor/react";
 import { useCallback, useState } from "react";
 import { Dropdown, DropdownItem } from "@tremor/react";
 import { ShoppingCartIcon, DatabaseIcon } from "@heroicons/react/solid";
+import Image from "next/image";
 
 const ATTEMPTS = 10;
 
@@ -100,6 +101,7 @@ export default function Page() {
                 text="Shopify (Storefront GraphQL API)"
                 icon={ShoppingCartIcon}
               />
+              <DropdownItem value="xata" text="Xata (SDK)" icon={XataIcon} />
             </Dropdown>
           </div>
         </div>
@@ -275,5 +277,23 @@ function Code({ className = "", children }) {
     <code className={`bg-gray-200 text-sm p-1 rounded ${className}`}>
       {children}
     </code>
+  );
+}
+
+function XataIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      width="20"
+      height="20"
+      viewBox="0 0 561 467"
+      fill="rgb(156 163 175)"
+    >
+      <path d="M439.428 465.611C471.671 433.443 493.244 393.222 499.401 353.796C505.558 314.369 495.795 278.966 472.26 255.376L350.688 376.663L439.428 465.611Z" />
+      <path d="M121.572 466.305C89.3288 434.138 67.756 393.917 61.5989 354.49C55.4418 315.063 65.2047 279.66 88.74 256.07L210.312 377.357L121.572 466.305Z" />
+      <path d="M50.6715 122.184C50.7248 167.729 68.8685 211.387 101.111 243.554L101.114 243.551L222.671 364.823C254.838 332.58 272.879 288.88 272.826 243.335C272.773 197.79 254.629 154.132 222.386 121.964L222.383 121.967L100.827 0.695312C68.6597 32.9381 50.6182 76.6388 50.6715 122.184Z" />
+      <path d="M510.327 121.488C510.274 167.033 492.13 210.692 459.887 242.859L459.884 242.855L338.328 364.127C306.161 331.884 288.119 288.183 288.172 242.638C288.226 197.094 306.369 153.435 338.612 121.268L338.616 121.271L460.172 0C492.339 32.2428 510.38 75.9434 510.327 121.488Z" />
+    </svg>
   );
 }
