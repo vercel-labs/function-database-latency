@@ -6,7 +6,8 @@ https://edge-data-latency.vercel.app/
 
 ## Providers
 
-- Planetscale (Kysely + Serverless SDK)
-- Shopify (Storefront GraphQL API)
+- Grafbase (GraphQL API)
 - Neon (In Progress)
+- PlanetScale (Kysely + Serverless SDK)
+- Shopify (Storefront GraphQL API)
 - Xata (TypeScript SDK)

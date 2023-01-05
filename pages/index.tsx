@@ -87,10 +87,15 @@ export default function Page() {
 
           <div className="py-1 inline-flex">
             <Dropdown
-              defaultValue="planetscale"
+              defaultValue="grafbase"
               handleSelect={(v) => setDataService(v)}
               maxWidth="max-w-xs"
             >
+              <DropdownItem
+                value="grafbase"
+                text="Grafbase (GraphQL API)"
+                icon={DatabaseIcon}
+              />
               <DropdownItem
                 value="planetscale"
                 text="PlanetScale (Kysely + Serverless SDK)"
