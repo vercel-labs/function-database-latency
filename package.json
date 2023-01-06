@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
+    "@jawj/test-serverless": "^0.1.20",
     "@planetscale/database": "^1.4.1",
     "@tremor/react": "^1.2.2",
     "@types/node": "18.11.9",
