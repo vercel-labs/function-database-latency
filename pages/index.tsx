@@ -93,7 +93,7 @@ export default function Page() {
             >
               <DropdownItem
                 value="grafbase"
-                text="Grafbase (GraphQL API)"
+                text="Grafbase (GraphQL)"
                 icon={DatabaseIcon}
               />
               <DropdownItem
