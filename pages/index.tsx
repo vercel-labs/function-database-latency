@@ -13,7 +13,7 @@ export default function Page() {
   const [shouldTestGlobal, setShouldTestGlobal] = useState(true);
   const [shouldTestRegional, setShouldTestRegional] = useState(true);
   const [queryCount, setQueryCount] = useState(1);
-  const [dataService, setDataService] = useState("planetscale");
+  const [dataService, setDataService] = useState("grafbase");
   const [data, setData] = useState({
     regional: [],
     global: [],
