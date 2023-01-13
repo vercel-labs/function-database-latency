@@ -4,9 +4,23 @@ This demo helps observe the latency characteristics of querying different popula
 
 https://edge-data-latency.vercel.app/
 
+## Methodology
+
+1. Smallest atomic unit, e.g. 1 item / row.
+2. Data schema:
+
+```ts
+interface EmployeeTable {
+  emp_no: number;
+  first_name: string;
+  last_name: string;
+}
+```
+
 ## Providers
 
+- Neon (In Progress)
 - Planetscale (Kysely + Serverless SDK)
 - Shopify (Storefront GraphQL API)
-- Neon (In Progress)
+- Supabase (supabase-js)
 - Xata (TypeScript SDK)

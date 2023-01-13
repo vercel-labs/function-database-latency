@@ -1,7 +1,11 @@
 import { Button, Card, Title, AreaChart, ColGrid, Text } from "@tremor/react";
 import { useCallback, useState } from "react";
 import { Dropdown, DropdownItem } from "@tremor/react";
-import { ShoppingCartIcon, DatabaseIcon } from "@heroicons/react/solid";
+import {
+  ShoppingCartIcon,
+  DatabaseIcon,
+  LightningBoltIcon,
+} from "@heroicons/react/solid";
 import Image from "next/image";
 
 const ATTEMPTS = 10;
@@ -100,6 +104,11 @@ export default function Page() {
                 value="shopify"
                 text="Shopify (Storefront GraphQL API)"
                 icon={ShoppingCartIcon}
+              />
+              <DropdownItem
+                value="supabase"
+                text="Supabase (supabase-js)"
+                icon={LightningBoltIcon}
               />
               <DropdownItem value="xata" text="Xata (SDK)" icon={XataIcon} />
             </Dropdown>
