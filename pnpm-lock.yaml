@@ -7,6 +7,7 @@ specifiers:
   '@tremor/react': ^1.2.2
   '@types/node': 18.11.9
   '@types/react': 18.0.25
+  '@upstash/redis': ^1.19.1
   '@xata.io/client': ^0.21.5
   autoprefixer: ^10.4.13
   eslint: 8.27.0
@@ -27,6 +28,7 @@ dependencies:
   '@tremor/react': 1.2.2_biqbaboplfbrettd7655fr4n2y
   '@types/node': 18.11.9
   '@types/react': 18.0.25
+  '@upstash/redis': 1.19.1
   '@xata.io/client': 0.21.5_typescript@4.9.3
   autoprefixer: 10.4.13_postcss@8.4.19
   eslint: 8.27.0
@@ -480,6 +482,14 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.45.0
       eslint-visitor-keys: 3.3.0
+    dev: false
+
+  /@upstash/redis/1.19.1:
+    resolution: {integrity: sha512-oH621FYa8wEnBXWXabNssiKrpITK/x0grpisn2WaIvukH3oij+lB41B9uEGUzYS93RfQvGAsgEb23FYremqgZA==}
+    dependencies:
+      isomorphic-fetch: 3.0.0
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /@xata.io/client/0.21.5_typescript@4.9.3:
@@ -1078,7 +1088,7 @@ packages:
       eslint: 8.27.0
       eslint-import-resolver-node: 0.3.6
       eslint-import-resolver-typescript: 3.5.2_dcpv4nbdr5ks2h5677xdltrk6e
-      eslint-plugin-import: 2.26.0_y56l4pnry7jttwyb6ddxwucvse
+      eslint-plugin-import: 2.26.0_eslint@8.27.0
       eslint-plugin-jsx-a11y: 6.6.1_eslint@8.27.0
       eslint-plugin-react: 7.31.11_eslint@8.27.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.27.0
@@ -1107,7 +1117,7 @@ packages:
       debug: 4.3.4
       enhanced-resolve: 5.12.0
       eslint: 8.27.0
-      eslint-plugin-import: 2.26.0_y56l4pnry7jttwyb6ddxwucvse
+      eslint-plugin-import: 2.26.0_eslint@8.27.0
       get-tsconfig: 4.2.0
       globby: 13.1.2
       is-core-module: 2.11.0
@@ -1117,7 +1127,7 @@ packages:
       - supports-color
     dev: false
 
-  /eslint-module-utils/2.7.4_elzlbdt543vf34clfsngxetopy:
+  /eslint-module-utils/2.7.4_hzyee272oejuypf7pxzdrrmskq:
     resolution: {integrity: sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -1138,16 +1148,14 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.45.0_e3uo4sehh4zr4i6m57mkkxxv7y
       debug: 3.2.7
       eslint: 8.27.0
       eslint-import-resolver-node: 0.3.6
-      eslint-import-resolver-typescript: 3.5.2_dcpv4nbdr5ks2h5677xdltrk6e
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /eslint-plugin-import/2.26.0_y56l4pnry7jttwyb6ddxwucvse:
+  /eslint-plugin-import/2.26.0_eslint@8.27.0:
     resolution: {integrity: sha512-hYfi3FXaM8WPLf4S1cikh/r4IxnO6zrhZbEGz2b660EJRbuxgpDS5gkCuYgGWg2xxh2rBuIr4Pvhve/7c31koA==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -1157,14 +1165,13 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.45.0_e3uo4sehh4zr4i6m57mkkxxv7y
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
       debug: 2.6.9
       doctrine: 2.1.0
       eslint: 8.27.0
       eslint-import-resolver-node: 0.3.6
-      eslint-module-utils: 2.7.4_elzlbdt543vf34clfsngxetopy
+      eslint-module-utils: 2.7.4_hzyee272oejuypf7pxzdrrmskq
       has: 1.0.3
       is-core-module: 2.11.0
       is-glob: 4.0.3
@@ -1757,6 +1764,15 @@ packages:
 
   /isexe/2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+    dev: false
+
+  /isomorphic-fetch/3.0.0:
+    resolution: {integrity: sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==}
+    dependencies:
+      node-fetch: 2.6.7
+      whatwg-fetch: 3.6.2
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /js-sdsl/4.2.0:
@@ -2767,6 +2783,10 @@ packages:
       yaeti: 0.0.6
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /whatwg-fetch/3.6.2:
+    resolution: {integrity: sha512-bJlen0FcuU/0EMLrdbJ7zOnW6ITZLrZMIarMUVmdKtsGvZna8vxKYaexICWPfZ8qwf9fzNq+UEIZrnSaApt6RA==}
     dev: false
 
   /whatwg-url/5.0.0:
