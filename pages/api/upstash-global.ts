@@ -6,12 +6,9 @@ export const config = {
 };
 
 const redis = Redis.fromEnv()
-
-
 const start = Date.now();
 
 export default async function api(req: Request) {
-
   const count = toNumber(new URL(req.url).searchParams.get("count"));
   const time = Date.now();
 
