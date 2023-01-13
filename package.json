@@ -15,6 +15,7 @@
     "@tremor/react": "^1.2.2",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
+    "@upstash/redis": "^1.19.1",
     "@xata.io/client": "^0.21.5",
     "autoprefixer": "^10.4.13",
     "eslint": "8.27.0",
