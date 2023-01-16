@@ -12,7 +12,7 @@
     "@heroicons/react": "^1.0.6",
     "@planetscale/database": "^1.4.1",
     "@supabase/supabase-js": "^2.4.0",
-    "@tremor/react": "^1.2.2",
+    "@tremor/react": "1.5.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@upstash/redis": "^1.19.1",

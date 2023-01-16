@@ -92,7 +92,7 @@ export default function Page() {
           <div className="py-1 inline-flex">
             <Dropdown
               defaultValue="planetscale"
-              handleSelect={(v) => setDataService(v)}
+              onValueChange={(v) => setDataService(v)}
               maxWidth="max-w-xs"
             >
               <DropdownItem
@@ -192,10 +192,11 @@ export default function Page() {
 
         <div>
           <Button
-            text="Run Test"
-            handleClick={onRunTest}
+            onClick={onRunTest}
             loading={isTestRunning}
-          />
+          >
+            Run Test
+          </Button>
         </div>
 
         {data.regional.length || data.global.length ? (
