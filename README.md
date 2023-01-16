@@ -19,8 +19,9 @@ interface EmployeeTable {
 
 ## Providers
 
+- Grafbase (GraphQL)
 - Neon (In Progress)
-- Planetscale (Kysely + Serverless SDK)
+- PlanetScale (Kysely + Serverless SDK)
 - Shopify (Storefront GraphQL API)
 - Supabase (supabase-js)
 - Xata (TypeScript SDK)
