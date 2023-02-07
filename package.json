@@ -1,6 +1,4 @@
 {
-  "name": "nextjs",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,25 +7,25 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@heroicons/react": "^1.0.6",
-    "@planetscale/database": "^1.4.1",
-    "@supabase/supabase-js": "^2.4.0",
-    "@tremor/react": "1.5.0",
-    "@types/node": "18.11.9",
-    "@types/react": "18.0.25",
-    "@upstash/redis": "^1.19.1",
-    "@xata.io/client": "^0.21.5",
+    "@heroicons/react": "1.0.6",
+    "@planetscale/database": "^1.5.0",
+    "@supabase/supabase-js": "^2.7.1",
+    "@tremor/react": "1.7.0",
+    "@types/node": "18.13.0",
+    "@types/react": "18.0.27",
+    "@upstash/redis": "^1.19.3",
+    "@xata.io/client": "^0.22.1",
     "autoprefixer": "^10.4.13",
-    "eslint": "8.27.0",
-    "eslint-config-next": "13.0.4",
-    "kysely": "^0.22.0",
-    "kysely-planetscale": "^1.1.0",
-    "next": "13.0.7",
-    "postcss": "^8.4.19",
+    "eslint": "8.33.0",
+    "eslint-config-next": "13.1.6",
+    "kysely": "^0.23.4",
+    "kysely-planetscale": "^1.2.1",
+    "next": "13.1.6",
+    "postcss": "^8.4.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "^3.2.4",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.5"
   },
   "pnpm": {
     "peerDependencyRules": {

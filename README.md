@@ -2,9 +2,25 @@
 
 This demo helps observe the latency characteristics of querying different popular data services from varying compute locations.
 
-https://edge-data-latency.vercel.app/
+https://edge-data-latency.vercel.app
 
-## Methodology
+## Providers
+
+- Grafbase (GraphQL)
+- PlanetScale (Kysely + Serverless SDK)
+- Shopify (Storefront GraphQL API)
+- Supabase (supabase-js)
+- Xata (TypeScript SDK)
+- Upstash (SDK)
+
+🚧 Coming Soon 🚧
+
+- Neon
+- Fauna
+- ReadySet
+- Convex
+
+## Testing Methodology
 
 1. Smallest atomic unit, e.g. 1 item / row.
 2. Data schema:
@@ -16,12 +32,3 @@ interface EmployeeTable {
   last_name: string;
 }
 ```
-
-## Providers
-
-- Grafbase (GraphQL)
-- Neon (In Progress)
-- PlanetScale (Kysely + Serverless SDK)
-- Shopify (Storefront GraphQL API)
-- Supabase (supabase-js)
-- Xata (TypeScript SDK)
