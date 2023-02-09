@@ -1,0 +1,14 @@
+# Fauna GraphQL Schema
+
+type Employee {
+  name: String!
+  email: String!
+  phone: String!
+  address: String!
+  position: String!
+  salary: Float!
+}
+
+type Query {
+  listEmployees: [Employee]
+}
