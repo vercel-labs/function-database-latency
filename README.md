@@ -12,11 +12,11 @@ https://edge-data-latency.vercel.app
 - Supabase (supabase-js)
 - Xata (TypeScript SDK)
 - Upstash (SDK)
+- Fauna
 
 🚧 Coming Soon 🚧
 
 - Neon
-- Fauna
 - ReadySet
 - Convex
 
