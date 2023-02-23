@@ -6,14 +6,14 @@ https://edge-data-latency.vercel.app
 
 ## Providers
 
+- Convex (SDK)
+- Fauna
 - Grafbase (GraphQL)
 - PlanetScale (Kysely + Serverless SDK)
 - Shopify (Storefront GraphQL API)
-- Convex (SDK)
 - Supabase (supabase-js)
 - Xata (TypeScript SDK)
 - Upstash (SDK)
-- Fauna
 
 🚧 Coming Soon 🚧
 

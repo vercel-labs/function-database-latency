@@ -110,14 +110,14 @@ export default function Page() {
                 icon={ShoppingCartIcon}
               />
               <DropdownItem
-                value="convex"
-                text="Convex (SDK)"
-                icon={ConvexIcon}
-              />
-              <DropdownItem
                 value="supabase"
                 text="Supabase (supabase-js)"
                 icon={LightningBoltIcon}
+              />
+              <DropdownItem
+                value="convex"
+                text="Convex (SDK)"
+                icon={ConvexIcon}
               />
               <DropdownItem
                 value="fauna"
