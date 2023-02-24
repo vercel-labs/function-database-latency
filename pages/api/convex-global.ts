@@ -5,9 +5,14 @@ export const config = {
   runtime: "edge",
 };
 
-const start = Date.now();
-
+// Make sure we use the Edge endpoints.
+let url = process.env.NEXT_PUBLIC_CONVEX_URL;
+if (!url.endsWith("edge.convex.cloud")) {
+  url = url.replace(/convex.cloud$/g, "edge.convex.cloud");
+}
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL);
+
+const start = Date.now();
 
 export default async function api(req: Request) {
   const count = toNumber(new URL(req.url).searchParams.get("count"));
