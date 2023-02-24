@@ -11,7 +11,7 @@ if (!url.endsWith("edge.convex.cloud")) {
   url = url.replace(/convex.cloud$/g, "edge.convex.cloud");
 }
 
-const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL);
+const convex = new ConvexHttpClient(url);
 
 const start = Date.now();
 
