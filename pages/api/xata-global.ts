@@ -46,9 +46,6 @@ export default async function api(req: Request) {
   for (let i = 0; i < count; i++) {
     data = await xata.db.employees
       .select(["emp_no", "first_name", "last_name"])
-      .filter({
-        last_name: {$startsWith: String.fromCharCode(65 + i)}
-      })
       .getMany({ pagination: { size: 10 }, consistency: "eventual" });
   }
 

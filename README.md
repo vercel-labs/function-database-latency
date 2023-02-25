@@ -12,8 +12,8 @@ https://edge-data-latency.vercel.app
 - PlanetScale (Kysely + Serverless SDK)
 - Shopify (Storefront GraphQL API)
 - Supabase (supabase-js)
-- Xata (TypeScript SDK)
 - Upstash (SDK)
+- Xata (TypeScript SDK)
 
 🚧 Coming Soon 🚧
 
