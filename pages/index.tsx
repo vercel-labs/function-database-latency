@@ -115,6 +115,11 @@ export default function Page() {
                 icon={LightningBoltIcon}
               />
               <DropdownItem
+                value="convex"
+                text="Convex (SDK)"
+                icon={ConvexIcon}
+              />
+              <DropdownItem
                 value="fauna"
                 text="Fauna (faunadb.js)"
                 icon={FaunaIcon}
@@ -298,6 +303,35 @@ function Code({ className = '', children }) {
     <code className={`bg-gray-200 text-sm p-1 rounded ${className}`}>
       {children}
     </code>
+  );
+}
+
+function ConvexIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      viewBox="0 0 45 45"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="rgb(156 163 175)"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M27.7062 34.7911C34.235 34.0809 40.39 30.6736 43.779 24.9866C42.1742 39.0527 26.4703 47.9433 13.6519 42.4847C12.4708 41.9831 11.4541 41.1487 10.7563 40.0758C7.8757 35.6454 6.92878 30.0081 8.28935 24.8923C12.1767 31.4634 20.081 35.4915 27.7062 34.7911Z"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M8.05071 20.7649C5.40431 26.7548 5.28968 33.768 8.53414 39.5394C-2.88375 31.1256 -2.75916 13.1209 8.39459 4.79158C9.42624 4.02172 10.6523 3.56477 11.9381 3.49524C17.2259 3.22206 22.5984 5.22369 26.3662 8.95377C18.7111 9.02827 11.2553 13.8312 8.05071 20.7649Z"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M30.0586 10.7968C26.1962 5.52206 20.1508 1.93105 13.5273 1.82178C26.3307 -3.87019 42.0795 5.35816 43.794 19.002C43.9535 20.2685 43.7441 21.5599 43.171 22.7023C40.7788 27.4605 36.3432 31.1508 31.16 32.5167C34.9577 25.6178 34.4892 17.1891 30.0586 10.7968Z"
+      />
+    </svg>
   );
 }
 

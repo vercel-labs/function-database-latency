@@ -16,6 +16,7 @@
     "@upstash/redis": "^1.19.3",
     "@xata.io/client": "^0.22.1",
     "autoprefixer": "^10.4.13",
+    "convex": "^0.9.1",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "kysely": "^0.23.4",
