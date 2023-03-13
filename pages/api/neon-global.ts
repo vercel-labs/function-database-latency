@@ -13,19 +13,19 @@ export default async function api(req: Request, ctx: any) {
 
   const pool = new Pool({ connectionString: process.env.NEON_DATABASE_URL });
 
-  let data = [];
+  let data = null;
   for (let i = 0; i < count; i++) {
-    data.push(await pool.query(`
+    data = await pool.query(`
       SELECT "emp_no", "first_name", "last_name" 
       FROM "employees" 
       LIMIT 10
-    `));
+    `);
   }
   
   ctx.waitUntil(pool.end());
 
   return Response.json({
-    data,
+    data: data.rows,
     queryDuration: Date.now() - time,
     invocationIsCold: start === time,
     invocationRegion: (req.headers.get("x-vercel-id") ?? "").split(":")[1] || null,
