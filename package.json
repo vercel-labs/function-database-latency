@@ -10,7 +10,7 @@
     "@heroicons/react": "1.0.6",
     "@planetscale/database": "^1.5.0",
     "@supabase/supabase-js": "^2.7.1",
-    "@tremor/react": "1.7.0",
+    "@tremor/react": "2.0.1",
     "@types/node": "18.13.0",
     "@types/react": "18.0.27",
     "@upstash/redis": "^1.19.3",
@@ -25,7 +25,7 @@
     "postcss": "^8.4.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tailwindcss": "^3.2.4",
+    "tailwindcss": "^3.2.7",
     "typescript": "^4.9.5"
   },
   "pnpm": {

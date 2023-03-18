@@ -1,4 +1,4 @@
-import { Button, Card, Title, AreaChart, ColGrid, Text } from '@tremor/react';
+import { Button, Card, Title, AreaChart, Grid, Text } from '@tremor/react';
 import { useCallback, useState } from 'react';
 import { Dropdown, DropdownItem } from '@tremor/react';
 import {
@@ -90,9 +90,9 @@ export default function Page() {
 
           <div className="py-1 inline-flex">
             <Dropdown
+              className="max-w-xs"
               defaultValue="grafbase"
-              handleSelect={(v) => setDataService(v)}
-              maxWidth="max-w-xs"
+              onValueChange={(v) => setDataService(v)}
             >
               <DropdownItem
                 value="grafbase"
@@ -215,18 +215,19 @@ export default function Page() {
         </div>
 
         {data.regional.length || data.global.length ? (
-          <ColGrid numCols={1} numColsMd={2} gapX="gap-x-5" gapY="gap-y-5">
+          <Grid className="gap-5" numCols={1} numColsMd={2}>
             <Card>
-              <Title truncate={true}>
+              <Title className="truncate">
                 Latency distribution (processing time)
               </Title>
-              <Text height="h-14">
+              <Text className="h-14 overflow-auto">
                 This is how long it takes for the edge function to run the
                 queries and return the result. Your internet connections{' '}
                 <b>will not</b> influence these results.
               </Text>
 
               <AreaChart
+                className="mt-6"
                 data={new Array(ATTEMPTS).fill(0).map((_, i) => {
                   return {
                     attempt: `#${i + 1}`,
@@ -238,17 +239,16 @@ export default function Page() {
                       : null,
                   };
                 })}
-                dataKey="attempt"
+                index="attempt"
                 categories={['Global', 'Regional']}
                 colors={['indigo', 'cyan']}
                 valueFormatter={dataFormatter}
-                marginTop="mt-6"
-                yAxisWidth="w-12"
+                yAxisWidth={48}
               />
             </Card>
             <Card>
-              <Title truncate={true}>Latency distribution (end-to-end)</Title>
-              <Text height="h-14">
+            <Title className="truncate">Latency distribution (end-to-end)</Title>
+              <Text className="h-14 overflow-auto">
                 This is the total latency from the client&apos;s perspective. It
                 considers the total roundtrip between browser and edge. Your
                 internet connection and location <b>will</b> influence these
@@ -256,6 +256,7 @@ export default function Page() {
               </Text>
 
               <AreaChart
+                className="mt-6"
                 data={new Array(ATTEMPTS).fill(0).map((_, i) => {
                   return {
                     attempt: `#${i + 1}`,
@@ -265,15 +266,14 @@ export default function Page() {
                     Global: data.global[i] ? data.global[i].elapsed : null,
                   };
                 })}
-                dataKey="attempt"
+                index="attempt"
                 categories={['Global', 'Regional']}
                 colors={['indigo', 'cyan']}
                 valueFormatter={dataFormatter}
-                marginTop="mt-6"
-                yAxisWidth="w-12"
+                yAxisWidth={48}
               />
             </Card>
-          </ColGrid>
+          </Grid>
         ) : null}
       </form>
     </main>
@@ -311,7 +311,7 @@ function ConvexIcon() {
     <svg
       width="20"
       height="20"
-      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      className="flex-none h-5 w-5 mr-3"
       viewBox="0 0 45 45"
       xmlns="http://www.w3.org/2000/svg"
       fill="rgb(156 163 175)"
@@ -340,7 +340,7 @@ function GrafbaseIcon() {
     <svg
       width="20"
       height="20"
-      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      className="flex-none h-5 w-5 mr-3"
       viewBox="0 0 41 41"
       xmlns="http://www.w3.org/2000/svg"
       fill="rgb(156 163 175)"
@@ -362,7 +362,7 @@ function GrafbaseIcon() {
 function UpstashIcon() {
   return (
     <svg
-      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      className="flex-none h-5 w-5 mr-3"
       viewBox="0 0 310 472"
       xmlns="http://www.w3.org/2000/svg"
       fill="rgb(156 163 175)"
@@ -380,7 +380,7 @@ function FaunaIcon() {
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
       viewBox="0 0 400 400"
-      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      className="flex-none h-5 w-5 mr-3"
     >
       <path d="M269.537 130.232C254.133 135.374 246.716 144.596 241.662 158.96C240.358 162.795 237.098 167.039 233.431 169.896L246.064 183.443L205.964 155.369L95.2812 78C95.2812 78 103.269 129.906 106.04 149.003C107.996 162.469 111.338 168.508 121.933 174.629L126.171 176.914L144.428 186.545L133.588 180.913L183.632 208.254L183.306 208.988L129.431 184.015C132.284 193.808 137.826 212.661 140.19 220.985C142.717 229.963 145.569 233.227 154.29 236.41L170.346 242.286L180.29 238.369L167.657 246.775L104.491 327C146.466 287.989 182.002 274.115 208.001 262.771C241.173 248.407 261.142 239.185 274.183 206.05C283.474 182.791 290.728 153.002 299.938 141.495L319.58 116.358C319.58 116.358 278.91 127.131 269.537 130.232Z" fill="rgb(156 163 175)"/>
     </svg>
@@ -391,7 +391,7 @@ function XataIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      className="flex-none h-5 w-5 mr-3"
       width="20"
       height="20"
       viewBox="0 0 561 467"
