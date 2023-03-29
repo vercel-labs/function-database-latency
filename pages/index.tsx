@@ -1,4 +1,4 @@
-import { Button, Card, Title, AreaChart, ColGrid, Text } from '@tremor/react';
+import { Button, Card, Title, AreaChart, Grid, Text } from '@tremor/react';
 import { useCallback, useState } from 'react';
 import { Dropdown, DropdownItem } from '@tremor/react';
 import {
@@ -6,6 +6,7 @@ import {
   DatabaseIcon,
   LightningBoltIcon,
 } from '@heroicons/react/solid';
+import Head from 'next/head';
 
 const ATTEMPTS = 10;
 
@@ -73,6 +74,10 @@ export default function Page() {
 
   return (
     <main className="p-6 max-w-5xl flex flex-col gap-3">
+      <Head>
+        <title>Edge &lt;&gt; Data latency</title>
+      </Head>
+
       <h1 className="text-2xl font-bold">Edge &lt;&gt; Data latency</h1>
       <p>
         This demo helps observe the latency characteristics of querying
@@ -82,7 +87,7 @@ export default function Page() {
       <form className="flex flex-col gap-5 bg-gray-100 p-5 my-5">
         <div className="flex flex-col gap-1">
           <p className="font-bold">Data service</p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-600 text-sm">
             Vercel Edge Functions support multiple regions. By default
             they&apos;re global, but it&apos;s possible to express a region
             preference via the <Code className="text-xs">region</Code> setting.
@@ -90,9 +95,9 @@ export default function Page() {
 
           <div className="py-1 inline-flex">
             <Dropdown
+              className="max-w-xs"
               defaultValue="grafbase"
-              handleSelect={(v) => setDataService(v)}
-              maxWidth="max-w-xs"
+              onValueChange={(v) => setDataService(v)}
             >
               <DropdownItem
                 value="grafbase"
@@ -141,7 +146,7 @@ export default function Page() {
 
         <div className="flex flex-col gap-1">
           <p className="font-bold">Location</p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-600 text-sm">
             Vercel Edge Functions support multiple regions. By default
             they&apos;re global, but it&apos;s possible to express a region
             preference via the <Code className="text-xs">region</Code> setting.
@@ -174,7 +179,7 @@ export default function Page() {
 
         <div className="flex flex-col gap-1">
           <p className="font-bold">Waterfall</p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-600 text-sm">
             Executing complex API routes globally can be slow when the database
             is single-region, due to having multiple roundtrips to a single
             server that&apos;s distant from the user.
@@ -220,18 +225,19 @@ export default function Page() {
         </div>
 
         {data.regional.length || data.global.length ? (
-          <ColGrid numCols={1} numColsMd={2} gapX="gap-x-5" gapY="gap-y-5">
+          <Grid className="gap-5" numCols={1} numColsMd={2}>
             <Card>
-              <Title truncate={true}>
+              <Title className="truncate">
                 Latency distribution (processing time)
               </Title>
-              <Text height="h-14">
+              <Text className="h-14 overflow-auto">
                 This is how long it takes for the edge function to run the
                 queries and return the result. Your internet connections{' '}
                 <b>will not</b> influence these results.
               </Text>
 
               <AreaChart
+                className="mt-6"
                 data={new Array(ATTEMPTS).fill(0).map((_, i) => {
                   return {
                     attempt: `#${i + 1}`,
@@ -243,17 +249,16 @@ export default function Page() {
                       : null,
                   };
                 })}
-                dataKey="attempt"
+                index="attempt"
                 categories={['Global', 'Regional']}
                 colors={['indigo', 'cyan']}
                 valueFormatter={dataFormatter}
-                marginTop="mt-6"
-                yAxisWidth="w-12"
+                yAxisWidth={48}
               />
             </Card>
             <Card>
-              <Title truncate={true}>Latency distribution (end-to-end)</Title>
-              <Text height="h-14">
+            <Title className="truncate">Latency distribution (end-to-end)</Title>
+              <Text className="h-14 overflow-auto">
                 This is the total latency from the client&apos;s perspective. It
                 considers the total roundtrip between browser and edge. Your
                 internet connection and location <b>will</b> influence these
@@ -261,6 +266,7 @@ export default function Page() {
               </Text>
 
               <AreaChart
+                className="mt-6"
                 data={new Array(ATTEMPTS).fill(0).map((_, i) => {
                   return {
                     attempt: `#${i + 1}`,
@@ -270,15 +276,14 @@ export default function Page() {
                     Global: data.global[i] ? data.global[i].elapsed : null,
                   };
                 })}
-                dataKey="attempt"
+                index="attempt"
                 categories={['Global', 'Regional']}
                 colors={['indigo', 'cyan']}
                 valueFormatter={dataFormatter}
-                marginTop="mt-6"
-                yAxisWidth="w-12"
+                yAxisWidth={48}
               />
             </Card>
-          </ColGrid>
+          </Grid>
         ) : null}
       </form>
     </main>
@@ -316,10 +321,11 @@ function ConvexIcon() {
     <svg
       width="20"
       height="20"
-      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      className="flex-none h-5 w-5 mr-3"
       viewBox="0 0 45 45"
       xmlns="http://www.w3.org/2000/svg"
       fill="rgb(156 163 175)"
+      aria-hidden="true"
     >
       <path
         fillRule="evenodd"
@@ -345,10 +351,11 @@ function GrafbaseIcon() {
     <svg
       width="20"
       height="20"
-      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      className="flex-none h-5 w-5 mr-3"
       viewBox="0 0 41 41"
       xmlns="http://www.w3.org/2000/svg"
       fill="rgb(156 163 175)"
+      aria-hidden="true"
     >
       <path
         fillRule="evenodd"
@@ -367,10 +374,11 @@ function GrafbaseIcon() {
 function UpstashIcon() {
   return (
     <svg
-      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      className="flex-none h-5 w-5 mr-3"
       viewBox="0 0 310 472"
       xmlns="http://www.w3.org/2000/svg"
       fill="rgb(156 163 175)"
+      aria-hidden="true"
     >
       <path d="M0.421875 412.975C78.5269 491.079 205.16 491.079 283.265 412.975C361.369 334.87 361.369 208.237 283.265 130.132L247.909 165.487C306.488 224.066 306.488 319.041 247.909 377.619C189.331 436.198 94.3559 436.198 35.7769 377.619L0.421875 412.975Z" />
       <path d="M71.1328 342.264C110.185 381.316 173.501 381.316 212.554 342.264C251.606 303.212 251.606 239.895 212.554 200.843L177.199 236.198C196.725 255.724 196.725 287.382 177.199 306.909C157.672 326.435 126.014 326.435 106.488 306.909L71.1328 342.264Z" />
@@ -385,7 +393,8 @@ function FaunaIcon() {
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
       viewBox="0 0 400 400"
-      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      className="flex-none h-5 w-5 mr-3"
+      aria-hidden="true"
     >
       <path d="M269.537 130.232C254.133 135.374 246.716 144.596 241.662 158.96C240.358 162.795 237.098 167.039 233.431 169.896L246.064 183.443L205.964 155.369L95.2812 78C95.2812 78 103.269 129.906 106.04 149.003C107.996 162.469 111.338 168.508 121.933 174.629L126.171 176.914L144.428 186.545L133.588 180.913L183.632 208.254L183.306 208.988L129.431 184.015C132.284 193.808 137.826 212.661 140.19 220.985C142.717 229.963 145.569 233.227 154.29 236.41L170.346 242.286L180.29 238.369L167.657 246.775L104.491 327C146.466 287.989 182.002 274.115 208.001 262.771C241.173 248.407 261.142 239.185 274.183 206.05C283.474 182.791 290.728 153.002 299.938 141.495L319.58 116.358C319.58 116.358 278.91 127.131 269.537 130.232Z" fill="rgb(156 163 175)"/>
     </svg>
@@ -396,11 +405,12 @@ function XataIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="tr-flex-none tr-h-5 tr-w-5 tr-mr-3"
+      className="flex-none h-5 w-5 mr-3"
       width="20"
       height="20"
       viewBox="0 0 561 467"
       fill="rgb(156 163 175)"
+      aria-hidden="true"
     >
       <path d="M439.428 465.611C471.671 433.443 493.244 393.222 499.401 353.796C505.558 314.369 495.795 278.966 472.26 255.376L350.688 376.663L439.428 465.611Z" />
       <path d="M121.572 466.305C89.3288 434.138 67.756 393.917 61.5989 354.49C55.4418 315.063 65.2047 279.66 88.74 256.07L210.312 377.357L121.572 466.305Z" />
