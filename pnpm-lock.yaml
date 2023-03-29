@@ -26,8 +26,8 @@ specifiers:
 dependencies:
   '@heroicons/react': 1.0.6_react@18.2.0
   '@neondatabase/serverless': 0.2.8
-  '@planetscale/database': 1.5.0
-  '@supabase/supabase-js': 2.7.1
+  '@planetscale/database': 1.6.0
+  '@supabase/supabase-js': 2.10.0
   '@tremor/react': 2.0.1_biqbaboplfbrettd7655fr4n2y
   '@types/node': 18.13.0
   '@types/react': 18.0.27
