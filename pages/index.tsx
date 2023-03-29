@@ -75,15 +75,37 @@ export default function Page() {
   return (
     <main className="p-6 max-w-5xl flex flex-col gap-3">
       <Head>
-        <title>Edge &lt;&gt; Data latency</title>
+        <title>Vercel Edge Functions + Database Latency</title>
       </Head>
 
-      <h1 className="text-2xl font-bold">Edge &lt;&gt; Data latency</h1>
+      <h1 className="text-2xl font-bold">
+        Vercel Edge Functions + Database Latency
+      </h1>
       <p>
         This demo helps observe the latency characteristics of querying
         different popular data services from varying compute locations.
       </p>
-
+      <p>
+        Learn more about{' '}
+        <a
+          href="https://vercel.com/docs/concepts/functions/edge-functions"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          Vercel Edge Functions
+        </a>
+        {' or '}
+        <a
+          href="https://vercel.com/templates?type=edge-functions"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          deploy a template
+        </a>
+        .
+      </p>
       <form className="flex flex-col gap-5 bg-gray-100 p-5 my-5">
         <div className="flex flex-col gap-1">
           <p className="font-bold">Data service</p>
@@ -96,23 +118,33 @@ export default function Page() {
           <div className="py-1 inline-flex">
             <Dropdown
               className="max-w-xs"
-              defaultValue="grafbase"
+              placeholder="Select Database"
               onValueChange={(v) => setDataService(v)}
             >
+              <DropdownItem
+                value="convex"
+                text="Convex (SDK)"
+                icon={ConvexIcon}
+              />
+              <DropdownItem
+                value="fauna"
+                text="Fauna (faunadb.js)"
+                icon={FaunaIcon}
+              />
               <DropdownItem
                 value="grafbase"
                 text="Grafbase (GraphQL)"
                 icon={GrafbaseIcon}
               />
               <DropdownItem
-                value="planetscale"
-                text="PlanetScale (Kysely + Serverless SDK)"
-                icon={DatabaseIcon}
-              />
-              <DropdownItem
                 value="neon"
                 text="Neon (@neondatabase/serverless driver)"
                 icon={NeonIcon}
+              />
+              <DropdownItem
+                value="planetscale"
+                text="PlanetScale (Kysely + Serverless SDK)"
+                icon={DatabaseIcon}
               />
               <DropdownItem
                 value="shopify"
@@ -125,21 +157,11 @@ export default function Page() {
                 icon={LightningBoltIcon}
               />
               <DropdownItem
-                value="convex"
-                text="Convex (SDK)"
-                icon={ConvexIcon}
-              />
-              <DropdownItem
-                value="fauna"
-                text="Fauna (faunadb.js)"
-                icon={FaunaIcon}
-              />
-              <DropdownItem value="xata" text="Xata (SDK)" icon={XataIcon} />
-              <DropdownItem
                 value="upstash"
                 text="Upstash (SDK)"
                 icon={UpstashIcon}
               />
+              <DropdownItem value="xata" text="Xata (SDK)" icon={XataIcon} />
             </Dropdown>
           </div>
         </div>
