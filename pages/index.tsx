@@ -75,15 +75,37 @@ export default function Page() {
   return (
     <main className="p-6 max-w-5xl flex flex-col gap-3">
       <Head>
-        <title>Edge &lt;&gt; Data latency</title>
+        <title>Vercel Edge Functions + Database Latency</title>
       </Head>
 
-      <h1 className="text-2xl font-bold">Edge &lt;&gt; Data latency</h1>
+      <h1 className="text-2xl font-bold">
+        Vercel Edge Functions + Database Latency
+      </h1>
       <p>
         This demo helps observe the latency characteristics of querying
         different popular data services from varying compute locations.
       </p>
-
+      <p>
+        Learn more about{' '}
+        <a
+          href="https://vercel.com/docs/concepts/functions/edge-functions"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          Vercel Edge Functions
+        </a>
+        {' or '}
+        <a
+          href="https://vercel.com/templates?type=edge-functions"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          deploy a template
+        </a>
+        .
+      </p>
       <form className="flex flex-col gap-5 bg-gray-100 p-5 my-5">
         <div className="flex flex-col gap-1">
           <p className="font-bold">Data service</p>
@@ -96,13 +118,28 @@ export default function Page() {
           <div className="py-1 inline-flex">
             <Dropdown
               className="max-w-xs"
-              defaultValue="grafbase"
+              placeholder="Select Database"
               onValueChange={(v) => setDataService(v)}
             >
+              <DropdownItem
+                value="convex"
+                text="Convex (SDK)"
+                icon={ConvexIcon}
+              />
+              <DropdownItem
+                value="fauna"
+                text="Fauna (faunadb.js)"
+                icon={FaunaIcon}
+              />
               <DropdownItem
                 value="grafbase"
                 text="Grafbase (GraphQL)"
                 icon={GrafbaseIcon}
+              />
+              <DropdownItem
+                value="neon"
+                text="Neon (@neondatabase/serverless driver)"
+                icon={NeonIcon}
               />
               <DropdownItem
                 value="planetscale"
@@ -120,26 +157,16 @@ export default function Page() {
                 icon={LightningBoltIcon}
               />
               <DropdownItem
-                value="convex"
-                text="Convex (SDK)"
-                icon={ConvexIcon}
+                value="tigris"
+                text="Tigris (HTTP API)"
+                icon={TigrisIcon}
               />
-              <DropdownItem
-                value="fauna"
-                text="Fauna (faunadb.js)"
-                icon={FaunaIcon}
-              />
-              <DropdownItem value="xata" text="Xata (SDK)" icon={XataIcon} />
               <DropdownItem
                 value="upstash"
                 text="Upstash (SDK)"
                 icon={UpstashIcon}
               />
-              <DropdownItem
-                value="tigris"
-                text="Tigris (HTTP API)"
-                icon={TigrisIcon}
-              />
+              <DropdownItem value="xata" text="Xata (SDK)" icon={XataIcon} />
             </Dropdown>
           </div>
         </div>
@@ -172,7 +199,7 @@ export default function Page() {
                 checked={shouldTestRegional}
                 onChange={(e) => setShouldTestRegional(e.target.checked)}
               />{' '}
-              Test regional (IAD) function
+              Test regional (IAD/CLE) function
             </label>
           </p>
         </div>
@@ -421,6 +448,42 @@ function XataIcon() {
       <path d="M121.572 466.305C89.3288 434.138 67.756 393.917 61.5989 354.49C55.4418 315.063 65.2047 279.66 88.74 256.07L210.312 377.357L121.572 466.305Z" />
       <path d="M50.6715 122.184C50.7248 167.729 68.8685 211.387 101.111 243.554L101.114 243.551L222.671 364.823C254.838 332.58 272.879 288.88 272.826 243.335C272.773 197.79 254.629 154.132 222.386 121.964L222.383 121.967L100.827 0.695312C68.6597 32.9381 50.6182 76.6388 50.6715 122.184Z" />
       <path d="M510.327 121.488C510.274 167.033 492.13 210.692 459.887 242.859L459.884 242.855L338.328 364.127C306.161 331.884 288.119 288.183 288.172 242.638C288.226 197.094 306.369 153.435 338.612 121.268L338.616 121.271L460.172 0C492.339 32.2428 510.38 75.9434 510.327 121.488Z" />
+    </svg>
+  );
+}
+
+function NeonIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="flex-none h-5 w-5 mr-3"
+      width="20"
+      height="20"
+      viewBox="0 0 36 36"
+      fill="none"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M0 6.207A6.207 6.207 0 0 1 6.207 0h23.586A6.207 6.207 0 0 1 36 6.207v20.06c0 3.546-4.488 5.085-6.664 2.286l-6.805-8.754v10.615A5.586 5.586 0 0 1 16.945 36H6.207A6.207 6.207 0 0 1 0 29.793V6.207Zm6.207-1.241c-.686 0-1.241.555-1.241 1.24v23.587c0 .686.555 1.242 1.24 1.242h10.925c.343 0 .434-.278.434-.621V16.18c0-3.547 4.488-5.086 6.665-2.286l6.805 8.753V6.207c0-.686.064-1.241-.621-1.241H6.207Z"
+        fill="rgb(186 193 205)"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M0 6.207A6.207 6.207 0 0 1 6.207 0h23.586A6.207 6.207 0 0 1 36 6.207v20.06c0 3.546-4.488 5.085-6.664 2.286l-6.805-8.754v10.615A5.586 5.586 0 0 1 16.945 36H6.207A6.207 6.207 0 0 1 0 29.793V6.207Zm6.207-1.241c-.686 0-1.241.555-1.241 1.24v23.587c0 .686.555 1.242 1.24 1.242h10.925c.343 0 .434-.278.434-.621V16.18c0-3.547 4.488-5.086 6.665-2.286l6.805 8.753V6.207c0-.686.064-1.241-.621-1.241H6.207Z"
+        fill="rgb(186 193 205)"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M0 6.207A6.207 6.207 0 0 1 6.207 0h23.586A6.207 6.207 0 0 1 36 6.207v20.06c0 3.546-4.488 5.085-6.664 2.286l-6.805-8.754v10.615A5.586 5.586 0 0 1 16.945 36H6.207A6.207 6.207 0 0 1 0 29.793V6.207Zm6.207-1.241c-.686 0-1.241.555-1.241 1.24v23.587c0 .686.555 1.242 1.24 1.242h10.925c.343 0 .434-.278.434-.621V16.18c0-3.547 4.488-5.086 6.665-2.286l6.805 8.753V6.207c0-.686.064-1.241-.621-1.241H6.207Z"
+        fill="rgb(186 193 205)"
+      />
+      <path
+        d="M29.793 0A6.207 6.207 0 0 1 36 6.207v20.06c0 3.546-4.488 5.085-6.664 2.286l-6.805-8.754v10.615A5.586 5.586 0 0 1 16.945 36a.62.62 0 0 0 .62-.62v-19.2c0-3.547 4.488-5.086 6.665-2.286l6.805 8.753V1.241C31.035.556 30.479 0 29.793 0Z"
+        fill="rgb(156 163 175)"
+      />
     </svg>
   );
 }
