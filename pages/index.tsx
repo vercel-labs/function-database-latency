@@ -137,7 +137,7 @@ export default function Page() {
               />
               <DropdownItem
                 value="tigris"
-                text="Tigris (SDK)"
+                text="Tigris (HTTP API)"
                 icon={TigrisIcon}
               />
             </Dropdown>
