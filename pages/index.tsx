@@ -17,7 +17,7 @@ export default function Page() {
   const [shouldTestGlobal, setShouldTestGlobal] = useState(true);
   const [shouldTestRegional, setShouldTestRegional] = useState(true);
   const [queryCount, setQueryCount] = useState(1);
-  const [dataService, setDataService] = useState('grafbase');
+  const [dataService, setDataService] = useState(false);
   const [data, setData] = useState({
     regional: [],
     global: [],
@@ -76,14 +76,23 @@ export default function Page() {
     <main className="p-6 max-w-5xl flex flex-col gap-3">
       <Head>
         <title>Vercel Edge Functions + Database Latency</title>
+        <meta
+          name="description"
+          content="Vercel Edge Functions + Database Latency"
+        />
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:image:url" content="/edge-data.png" />
+        <meta name="twitter:image" content="/edge-data.png" />
       </Head>
 
       <h1 className="text-2xl font-bold">
         Vercel Edge Functions + Database Latency
       </h1>
       <p>
-        This demo helps observe the latency characteristics of querying
-        different popular data services from varying compute locations.
+        Observe the latency querying different data services from varying
+        compute locations. We built this playground to demonstrate different
+        data access patterns and how they can impact latency through sequential
+        data requests (i.e. waterfalls).
       </p>
       <p>
         Learn more about{' '}
@@ -199,7 +208,7 @@ export default function Page() {
                 checked={shouldTestRegional}
                 onChange={(e) => setShouldTestRegional(e.target.checked)}
               />{' '}
-              Test regional (IAD/CLE) function
+              Test regional (US East) function
             </label>
           </p>
         </div>
@@ -246,7 +255,11 @@ export default function Page() {
         </div>
 
         <div>
-          <Button onClick={onRunTest} loading={isTestRunning}>
+          <Button
+            onClick={onRunTest}
+            loading={isTestRunning}
+            disabled={!dataService}
+          >
             Run Test
           </Button>
         </div>
