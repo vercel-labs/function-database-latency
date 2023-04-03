@@ -78,7 +78,8 @@ export default function Page() {
         <title>Vercel Edge Functions + Database Latency</title>
         <meta
           name="description"
-          content="Vercel Edge Functions + Database Latency"
+          content="Observe the latency querying different data services from varying
+          compute locations."
         />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:image:url" content="/edge-data.png" />
