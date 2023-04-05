@@ -259,7 +259,7 @@ export default function Page() {
           <Button
             onClick={onRunTest}
             loading={isTestRunning}
-            disabled={dataService !== ''}
+            disabled={dataService === ''}
           >
             Run Test
           </Button>
