@@ -127,56 +127,71 @@ export default function Page() {
 
           <div className="py-1 inline-flex">
             <Dropdown
+              data-testid="database-dropdown"
               className="max-w-xs"
               placeholder="Select Database"
               onValueChange={(v) => setDataService(v)}
             >
               <DropdownItem
+                data-testid="convex"
                 value="convex"
                 text="Convex (SDK)"
                 icon={ConvexIcon}
               />
               <DropdownItem
+                data-testid="fauna"
                 value="fauna"
                 text="Fauna (faunadb.js)"
                 icon={FaunaIcon}
               />
               <DropdownItem
+                data-testid="grafbase"
                 value="grafbase"
                 text="Grafbase (GraphQL)"
                 icon={GrafbaseIcon}
               />
               <DropdownItem
+                data-testid="neon"
                 value="neon"
                 text="Neon (@neondatabase/serverless driver)"
                 icon={NeonIcon}
               />
               <DropdownItem
+                data-testid="planetscale"
                 value="planetscale"
                 text="PlanetScale (Kysely + Serverless SDK)"
                 icon={DatabaseIcon}
               />
               <DropdownItem
+                data-testid="shopify"
                 value="shopify"
                 text="Shopify (Storefront GraphQL API)"
                 icon={ShoppingCartIcon}
               />
               <DropdownItem
+                data-testid="supabase"
                 value="supabase"
                 text="Supabase (supabase-js)"
                 icon={LightningBoltIcon}
               />
               <DropdownItem
+                data-testid="tigris"
                 value="tigris"
                 text="Tigris (HTTP API)"
                 icon={TigrisIcon}
               />
               <DropdownItem
+                data-testid="upstash"
                 value="upstash"
                 text="Upstash (SDK)"
                 icon={UpstashIcon}
               />
-              <DropdownItem value="xata" text="Xata (SDK)" icon={XataIcon} />
+              <DropdownItem
+                data-testid="xata"
+                value="xata"
+                text="Xata (SDK)"
+                icon={XataIcon}
+              />
             </Dropdown>
           </div>
         </div>
@@ -257,6 +272,7 @@ export default function Page() {
 
         <div>
           <Button
+            data-testid="run-test"
             onClick={onRunTest}
             loading={isTestRunning}
             disabled={dataService === ''}
