@@ -34,4 +34,4 @@ interface EmployeeTable {
 
 - [Vercel Edge Functions Docs](https://vercel.com/docs/concepts/functions/edge-functions)
 - [Vercel Edge Functions Templates](https://vercel.com/templates/edge-functions)
-- [Regional Edge Functions(https://vercel.com/blog/regional-execution-for-ultra-low-latency-rendering-at-the-edge)
+- [Regional Edge Functions](https://vercel.com/blog/regional-execution-for-ultra-low-latency-rendering-at-the-edge)
