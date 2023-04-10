@@ -107,7 +107,7 @@ export default function Page() {
         </a>
         {' or '}
         <a
-          href="https://vercel.com/templates?type=edge-functions"
+          href="https://vercel.com/templates/edge-functions"
           target="_blank"
           rel="noopener noreferrer"
           className="underline"
