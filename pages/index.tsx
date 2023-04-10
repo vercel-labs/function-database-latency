@@ -201,7 +201,6 @@ export default function Page() {
             <label className="flex items-center gap-2 whitespace-nowrap">
               <input
                 type="checkbox"
-                disabled
                 name="region"
                 value="global"
                 checked={shouldTestGlobal}
@@ -212,7 +211,6 @@ export default function Page() {
             <label className="flex items-center gap-2 whitespace-nowrap">
               <input
                 type="checkbox"
-                disabled
                 name="region"
                 value="regional"
                 checked={shouldTestRegional}
