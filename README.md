@@ -14,11 +14,7 @@ https://edge-data-latency.vercel.app
 - Supabase (supabase-js)
 - Upstash (SDK)
 - Xata (TypeScript SDK)
-
-🚧 Coming Soon 🚧
-
 - Neon
-- ReadySet
 
 ## Testing Methodology
 
@@ -32,3 +28,9 @@ interface EmployeeTable {
   last_name: string;
 }
 ```
+
+## Learn More
+
+- [Vercel Edge Functions Docs](https://vercel.com/docs/concepts/functions/edge-functions)
+- [Vercel Edge Functions Templates](https://vercel.com/templates/edge-functions)
+- [Regional Edge Functions(https://vercel.com/blog/regional-execution-for-ultra-low-latency-rendering-at-the-edge)
