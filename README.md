@@ -9,12 +9,13 @@ https://edge-data-latency.vercel.app
 - Convex (SDK)
 - Fauna
 - Grafbase (GraphQL)
+- Neon
 - PlanetScale (Kysely + Serverless SDK)
 - Shopify (Storefront GraphQL API)
 - Supabase (supabase-js)
+- Tigris
 - Upstash (SDK)
 - Xata (TypeScript SDK)
-- Neon
 
 ## Testing Methodology
 
