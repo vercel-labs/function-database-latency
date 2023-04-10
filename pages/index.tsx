@@ -119,12 +119,6 @@ export default function Page() {
       <form className="flex flex-col gap-5 bg-gray-100 p-5 my-5">
         <div className="flex flex-col gap-1">
           <p className="font-bold">Data service</p>
-          <p className="text-gray-600 text-sm">
-            Vercel Edge Functions support multiple regions. By default
-            they&apos;re global, but it&apos;s possible to express a region
-            preference via the <Code className="text-xs">region</Code> setting.
-          </p>
-
           <div className="py-1 inline-flex">
             <Dropdown
               data-testid="database-dropdown"
@@ -272,6 +266,7 @@ export default function Page() {
 
         <div>
           <Button
+            type="button"
             data-testid="run-test"
             onClick={onRunTest}
             loading={isTestRunning}
