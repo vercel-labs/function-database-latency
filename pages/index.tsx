@@ -148,7 +148,7 @@ export default function Page() {
               />
               <DropdownItem
                 value="neon"
-                text="Neon (@neondatabase/serverless driver)"
+                text="Neon (Kysely + @neondatabase/serverless driver)"
                 icon={NeonIcon}
               />
               <DropdownItem
