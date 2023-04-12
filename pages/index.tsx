@@ -7,35 +7,70 @@ import {
   LightningBoltIcon,
 } from '@heroicons/react/solid';
 import Head from 'next/head';
+import { Client as LibsqlClient, createClient } from "@libsql/client/web";
 
 const ATTEMPTS = 10;
 
-type Region = 'regional' | 'global';
+type Region = 'regional' | 'global' | 'direct';
 
 export default function Page() {
   const [isTestRunning, setIsTestRunning] = useState(false);
   const [shouldTestGlobal, setShouldTestGlobal] = useState(true);
   const [shouldTestRegional, setShouldTestRegional] = useState(true);
+  const [shouldTestDirect, setShouldTestDirect] = useState(false);
   const [queryCount, setQueryCount] = useState(1);
   const [dataService, setDataService] = useState('');
   const [data, setData] = useState({
     regional: [],
     global: [],
+    direct: [],
   });
 
   const runTest = useCallback(
     async (dataService: string, type: Region, queryCount: number) => {
       try {
-        const start = Date.now();
-        const res = await fetch(
-          `/api/${dataService}-${type}?count=${queryCount}`
-        );
-        const data = await res.json();
-        const end = Date.now();
-        return {
-          ...data,
-          elapsed: end - start,
-        };
+        if (type === 'direct') {
+            let exec: Function;
+            switch(dataService) {
+              case 'turso': {
+                const res = await fetch(
+                  `/api/turso-jwt`
+                );
+                const data = await res.json();
+                const url = data.url;
+                const authToken = data.authToken;
+                const client = createClient({ url, authToken });
+                exec = async (count: number) => {
+                  let data = null;
+                  for (let i = 0; i < count; i++) {
+                    data = await client.execute("select emp_no, first_name, last_name from employees limit 10");
+                  }
+                  return data;
+                };
+                break;
+              }
+              default:
+                return null;
+            }
+            const start = Date.now();
+            const data = await exec(queryCount)
+            const end = Date.now();
+            return {
+              ...data,
+              elapsed: end - start,
+            };
+        } else {
+            const start = Date.now();
+            const res = await fetch(
+              `/api/${dataService}-${type}?count=${queryCount}`
+            );
+            const data = await res.json();
+            const end = Date.now();
+            return {
+              ...data,
+              elapsed: end - start,
+            };
+        }
       } catch (e) {
         // instead of retrying we just give up
         return null;
@@ -46,11 +81,12 @@ export default function Page() {
 
   const onRunTest = useCallback(async () => {
     setIsTestRunning(true);
-    setData({ regional: [], global: [] });
+    setData({ regional: [], global: [], direct: []});
 
     for (let i = 0; i < ATTEMPTS; i++) {
       let regionalValue = null;
       let globalValue = null;
+      let directValue = null;
 
       if (shouldTestRegional) {
         regionalValue = await runTest(dataService, 'regional', queryCount);
@@ -60,17 +96,22 @@ export default function Page() {
         globalValue = await runTest(dataService, 'global', queryCount);
       }
 
+      if (shouldTestDirect) {
+        directValue = await runTest(dataService, 'direct', queryCount);
+      }
+
       setData((data) => {
         return {
           ...data,
           regional: [...data.regional, regionalValue],
           global: [...data.global, globalValue],
+          direct: [...data.direct, directValue],
         };
       });
     }
 
     setIsTestRunning(false);
-  }, [runTest, queryCount, dataService, shouldTestGlobal, shouldTestRegional]);
+  }, [runTest, queryCount, dataService, shouldTestGlobal, shouldTestRegional, shouldTestDirect]);
 
   return (
     <main className="p-6 max-w-5xl flex flex-col gap-3">
@@ -224,6 +265,16 @@ export default function Page() {
               />{' '}
               Test regional (US East) function
             </label>
+            <label className="flex items-center gap-2 whitespace-nowrap">
+              <input
+                type="checkbox"
+                name="direct"
+                value="direct"
+                checked={shouldTestDirect}
+                onChange={(e) => setShouldTestDirect(e.target.checked)}
+              />{' '}
+              Test client calling DB directly
+            </label>
           </p>
         </div>
 
@@ -303,11 +354,14 @@ export default function Page() {
                     Global: data.global[i]
                       ? data.global[i].queryDuration
                       : null,
+                    Direct: data.direct[i]
+                      ? data.direct[i].elapsed // For direct DB calls elabesd == queryDuration
+                      : null,
                   };
                 })}
                 index="attempt"
-                categories={['Global', 'Regional']}
-                colors={['indigo', 'cyan']}
+                categories={['Global', 'Regional', 'Direct']}
+                colors={['indigo', 'cyan', 'green']}
                 valueFormatter={dataFormatter}
                 yAxisWidth={48}
               />
@@ -332,11 +386,12 @@ export default function Page() {
                       ? data.regional[i].elapsed
                       : null,
                     Global: data.global[i] ? data.global[i].elapsed : null,
+                    Direct: data.direct[i] ? data.direct[i].elapsed : null,
                   };
                 })}
                 index="attempt"
-                categories={['Global', 'Regional']}
-                colors={['indigo', 'cyan']}
+                categories={['Global', 'Regional', 'Direct']}
+                colors={['indigo', 'cyan', 'green']}
                 valueFormatter={dataFormatter}
                 yAxisWidth={48}
               />
