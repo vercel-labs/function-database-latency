@@ -277,10 +277,10 @@ export default function Page() {
         {data.regional.length || data.global.length ? (
           <Grid className="gap-5" numCols={1} numColsMd={2}>
             <Card>
-              <Title className="truncate">
+              <Title>
                 Latency distribution (processing time)
               </Title>
-              <Text className="h-14 overflow-auto">
+              <Text>
                 This is how long it takes for the edge function to run the
                 queries and return the result. Your internet connections{' '}
                 <b>will not</b> influence these results.
@@ -307,10 +307,10 @@ export default function Page() {
               />
             </Card>
             <Card>
-              <Title className="truncate">
+              <Title>
                 Latency distribution (end-to-end)
               </Title>
-              <Text className="h-14 overflow-auto">
+              <Text>
                 This is the total latency from the client&apos;s perspective. It
                 considers the total roundtrip between browser and edge. Your
                 internet connection and location <b>will</b> influence these
