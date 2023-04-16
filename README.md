@@ -14,6 +14,7 @@ https://edge-data-latency.vercel.app
 - Shopify (Storefront GraphQL API)
 - Supabase (supabase-js)
 - Tigris
+- Turso
 - Upstash (SDK)
 - Xata (TypeScript SDK)
 
