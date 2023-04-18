@@ -17,7 +17,7 @@ export default function Page() {
   const [isTestRunning, setIsTestRunning] = useState(false);
   const [shouldTestGlobal, setShouldTestGlobal] = useState(true);
   const [shouldTestRegional, setShouldTestRegional] = useState(true);
-  const [shouldTestDirect, setShouldTestDirect] = useState(false);
+  const [shouldTestDirect, setShouldTestDirect] = useState(true);
   const [queryCount, setQueryCount] = useState(1);
   const [dataService, setDataService] = useState('');
   const [data, setData] = useState({
@@ -167,6 +167,7 @@ export default function Page() {
               placeholder="Select Database"
               onValueChange={(v) => setDataService(v)}
             >
+{/*
               <DropdownItem
                 data-testid="convex"
                 value="convex"
@@ -215,12 +216,14 @@ export default function Page() {
                 text="Tigris (HTTP API)"
                 icon={TigrisIcon}
               />
+*/}
               <DropdownItem
                 data-testid="turso"
                 value="turso"
                 text="Turso"
                 icon={TursoIcon}
               />
+{/*
               <DropdownItem
                 data-testid="upstash"
                 value="upstash"
@@ -233,6 +236,7 @@ export default function Page() {
                 text="Xata (SDK)"
                 icon={XataIcon}
               />
+*/}
             </Dropdown>
           </div>
         </div>
