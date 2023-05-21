@@ -11,6 +11,7 @@ https://edge-data-latency.vercel.app
 - Grafbase (GraphQL)
 - Neon
 - PlanetScale (Kysely + Serverless SDK)
+- PolyScale
 - Shopify (Storefront GraphQL API)
 - Supabase (supabase-js)
 - Tigris
