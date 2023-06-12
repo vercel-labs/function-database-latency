@@ -1,4 +1,4 @@
-import { Pool } from "@neondatabase/serverless";
+import { neon } from "@neondatabase/serverless";
 import { NextRequest as Request, NextResponse as Response } from "next/server";
 
 export const config = {
@@ -11,21 +11,18 @@ export default async function api(req: Request, ctx: any) {
   const count = toNumber(new URL(req.url).searchParams.get("count"));
   const time = Date.now();
 
-  const pool = new Pool({ connectionString: process.env.NEON_DATABASE_URL });
+  const sql = neon(process.env.NEON_DATABASE_URL);
 
   let data = null;
   for (let i = 0; i < count; i++) {
-    data = await pool.query(`
+    data = await sql`
       SELECT "emp_no", "first_name", "last_name" 
       FROM "employees" 
-      LIMIT 10
-    `);
+      LIMIT 10`;
   }
-  
-  ctx.waitUntil(pool.end());
 
   return Response.json({
-    data: data.rows,
+    data,
     queryDuration: Date.now() - time,
     invocationIsCold: start === time,
     invocationRegion: (req.headers.get("x-vercel-id") ?? "").split(":")[1] || null,
