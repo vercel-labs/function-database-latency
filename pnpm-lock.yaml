@@ -8,8 +8,8 @@ dependencies:
     specifier: ^0.1.1
     version: 0.1.1
   '@neondatabase/serverless':
-    specifier: ^0.4.14
-    version: 0.4.14
+    specifier: ^0.4.26
+    version: 0.4.26
   '@planetscale/database':
     specifier: ^1.6.0
     version: 1.6.0
@@ -273,8 +273,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@neondatabase/serverless@0.4.14:
-    resolution: {integrity: sha512-ewiciDE8jbQcSvpWTIWICQAG0oYtOg7Bi1GQ/hvwuuws6XLNbGKrol+lka1D9kbDBKstjwQ5vsK4SqnPHCEVjg==}
+  /@neondatabase/serverless@0.4.26:
+    resolution: {integrity: sha512-6DYEKos2GYn8NTgcJf33BLAx//LcgqzHVavQWe6ZkaDqmEq0I0Xtub6pzwFdq9iayNdCj7e2b0QKr5a8QKB8kQ==}
     dependencies:
       '@types/pg': 8.6.6
     dev: false
