@@ -127,6 +127,18 @@ export default function Page() {
               onValueChange={(v) => setDataService(v)}
             >
               <DropdownItem
+                data-testid="vercel-kv"
+                value="vercel-kv"
+                text="Vercel KV"
+                icon={VercelIcon}
+              />
+              <DropdownItem
+                data-testid="vercel-postgres"
+                value="vercel-postgres"
+                text="Vercel Postgres"
+                icon={VercelIcon}
+              />
+              <DropdownItem
                 data-testid="convex"
                 value="convex"
                 text="Convex (SDK)"
@@ -289,9 +301,7 @@ export default function Page() {
         {data.regional.length || data.global.length ? (
           <Grid className="gap-5" numCols={1} numColsMd={2}>
             <Card>
-              <Title>
-                Latency distribution (processing time)
-              </Title>
+              <Title>Latency distribution (processing time)</Title>
               <Text>
                 This is how long it takes for the edge function to run the
                 queries and return the result. Your internet connections{' '}
@@ -319,9 +329,7 @@ export default function Page() {
               />
             </Card>
             <Card>
-              <Title>
-                Latency distribution (end-to-end)
-              </Title>
+              <Title>Latency distribution (end-to-end)</Title>
               <Text>
                 This is the total latency from the client&apos;s perspective. It
                 considers the total roundtrip between browser and edge. Your
@@ -377,6 +385,22 @@ function Code({ className = '', children }) {
     <code className={`bg-gray-200 text-sm p-1 rounded ${className}`}>
       {children}
     </code>
+  );
+}
+
+function VercelIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      className="flex-none h-5 w-5 mr-3"
+      aria-hidden="true"
+      viewBox="0 0 76 65"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="rgb(156 163 175)" />
+    </svg>
   );
 }
 
@@ -575,9 +599,9 @@ function PolyScaleIcon() {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        fillRule: "evenodd",
-        clipRule: "evenodd",
-        strokeLinejoin: "round",
+        fillRule: 'evenodd',
+        clipRule: 'evenodd',
+        strokeLinejoin: 'round',
         strokeMiterlimit: 2,
       }}
     >
@@ -587,7 +611,7 @@ function PolyScaleIcon() {
         y="0"
         width="60.002"
         height="59.997"
-        style={{ fill: "none" }}
+        style={{ fill: 'none' }}
       />
       <clipPath id="_clip1">
         <rect x="0" y="0" width="60.002" height="59.997" />
@@ -597,27 +621,27 @@ function PolyScaleIcon() {
           <path
             id="Shape"
             d="M24.1,38.914l6.8,-0c0.3,-0 0.6,0.3 0.6,0.6l-0,4.3c-0,8.1 -5.9,15.2 -13.9,16.1c-9.5,1.1 -17.6,-6.4 -17.6,-15.7c0,-6.7 4.2,-12.4 10.1,-14.7c0.4,-0.1 0.8,0.2 0.8,0.6l0,7.8c0,0.2 -0.1,0.3 -0.2,0.4c-2,1.8 -3.2,4.5 -2.5,7.5c0.6,3 3,5.4 6,6c5,1 9.3,-2.8 9.3,-7.6l0,-4.7c0,-0.4 0.2,-0.6 0.6,-0.6Z"
-            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
+            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
           />
           <path
             id="Shape1"
             d="M15.7,36.414l4.7,-0c0.3,-0 0.6,-0.3 0.6,-0.6l-0,-2.1c-0,-2.9 -2.4,-5.3 -5.3,-5.3c-0.7,-0 -1.4,0.1 -2.1,0.2c-0.3,-0 -0.5,0.3 -0.5,0.6l-0,6.9c-0,0.4 0.4,0.7 0.7,0.6c0.6,-0.2 1.3,-0.3 1.9,-0.3Z"
-            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
+            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
           />
           <path
             id="Shape2"
             d="M33.9,29.014c0,4.1 3.3,7.4 7.3,7.4l0.1,-0c0.3,-0 0.6,-0.3 0.6,-0.6l0,-6.8c0,-0.3 -0.3,-0.6 -0.6,-0.6l-6.8,-0c-0.4,-0 -0.6,0.3 -0.6,0.6Z"
-            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
+            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
           />
           <path
             id="Shape3"
             d="M44.1,35.514l0,-7c0,-0.3 0.2,-0.5 0.4,-0.6c4.8,-1.4 8.1,-6.2 7.2,-11.6c-0.7,-4.1 -4,-7.5 -8.1,-8.2c-6.5,-1.2 -12.2,3.8 -12.2,10.1l0,7.4c0,0.3 -0.3,0.6 -0.6,0.6l-6.8,-0c-0.3,-0 -0.6,-0.3 -0.6,-0.6l0,-6.9c0,-9.9 7.7,-18.3 17.5,-18.7c10.4,-0.4 18.9,7.9 18.9,18.2c0,9 -6.5,16.5 -15.1,17.9c-0.2,0.1 -0.6,-0.2 -0.6,-0.6Z"
-            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
+            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
           />
           <path
             id="Shape4"
             d="M30.8,28.414l-6.8,-0c-0.3,-0 -0.6,0.3 -0.6,0.6l0,6.8c0,0.3 0.3,0.6 0.6,0.6l6.8,-0c0.3,-0 0.6,-0.3 0.6,-0.6l0,-6.8c0,-0.3 -0.2,-0.6 -0.6,-0.6Z"
-            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
+            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
           />
         </g>
       </g>
