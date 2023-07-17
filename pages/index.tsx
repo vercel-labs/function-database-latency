@@ -1,23 +1,24 @@
-import { Button, Card, Title, AreaChart, Grid, Text } from '@tremor/react';
-import { useCallback, useState } from 'react';
-import { Dropdown, DropdownItem } from '@tremor/react';
+import { Button, Card, Title, AreaChart, Grid, Text } from "@tremor/react";
+import { useCallback, useState } from "react";
+import { Dropdown, DropdownItem } from "@tremor/react";
 import {
   ShoppingCartIcon,
   DatabaseIcon,
   LightningBoltIcon,
-} from '@heroicons/react/solid';
-import Head from 'next/head';
+} from "@heroicons/react/solid";
+import Head from "next/head";
+import GithubCorner from "@/components/github-corner";
 
 const ATTEMPTS = 10;
 
-type Region = 'regional' | 'global';
+type Region = "regional" | "global";
 
 export default function Page() {
   const [isTestRunning, setIsTestRunning] = useState(false);
   const [shouldTestGlobal, setShouldTestGlobal] = useState(true);
   const [shouldTestRegional, setShouldTestRegional] = useState(true);
   const [queryCount, setQueryCount] = useState(1);
-  const [dataService, setDataService] = useState('');
+  const [dataService, setDataService] = useState("");
   const [data, setData] = useState({
     regional: [],
     global: [],
@@ -53,11 +54,11 @@ export default function Page() {
       let globalValue = null;
 
       if (shouldTestRegional) {
-        regionalValue = await runTest(dataService, 'regional', queryCount);
+        regionalValue = await runTest(dataService, "regional", queryCount);
       }
 
       if (shouldTestGlobal) {
-        globalValue = await runTest(dataService, 'global', queryCount);
+        globalValue = await runTest(dataService, "global", queryCount);
       }
 
       setData((data) => {
@@ -85,6 +86,7 @@ export default function Page() {
         <meta property="og:image:url" content="/edge-data.png" />
         <meta name="twitter:image" content="/edge-data.png" />
       </Head>
+      <GithubCorner url="https://github.com/vercel-labs/edge-data-latency" />
 
       <h1 className="text-2xl font-bold">
         Vercel Edge Functions + Database Latency
@@ -96,7 +98,7 @@ export default function Page() {
         data requests (i.e. waterfalls).
       </p>
       <p>
-        Learn more about{' '}
+        Learn more about{" "}
         <a
           href="https://vercel.com/docs/concepts/functions/edge-functions"
           target="_blank"
@@ -105,7 +107,7 @@ export default function Page() {
         >
           Vercel Edge Functions
         </a>
-        {' or '}
+        {" or "}
         <a
           href="https://vercel.com/templates/edge-functions"
           target="_blank"
@@ -229,7 +231,7 @@ export default function Page() {
                 value="global"
                 checked={shouldTestGlobal}
                 onChange={(e) => setShouldTestGlobal(e.target.checked)}
-              />{' '}
+              />{" "}
               Test global function
             </label>
             <label className="flex items-center gap-2 whitespace-nowrap">
@@ -239,7 +241,7 @@ export default function Page() {
                 value="regional"
                 checked={shouldTestRegional}
                 onChange={(e) => setShouldTestRegional(e.target.checked)}
-              />{' '}
+              />{" "}
               Test regional (US East) function
             </label>
           </p>
@@ -260,7 +262,7 @@ export default function Page() {
                 value="1"
                 onChange={() => setQueryCount(1)}
                 checked={queryCount === 1}
-              />{' '}
+              />{" "}
               Single query (no waterfall)
             </label>
             <label className="flex items-center gap-2 whitespace-nowrap">
@@ -270,7 +272,7 @@ export default function Page() {
                 value="2"
                 onChange={() => setQueryCount(2)}
                 checked={queryCount === 2}
-              />{' '}
+              />{" "}
               2 serial queries
             </label>
             <label className="flex items-center gap-2 whitespace-nowrap">
@@ -280,7 +282,7 @@ export default function Page() {
                 value="5"
                 onChange={() => setQueryCount(5)}
                 checked={queryCount === 5}
-              />{' '}
+              />{" "}
               5 serial queries
             </label>
           </p>
@@ -292,7 +294,7 @@ export default function Page() {
             data-testid="run-test"
             onClick={onRunTest}
             loading={isTestRunning}
-            disabled={dataService === ''}
+            disabled={dataService === ""}
           >
             Run Test
           </Button>
@@ -304,7 +306,7 @@ export default function Page() {
               <Title>Latency distribution (processing time)</Title>
               <Text>
                 This is how long it takes for the edge function to run the
-                queries and return the result. Your internet connections{' '}
+                queries and return the result. Your internet connections{" "}
                 <b>will not</b> influence these results.
               </Text>
 
@@ -322,8 +324,8 @@ export default function Page() {
                   };
                 })}
                 index="attempt"
-                categories={['Global', 'Regional']}
-                colors={['indigo', 'cyan']}
+                categories={["Global", "Regional"]}
+                colors={["indigo", "cyan"]}
                 valueFormatter={dataFormatter}
                 yAxisWidth={48}
               />
@@ -349,8 +351,8 @@ export default function Page() {
                   };
                 })}
                 index="attempt"
-                categories={['Global', 'Regional']}
-                colors={['indigo', 'cyan']}
+                categories={["Global", "Regional"]}
+                colors={["indigo", "cyan"]}
                 valueFormatter={dataFormatter}
                 yAxisWidth={48}
               />
@@ -370,7 +372,7 @@ const GitHubLogo = ({ width = 16, height = 16 }) => {
       width={width}
       height={height}
       fill="currentColor"
-      style={{ display: 'inline-block' }}
+      style={{ display: "inline-block" }}
     >
       <path d="M512 0C229.25 0 0 229.25 0 512c0 226.25 146.688 418.125 350.156 485.812 25.594 4.688 34.938-11.125 34.938-24.625 0-12.188-0.469-52.562-0.719-95.312C242 908.812 211.906 817.5 211.906 817.5c-23.312-59.125-56.844-74.875-56.844-74.875-46.531-31.75 3.53-31.125 3.53-31.125 51.406 3.562 78.47 52.75 78.47 52.75 45.688 78.25 119.875 55.625 149 42.5 4.654-33 17.904-55.625 32.5-68.375C304.906 725.438 185.344 681.5 185.344 485.312c0-55.938 19.969-101.562 52.656-137.406-5.219-13-22.844-65.094 5.062-135.562 0 0 42.938-13.75 140.812 52.5 40.812-11.406 84.594-17.031 128.125-17.219 43.5 0.188 87.312 5.875 128.188 17.281 97.688-66.312 140.688-52.5 140.688-52.5 28 70.531 10.375 122.562 5.125 135.5 32.812 35.844 52.625 81.469 52.625 137.406 0 196.688-119.75 240-233.812 252.688 18.438 15.875 34.75 47 34.75 94.75 0 68.438-0.688 123.625-0.688 140.5 0 13.625 9.312 29.562 35.25 24.562 203.5-67.688 349.5-259.375 349.5-485.5 0-282.75-229.25-512-512-512z" />
     </svg>
@@ -378,9 +380,9 @@ const GitHubLogo = ({ width = 16, height = 16 }) => {
 };
 
 const dataFormatter = (number: number) =>
-  `${Intl.NumberFormat('us').format(number).toString()}ms`;
+  `${Intl.NumberFormat("us").format(number).toString()}ms`;
 
-function Code({ className = '', children }) {
+function Code({ className = "", children }) {
   return (
     <code className={`bg-gray-200 text-sm p-1 rounded ${className}`}>
       {children}
@@ -599,9 +601,9 @@ function PolyScaleIcon() {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        fillRule: 'evenodd',
-        clipRule: 'evenodd',
-        strokeLinejoin: 'round',
+        fillRule: "evenodd",
+        clipRule: "evenodd",
+        strokeLinejoin: "round",
         strokeMiterlimit: 2,
       }}
     >
@@ -611,7 +613,7 @@ function PolyScaleIcon() {
         y="0"
         width="60.002"
         height="59.997"
-        style={{ fill: 'none' }}
+        style={{ fill: "none" }}
       />
       <clipPath id="_clip1">
         <rect x="0" y="0" width="60.002" height="59.997" />
@@ -621,27 +623,27 @@ function PolyScaleIcon() {
           <path
             id="Shape"
             d="M24.1,38.914l6.8,-0c0.3,-0 0.6,0.3 0.6,0.6l-0,4.3c-0,8.1 -5.9,15.2 -13.9,16.1c-9.5,1.1 -17.6,-6.4 -17.6,-15.7c0,-6.7 4.2,-12.4 10.1,-14.7c0.4,-0.1 0.8,0.2 0.8,0.6l0,7.8c0,0.2 -0.1,0.3 -0.2,0.4c-2,1.8 -3.2,4.5 -2.5,7.5c0.6,3 3,5.4 6,6c5,1 9.3,-2.8 9.3,-7.6l0,-4.7c0,-0.4 0.2,-0.6 0.6,-0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
+            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
           />
           <path
             id="Shape1"
             d="M15.7,36.414l4.7,-0c0.3,-0 0.6,-0.3 0.6,-0.6l-0,-2.1c-0,-2.9 -2.4,-5.3 -5.3,-5.3c-0.7,-0 -1.4,0.1 -2.1,0.2c-0.3,-0 -0.5,0.3 -0.5,0.6l-0,6.9c-0,0.4 0.4,0.7 0.7,0.6c0.6,-0.2 1.3,-0.3 1.9,-0.3Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
+            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
           />
           <path
             id="Shape2"
             d="M33.9,29.014c0,4.1 3.3,7.4 7.3,7.4l0.1,-0c0.3,-0 0.6,-0.3 0.6,-0.6l0,-6.8c0,-0.3 -0.3,-0.6 -0.6,-0.6l-6.8,-0c-0.4,-0 -0.6,0.3 -0.6,0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
+            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
           />
           <path
             id="Shape3"
             d="M44.1,35.514l0,-7c0,-0.3 0.2,-0.5 0.4,-0.6c4.8,-1.4 8.1,-6.2 7.2,-11.6c-0.7,-4.1 -4,-7.5 -8.1,-8.2c-6.5,-1.2 -12.2,3.8 -12.2,10.1l0,7.4c0,0.3 -0.3,0.6 -0.6,0.6l-6.8,-0c-0.3,-0 -0.6,-0.3 -0.6,-0.6l0,-6.9c0,-9.9 7.7,-18.3 17.5,-18.7c10.4,-0.4 18.9,7.9 18.9,18.2c0,9 -6.5,16.5 -15.1,17.9c-0.2,0.1 -0.6,-0.2 -0.6,-0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
+            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
           />
           <path
             id="Shape4"
             d="M30.8,28.414l-6.8,-0c-0.3,-0 -0.6,0.3 -0.6,0.6l0,6.8c0,0.3 0.3,0.6 0.6,0.6l6.8,-0c0.3,-0 0.6,-0.3 0.6,-0.6l0,-6.8c0,-0.3 -0.2,-0.6 -0.6,-0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
+            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
           />
         </g>
       </g>
