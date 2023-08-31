@@ -14,6 +14,7 @@ https://edge-data-latency.vercel.app
 - PolyScale
 - Shopify (Storefront GraphQL API)
 - Supabase (supabase-js)
+- TiDB Serverless (serverless-js)
 - Tigris
 - Turso
 - Upstash (SDK)
