@@ -24,8 +24,8 @@ dependencies:
     specifier: ^2.12.1
     version: 2.12.1
   '@tidbcloud/serverless':
-    specifier: ^0.0.1
-    version: 0.0.1
+    specifier: ^0.0.3
+    version: 0.0.3
   '@tremor/react':
     specifier: ^2.4.1
     version: 2.4.1(react-dom@18.2.0)(react@18.2.0)
@@ -499,8 +499,8 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@tidbcloud/serverless@0.0.1:
-    resolution: {integrity: sha512-vPb0nudWOX9SwxXvTyAM02PI8vfrVpwlaq4lxBCQioniuf8xP3msMHlY2QhB5aoWr6sir6CUuos1Oq9eLmYXTg==}
+  /@tidbcloud/serverless@0.0.3:
+    resolution: {integrity: sha512-s/Lj6Z2/bYd9ljHSh2tLElaXgVQj+HtMV8srw5rO2kV0DGtePzJwd2Cx6JEeo2ZmdqZa7BX/Vn8wdDEOh/hyqA==}
     engines: {node: '>=16'}
     dev: false
 
