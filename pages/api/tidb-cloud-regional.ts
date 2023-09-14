@@ -3,4 +3,4 @@ export const config = {
   regions: ['iad1'],
 };
 
-export { default } from './tidb-serverless-global';
+export { default } from './tidb-cloud-global';

@@ -189,9 +189,9 @@ export default function Page() {
                 icon={LightningBoltIcon}
               />
               <DropdownItem
-                  data-testid="tidb-serverless"
-                  value="tidb-serverless"
-                  text="TiDB Serverless (serverless driver)"
+                  data-testid="tidb-cloud"
+                  value="tidb-cloud"
+                  text="TiDB Cloud (serverless driver)"
                   icon={TiDBCloudIcon}
               />
               <DropdownItem
