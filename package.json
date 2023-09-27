@@ -13,6 +13,7 @@
     "@planetscale/database": "^1.6.0",
     "@polyscale/serverless-js": "^1.0.2",
     "@supabase/supabase-js": "^2.12.1",
+    "@tidbcloud/serverless": "^0.0.3",
     "@tremor/react": "^2.4.1",
     "@types/node": "18.15.11",
     "@types/react": "18.0.31",

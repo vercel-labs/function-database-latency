@@ -189,6 +189,12 @@ export default function Page() {
                 icon={LightningBoltIcon}
               />
               <DropdownItem
+                  data-testid="tidb-cloud"
+                  value="tidb-cloud"
+                  text="TiDB Cloud (serverless driver)"
+                  icon={TiDBCloudIcon}
+              />
+              <DropdownItem
                 data-testid="tigris"
                 value="tigris"
                 text="Tigris (HTTP API)"
@@ -649,4 +655,18 @@ function PolyScaleIcon() {
       </g>
     </svg>
   );
+}
+
+function TiDBCloudIcon() {
+  return (
+  <svg
+      className="flex-none h-5 w-5 mr-3"
+      viewBox="0 0 250.07 178.66"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="rgb(156 163 175)"
+      aria-hidden="true"
+  >
+    <path d="M197.24,41.82h0C174.34,1.93,123.46-11.83,83.58,11.07c-21.46,12.32-36.32,33.55-40.56,57.92C13.13,75.92-5.48,105.77,1.45,135.65c5.84,25.19,28.28,43.02,54.14,43.01,1.88,0,3.76-.1,5.63-.29h113.79c1.86,.15,3.73,.29,5.63,.29,38.35,0,69.43-31.09,69.43-69.43,0-31.95-21.8-59.77-52.82-67.42Zm-72.28,26.46v74.81l-21.5-12.4v-49.99l-21.51,12.42v-24.83l43.01-24.84,21.5,12.41-21.5,12.41Zm43.22,49.93l-21.59,12.46v-49.84l21.59-12.48v49.86Z"/>
+  </svg>
+  )
 }
