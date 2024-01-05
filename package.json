@@ -22,7 +22,7 @@
     "@vercel/postgres": "^0.5.0",
     "@xata.io/client": "^0.26.7",
     "autoprefixer": "^10.4.16",
-    "convex": "0.12.1",
+    "convex": "1.7.1",
     "eslint": "8.51.0",
     "eslint-config-next": "13.5.4",
     "kysely": "^0.26.3",
