@@ -1,5 +1,6 @@
 import { ConvexHttpClient } from "convex/browser";
 import { NextRequest as Request, NextResponse as Response } from "next/server";
+import { api as convexApi } from "../../convex/_generated/api";
 
 export const config = {
   runtime: "edge",
@@ -22,7 +23,7 @@ export default async function api(req: Request) {
   let data = null;
   for (let i = 0; i < count; i++) {
     const limit = 10;
-    data = await convex.query("employees")(limit);
+    data = await convex.query(convexApi.employees.default, { limit });
   }
 
   return Response.json(

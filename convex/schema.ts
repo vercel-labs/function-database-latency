@@ -1,9 +1,10 @@
-import { defineSchema, defineTable, s } from "convex/schema";
+import { defineSchema, defineTable } from "convex/server";
+import { v } from "convex/values";
 
 export default defineSchema({
     employees: defineTable({
-      empNo: s.number(),
-      firstName: s.string(),
-      lastName: s.string(),
+      empNo: v.number(),
+      firstName: v.string(),
+      lastName: v.string(),
     }),
 });
