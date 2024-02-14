@@ -9,7 +9,7 @@
   "dependencies": {
     "@heroicons/react": "1.0.6",
     "@libsql/client": "^0.3.5",
-    "@neondatabase/serverless": "^0.6.0",
+    "@neondatabase/serverless": "^0.8.1",
     "@planetscale/database": "^1.11.0",
     "@polyscale/serverless-js": "^1.4.0",
     "@supabase/supabase-js": "^2.38.0",
