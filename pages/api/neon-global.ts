@@ -1,11 +1,9 @@
-import { neon, neonConfig } from "@neondatabase/serverless";
+import { neon } from "@neondatabase/serverless";
 import { NextRequest as Request, NextResponse as Response } from "next/server";
 
 export const config = {
   runtime: "edge",
 };
-
-neonConfig.fetchConnectionCache = true;
 
 const start = Date.now();
 
