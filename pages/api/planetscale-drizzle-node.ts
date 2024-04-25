@@ -9,8 +9,6 @@ export const employees = mysqlTable("employees", {
   last_name: varchar("last_name", { length: 256 }),
 });
 
-const start = Date.now();
-
 const poolConnection = mysql.createPool({
   uri: process.env.PLANETSCALE_DATABASE_URL,
   ssl: {
@@ -18,6 +16,8 @@ const poolConnection = mysql.createPool({
   },
 });
 const db = drizzle(poolConnection);
+
+const start = Date.now();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { count } = req.query;

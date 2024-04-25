@@ -7,18 +7,17 @@ export const config = {
   runtime: "edge",
 };
 
-const client = new Client({
-  host: process.env["DATABASE_HOST"],
-  username: process.env["DATABASE_USERNAME"],
-  password: process.env["DATABASE_PASSWORD"],
-});
-
 export const employees = mysqlTable("employees", {
   id: serial("emp_no").primaryKey(),
   first_name: varchar("first_name", { length: 256 }),
   last_name: varchar("last_name", { length: 256 }),
 });
 
+const client = new Client({
+  host: process.env["DATABASE_HOST"],
+  username: process.env["DATABASE_USERNAME"],
+  password: process.env["DATABASE_PASSWORD"],
+});
 const db = drizzle(client);
 
 const start = Date.now();

@@ -9,10 +9,10 @@ export const employees = pgTable("employees", {
   last_name: varchar("last_name", { length: 256 }),
 });
 
-const start = Date.now();
-
 const client = postgres(process.env.SUPABASE_DATABASE_URL);
 const db = drizzle(client);
+
+const start = Date.now();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { count } = req.query;
