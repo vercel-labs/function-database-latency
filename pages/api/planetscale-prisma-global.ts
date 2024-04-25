@@ -7,11 +7,8 @@ export const config = {
   runtime: "edge",
 };
 
-const client = new Client({ 
-  host: process.env.DATABASE_HOST,
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
- });
+
+const client = new Client({ url: process.env.PLANETSCALE_DATABASE_URL });
 const adapter = new PrismaPlanetScale(client);
 const prisma = new PrismaClient({ adapter });
 
@@ -19,6 +16,7 @@ const start = Date.now();
 
 export default async function api(req: Request) {
   const count = toNumber(new URL(req.url).searchParams.get("count"));
+
   const time = Date.now();
 
   let data = null;
