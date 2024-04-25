@@ -190,7 +190,7 @@ export default function Page() {
         <div className="flex flex-col gap-1">
           <p className="font-bold">Location</p>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
-            Vercel Functions run in Edge or Node environments. In Edge environments, multiple regions are supported (by
+            Vercel Functions run in Edge or Node runtimes. In Edge runtimes, multiple regions are supported (by
             default they&apos;re global, but it&apos;s possible to express a region preference via the{" "}
             <Code className="text-xs">region</Code> setting).
           </p>
@@ -228,7 +228,7 @@ export default function Page() {
                   checked={shouldTestNode}
                   onChange={(e) => setShouldTestNode(e.target.checked)}
                 />{" "}
-                Test serverless (Node) function
+                Test serverless function (Node)
               </label>
             )}
           </p>
