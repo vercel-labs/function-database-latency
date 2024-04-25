@@ -23,6 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   });
 }
 
+
 // convert a query parameter to a number, applying a min and max, defaulting to 1
 function toNumber(queryParam: string | string[] | null, min = 1, max = 5) {
   const num = Number(queryParam);
