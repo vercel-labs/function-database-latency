@@ -6,6 +6,8 @@ https://edge-data-latency.vercel.app
 
 ## Providers
 
+Here is an overview of all data service providers and the compute locations available in this app:
+
 | Provider                         | Edge (Global) | Edge (Regional / US East) | Node |
 | :------------------------------- | :------------ | :------------------------ | ---- |
 | Convex (SDK)                     | ✅            | ✅                        | ❌   |
