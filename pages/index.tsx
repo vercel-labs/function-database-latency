@@ -77,11 +77,10 @@ export default function Page() {
   return (
     <main className="p-6 max-w-5xl flex flex-col gap-3">
       <Head>
-        <title>Vercel Edge Functions + Database Latency</title>
+        <title>Vercel Functions + Database Latency</title>
         <meta
           name="description"
-          content="Observe the latency querying different data services from varying
-          compute locations."
+          content="Observe the latency querying different data services from varying compute locations using the `edge` and `node` runtimes of Vercel Functions."
         />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:image:url" content="/edge-data.png" />
@@ -89,21 +88,23 @@ export default function Page() {
       </Head>
       <GithubCorner url="https://github.com/vercel-labs/edge-data-latency" />
 
-      <h1 className="text-2xl font-bold">Vercel Edge Functions + Database Latency</h1>
+      <h1 className="text-2xl font-bold">Vercel Functions + Database Latency</h1>
       <p>
-        Observe the latency querying different data services from varying compute locations. We built this playground to
+        Observe the latency querying different data services from varying compute locations using the <Code className="text-xs">edge</Code>{" "}
+        and <Code className="text-xs">node</Code>{" "}
+        runtimes of <a href="https://vercel.com/docs/functions">Vercel Functions</a>. We built this playground to
         demonstrate different data access patterns and how they can impact latency through sequential data requests
         (i.e. waterfalls).
       </p>
       <p>
         Learn more about{" "}
         <a
-          href="https://vercel.com/docs/functions/configuring-functions/runtime#edge"
+          href="https://vercel.com/docs/functions"
           target="_blank"
           rel="noopener noreferrer"
           className="underline"
         >
-          Vercel Edge Functions
+          Vercel Functions
         </a>
         {" or "}
         <a
@@ -147,11 +148,11 @@ export default function Page() {
               <SelectItem data-testid="planetscale" value="planetscale" icon={CircleStackIcon}>
                 PlanetScale (w/ Kysely)
               </SelectItem>
-              <SelectItem data-testid="planetscale-drizzle" value="planetscale-drizzle" icon={CircleStackIcon}>
-                PlanetScale (w/ Drizzle ORM)
-              </SelectItem>
               <SelectItem data-testid="planetscale-prisma" value="planetscale-prisma" icon={CircleStackIcon}>
                 PlanetScale (w/ Prisma ORM)
+              </SelectItem>
+              <SelectItem data-testid="planetscale-drizzle" value="planetscale-drizzle" icon={CircleStackIcon}>
+                PlanetScale (w/ Drizzle ORM)
               </SelectItem>
               <SelectItem data-testid="polyscale" value="polyscale" icon={PolyScaleIcon}>
                 PolyScale (@polyscale/serverless-js driver)
@@ -162,11 +163,11 @@ export default function Page() {
               <SelectItem data-testid="supabase" value="supabase" icon={BoltIcon}>
                 Supabase (supabase-js)
               </SelectItem>
-              <SelectItem data-testid="supabase-drizzle" value="supabase-drizzle" icon={BoltIcon}>
-                Supabase (w/ Drizzle)
-              </SelectItem>
               <SelectItem data-testid="supabase-prisma" value="supabase-prisma" icon={BoltIcon}>
                 Supabase (w/ Prisma ORM)
+              </SelectItem>
+              <SelectItem data-testid="supabase-drizzle" value="supabase-drizzle" icon={BoltIcon}>
+                Supabase (w/ Drizzle)
               </SelectItem>
               <SelectItem data-testid="tidb-cloud" value="tidb-cloud" icon={TiDBCloudIcon}>
                 TiDB Cloud (serverless driver)
@@ -190,8 +191,8 @@ export default function Page() {
         <div className="flex flex-col gap-1">
           <p className="font-bold">Location</p>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
-            Vercel Functions run in Edge or Node runtimes. In Edge runtimes, multiple regions are supported (by
-            default they&apos;re global, but it&apos;s possible to express a region preference via the{" "}
+            Vercel Functions run in Edge or Node runtimes. In Edge runtimes, multiple regions are supported (by default
+            they&apos;re global, but it&apos;s possible to express a region preference via the{" "}
             <Code className="text-xs">region</Code> setting).
           </p>
           <p className="text-sm flex gap-3 flex-wrap gap-y-1">
@@ -204,7 +205,7 @@ export default function Page() {
                   checked={shouldTestGlobal}
                   onChange={(e) => setShouldTestGlobal(e.target.checked)}
                 />{" "}
-                Test global function
+                Global function (Edge)
               </label>
             )}
             {!NODE_ONLY.includes(dataService) && (
@@ -216,7 +217,7 @@ export default function Page() {
                   checked={shouldTestRegional}
                   onChange={(e) => setShouldTestRegional(e.target.checked)}
                 />{" "}
-                Test regional (US East) function
+                Regional function (Edge | US East)
               </label>
             )}
             {(NODE_AVAILABLE.includes(dataService) || NODE_ONLY.includes(dataService)) && (
@@ -228,7 +229,7 @@ export default function Page() {
                   checked={shouldTestNode}
                   onChange={(e) => setShouldTestNode(e.target.checked)}
                 />{" "}
-                Test serverless function (Node)
+                Serverless function (Node | US East)
               </label>
             )}
           </p>
@@ -291,7 +292,7 @@ export default function Page() {
             <Card>
               <Title>Latency distribution (processing time)</Title>
               <Text>
-                This is how long it takes for the edge function to run the queries and return the result. Your internet
+                This is how long it takes for the function to run the queries and return the result. Your internet
                 connections <b>will not</b> influence these results.
               </Text>
 
@@ -316,7 +317,7 @@ export default function Page() {
               <Title>Latency distribution (end-to-end)</Title>
               <Text>
                 This is the total latency from the client&apos;s perspective. It considers the total roundtrip between
-                browser and edge. Your internet connection and location <b>will</b> influence these results.
+                browser and compute location. Your internet connection and location <b>will</b> influence these results.
               </Text>
 
               <AreaChart

@@ -1,24 +1,31 @@
-# Edge Database Latency
+# Vercel Functions Database Latency
 
-This demo helps observe the latency characteristics of querying different popular data services from varying compute locations.
+This demo helps observe the latency characteristics of querying different popular data services from varying compute locations using the `edge` and `node` runtimes of [Vercel Functions](https://vercel.com/docs/functions).
 
 https://edge-data-latency.vercel.app
 
 ## Providers
 
-- Convex (SDK)
-- Fauna
-- Grafbase (GraphQL)
-- Neon
-- PlanetScale (Kysely + Serverless SDK)
-- PolyScale
-- Shopify (Storefront GraphQL API)
-- Supabase (supabase-js)
-- TiDB Cloud (serverless-js)
-- Tigris
-- Turso
-- Upstash (SDK)
-- Xata (TypeScript SDK)
+| Provider                         | Edge (Global) | Edge (Regional / US East) | Node |
+| :------------------------------- | :------------ | :------------------------ | ---- |
+| Convex (SDK)                     | ✅            | ✅                        | ❌   |
+| Fauna                            | ✅            | ✅                        | ❌   |
+| Grafbase (GraphQL)               | ✅            | ✅                        | ❌   |
+| Neon                             | ✅            | ✅                        | ❌   |
+| Fauna                            | ✅            | ✅                        | ❌   |
+| PlanetScale w/ Kysely            | ✅            | ✅                        | ❌   |
+| PlanetScale w/ Prisma ORM        | ✅            | ✅                        | ✅   |
+| PlanetScale w/ Drizzle           | ✅            | ✅                        | ✅   |
+| PolyScale                        | ✅            | ✅                        | ❌   |
+| Shopify (Storefront GraphQL API) | ✅            | ✅                        | ❌   |
+| Supabase w/ supabase-js          | ✅            | ✅                        | ❌   |
+| Supabase w/ Prisma ORM           | ❌            | ❌                        | ✅   |
+| Supabase w/ Drizzle              | ❌            | ❌                        | ✅   |
+| TiDB Cloud (serverless-js)       | ✅            | ✅                        | ❌   |
+| Tigris                           | ✅            | ✅                        | ❌   |
+| Turso                            | ✅            | ✅                        | ❌   |
+| Upstash (SDK)                    | ✅            | ✅                        | ❌   |
+| Xata (TypeScript SDK)            | ✅            | ✅                        | ❌   |
 
 ## Testing Methodology
 
