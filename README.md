@@ -1,6 +1,6 @@
 # Vercel Functions Database Latency
 
-This demo helps observe the latency characteristics of querying different popular data services from varying compute locations using the `edge` and `node` runtimes of [Vercel Functions](https://vercel.com/docs/functions).
+This demo helps observe the latency characteristics of querying different popular data services from [Vercel Functions](https://vercel.com/docs/functions).
 
 https://functions-latency.vercel.app/
 
