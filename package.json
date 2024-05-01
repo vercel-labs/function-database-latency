@@ -7,7 +7,6 @@
     "lint": "next lint",
     "gen:planetscale": "prisma generate --schema ./prisma-planetscale/schema.prisma",
     "gen:supabase": "prisma generate --schema ./prisma-supabase/schema.prisma"
-
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
@@ -29,7 +28,7 @@
     "@vercel/postgres": "^0.7.2",
     "@xata.io/client": "^0.29.3",
     "autoprefixer": "^10.4.18",
-    "convex": "1.10.0",
+    "convex": "1.11.2",
     "drizzle-orm": "^0.30.9",
     "eslint": "8.57.0",
     "eslint-config-next": "14.1.3",

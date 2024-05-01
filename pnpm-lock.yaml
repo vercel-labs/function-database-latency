@@ -63,8 +63,8 @@ dependencies:
     specifier: ^10.4.18
     version: 10.4.18(postcss@8.4.35)
   convex:
-    specifier: 1.10.0
-    version: 1.10.0(react-dom@18.2.0)(react@18.2.0)
+    specifier: 1.11.2
+    version: 1.11.2(react-dom@18.2.0)(react@18.2.0)
   drizzle-orm:
     specifier: ^0.30.9
     version: 0.30.9(@libsql/client@0.5.6)(@neondatabase/serverless@0.9.0)(@planetscale/database@1.16.0)(@types/react@18.2.65)(@vercel/postgres@0.7.2)(@xata.io/client@0.29.3)(kysely@0.27.3)(mysql2@3.9.7)(postgres@3.4.4)(react@18.2.0)
@@ -1489,13 +1489,13 @@ packages:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: false
 
-  /convex@1.10.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-dGU3K3z63e4JQSq4AQthgxUADux1/0qfgFBtOsolcPo+ilV2Dp5wfBJYMOvLi7wkmNvJ+b3I90XfLPGfGzQrWw==}
+  /convex@1.11.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-AmIVdT6mAlqzQeRB6VadzHvvxHeAXSdpH6oOa9mto8CIgSiSkOH/E6+2icHTC0dKR/ueZGjSb/a/PlbmEHlSBQ==}
     engines: {node: '>=16.15.1', npm: '>=7.0.0'}
     hasBin: true
     peerDependencies:
       '@auth0/auth0-react': ^2.0.1
-      '@clerk/clerk-react': ^4.12.8
+      '@clerk/clerk-react': ^4.12.8 || ^5.0.0
       react: ^17.0.2 || ^18.0.0
       react-dom: ^17.0.2 || ^18.0.0
     peerDependenciesMeta:
@@ -1511,6 +1511,7 @@ packages:
       esbuild: 0.17.19
       jwt-decode: 3.1.2
       node-fetch: 2.7.0
+      prettier: 3.2.5
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -3471,6 +3472,12 @@ packages:
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: false
+
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: false
 
   /prisma@5.13.0:

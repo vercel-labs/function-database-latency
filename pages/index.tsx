@@ -6,7 +6,7 @@ import Head from "next/head";
 import GithubCorner from "@/components/github-corner";
 
 const ATTEMPTS = 10;
-const NODE_AVAILABLE = ["planetscale-drizzle", "planetscale-prisma"];
+const NODE_AVAILABLE = ["planetscale-drizzle", "planetscale-prisma", "convex"];
 const NODE_ONLY = ["supabase-drizzle", "supabase-prisma"];
 
 type Region = "regional" | "global" | "node";
