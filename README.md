@@ -2,7 +2,7 @@
 
 This demo helps observe the latency characteristics of querying different popular data services from varying compute locations using the `edge` and `node` runtimes of [Vercel Functions](https://vercel.com/docs/functions).
 
-https://edge-data-latency.vercel.app
+https://functions-latency.vercel.app/
 
 ## Providers
 
@@ -41,9 +41,3 @@ interface EmployeeTable {
   last_name: string;
 }
 ```
-
-## Learn More
-
-- [Vercel Edge Functions Docs](https://vercel.com/docs/concepts/functions/edge-functions)
-- [Vercel Edge Functions Templates](https://vercel.com/templates/edge-functions)
-- [Regional Edge Functions](https://vercel.com/blog/regional-execution-for-ultra-low-latency-rendering-at-the-edge)
