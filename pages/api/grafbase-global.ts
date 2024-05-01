@@ -1,9 +1,5 @@
 import { NextRequest as Request, NextResponse as Response } from "next/server";
 
-export const config = {
-  runtime: "edge",
-};
-
 const start = Date.now();
 
 export default async function api(req: Request) {
@@ -12,19 +8,16 @@ export default async function api(req: Request) {
 
   let data = null;
   for (let i = 0; i < count; i++) {
-    data = await fetch(
-      process.env.GRAFBASE_API_URL,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          "x-api-key": process.env.GRAFBASE_API_KEY,
-        },
-        body: JSON.stringify({
-          query: `{ employeeCollection(first: 10) { edges { node { number firstName lastName } } } }`,
-        }),
-      }
-    ).then((res) => res.json());
+    data = await fetch(process.env.GRAFBASE_API_URL, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-api-key": process.env.GRAFBASE_API_KEY,
+      },
+      body: JSON.stringify({
+        query: `{ employeeCollection(first: 10) { edges { node { number firstName lastName } } } }`,
+      }),
+    }).then((res) => res.json());
   }
 
   return Response.json(
@@ -39,7 +32,7 @@ export default async function api(req: Request) {
       headers: {
         "x-edge-is-cold": start === time ? "1" : "0",
       },
-    }
+    },
   );
 }
 
