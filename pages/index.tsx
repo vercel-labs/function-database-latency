@@ -1,64 +1,64 @@
-import { Button, Card, Title, AreaChart, Grid, Text } from '@tremor/react';
-import { useCallback, useState } from 'react';
-import { Select, SelectItem } from '@tremor/react';
-import {
-  ShoppingCartIcon,
-  CircleStackIcon,
-  BoltIcon,
-} from '@heroicons/react/16/solid';
-import Head from 'next/head';
-import GithubCorner from '@/components/github-corner';
+import { Button, Card, Title, AreaChart, Grid, Text } from "@tremor/react";
+import { useCallback, useState } from "react";
+import { Select, SelectItem } from "@tremor/react";
+import { ShoppingCartIcon, CircleStackIcon, BoltIcon } from "@heroicons/react/16/solid";
+import Head from "next/head";
+import GithubCorner from "@/components/github-corner";
 
 const ATTEMPTS = 10;
+const NODE_AVAILABLE = ["planetscale-drizzle", "planetscale-prisma"];
+const NODE_ONLY = ["supabase-drizzle", "supabase-prisma"];
 
-type Region = 'regional' | 'global';
+type Region = "regional" | "global" | "node";
 
 export default function Page() {
   const [isTestRunning, setIsTestRunning] = useState(false);
   const [shouldTestGlobal, setShouldTestGlobal] = useState(true);
   const [shouldTestRegional, setShouldTestRegional] = useState(true);
+  const [shouldTestNode, setShouldTestNode] = useState(false);
   const [queryCount, setQueryCount] = useState(1);
-  const [dataService, setDataService] = useState('');
+  const [dataService, setDataService] = useState("");
   const [data, setData] = useState({
     regional: [],
     global: [],
+    node: [],
   });
 
-  const runTest = useCallback(
-    async (dataService: string, type: Region, queryCount: number) => {
-      try {
-        const start = Date.now();
-        const res = await fetch(
-          `/api/${dataService}-${type}?count=${queryCount}`
-        );
-        const data = await res.json();
-        const end = Date.now();
-        return {
-          ...data,
-          elapsed: end - start,
-        };
-      } catch (e) {
-        // instead of retrying we just give up
-        return null;
-      }
-    },
-    []
-  );
+  const runTest = useCallback(async (dataService: string, type: Region, queryCount: number) => {
+    try {
+      const start = Date.now();
+      const res = await fetch(`/api/${dataService}-${type}?count=${queryCount}`);
+      const data = await res.json();
+      const end = Date.now();
+      return {
+        ...data,
+        elapsed: end - start,
+      };
+    } catch (e) {
+      // instead of retrying we just give up
+      return null;
+    }
+  }, []);
 
   const onRunTest = useCallback(async () => {
     setIsTestRunning(true);
-    setData({ regional: [], global: [] });
+    setData({ regional: [], global: [], node: [] });
 
     for (let i = 0; i < ATTEMPTS; i++) {
       let regionalValue = null;
       let globalValue = null;
+      let nodeValue = null;
 
       if (shouldTestRegional) {
-        regionalValue = await runTest(dataService, 'regional', queryCount);
+        regionalValue = await runTest(dataService, "regional", queryCount);
       }
 
       if (shouldTestGlobal) {
-        globalValue = await runTest(dataService, 'global', queryCount);
+        globalValue = await runTest(dataService, "global", queryCount);
+      }
+
+      if (shouldTestNode) {
+        nodeValue = await runTest(dataService, "node", queryCount);
       }
 
       setData((data) => {
@@ -66,21 +66,21 @@ export default function Page() {
           ...data,
           regional: [...data.regional, regionalValue],
           global: [...data.global, globalValue],
+          node: [...data.node, nodeValue],
         };
       });
     }
 
     setIsTestRunning(false);
-  }, [runTest, queryCount, dataService, shouldTestGlobal, shouldTestRegional]);
+  }, [runTest, queryCount, dataService, shouldTestGlobal, shouldTestRegional, shouldTestNode]);
 
   return (
     <main className="p-6 max-w-5xl flex flex-col gap-3">
       <Head>
-        <title>Vercel Edge Functions + Database Latency</title>
+        <title>Vercel Functions + Database Latency</title>
         <meta
           name="description"
-          content="Observe the latency querying different data services from varying
-          compute locations."
+          content="Observe the latency querying different data services from varying compute locations using the `edge` and `node` runtimes of Vercel Functions."
         />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:image:url" content="/edge-data.png" />
@@ -88,26 +88,25 @@ export default function Page() {
       </Head>
       <GithubCorner url="https://github.com/vercel-labs/edge-data-latency" />
 
-      <h1 className="text-2xl font-bold">
-        Vercel Edge Functions + Database Latency
-      </h1>
+      <h1 className="text-2xl font-bold">Vercel Functions + Database Latency</h1>
       <p>
-        Observe the latency querying different data services from varying
-        compute locations. We built this playground to demonstrate different
-        data access patterns and how they can impact latency through sequential
-        data requests (i.e. waterfalls).
+        Observe the latency querying different data services from varying compute locations using the <Code className="text-xs">edge</Code>{" "}
+        and <Code className="text-xs">node</Code>{" "}
+        runtimes of <a href="https://vercel.com/docs/functions">Vercel Functions</a>. We built this playground to
+        demonstrate different data access patterns and how they can impact latency through sequential data requests
+        (i.e. waterfalls).
       </p>
       <p>
-        Learn more about{' '}
+        Learn more about{" "}
         <a
-          href="https://vercel.com/docs/functions/configuring-functions/runtime#edge"
+          href="https://vercel.com/docs/functions"
           target="_blank"
           rel="noopener noreferrer"
           className="underline"
         >
-          Vercel Edge Functions
+          Vercel Functions
         </a>
-        {' or '}
+        {" or "}
         <a
           href="https://vercel.com/templates/edge-functions"
           target="_blank"
@@ -128,18 +127,10 @@ export default function Page() {
               placeholder="Select Database"
               onValueChange={(v) => setDataService(v)}
             >
-              <SelectItem
-                data-testid="vercel-kv"
-                value="vercel-kv"
-                icon={VercelIcon}
-              >
+              <SelectItem data-testid="vercel-kv" value="vercel-kv" icon={VercelIcon}>
                 Vercel KV
               </SelectItem>
-              <SelectItem
-                data-testid="vercel-postgres"
-                value="vercel-postgres"
-                icon={VercelIcon}
-              >
+              <SelectItem data-testid="vercel-postgres" value="vercel-postgres" icon={VercelIcon}>
                 Vercel Postgres
               </SelectItem>
               <SelectItem data-testid="convex" value="convex" icon={ConvexIcon}>
@@ -148,49 +139,37 @@ export default function Page() {
               <SelectItem data-testid="fauna" value="fauna" icon={FaunaIcon}>
                 Fauna (faunadb.js)
               </SelectItem>
-              <SelectItem
-                data-testid="grafbase"
-                value="grafbase"
-                icon={GrafbaseIcon}
-              >
+              <SelectItem data-testid="grafbase" value="grafbase" icon={GrafbaseIcon}>
                 Grafbase (GraphQL)
               </SelectItem>
               <SelectItem data-testid="neon" value="neon" icon={NeonIcon}>
                 Neon (@neondatabase/serverless driver)
               </SelectItem>
-              <SelectItem
-                data-testid="planetscale"
-                value="planetscale"
-                icon={CircleStackIcon}
-              >
-                PlanetScale (Kysely + Serverless SDK)
+              <SelectItem data-testid="planetscale" value="planetscale" icon={CircleStackIcon}>
+                PlanetScale (w/ Kysely)
               </SelectItem>
-              <SelectItem
-                data-testid="polyscale"
-                value="polyscale"
-                icon={PolyScaleIcon}
-              >
+              <SelectItem data-testid="planetscale-prisma" value="planetscale-prisma" icon={CircleStackIcon}>
+                PlanetScale (w/ Prisma ORM)
+              </SelectItem>
+              <SelectItem data-testid="planetscale-drizzle" value="planetscale-drizzle" icon={CircleStackIcon}>
+                PlanetScale (w/ Drizzle ORM)
+              </SelectItem>
+              <SelectItem data-testid="polyscale" value="polyscale" icon={PolyScaleIcon}>
                 PolyScale (@polyscale/serverless-js driver)
               </SelectItem>
-              <SelectItem
-                data-testid="shopify"
-                value="shopify"
-                icon={ShoppingCartIcon}
-              >
+              <SelectItem data-testid="shopify" value="shopify" icon={ShoppingCartIcon}>
                 Shopify (Storefront GraphQL API)
               </SelectItem>
-              <SelectItem
-                data-testid="supabase"
-                value="supabase"
-                icon={BoltIcon}
-              >
+              <SelectItem data-testid="supabase" value="supabase" icon={BoltIcon}>
                 Supabase (supabase-js)
               </SelectItem>
-              <SelectItem
-                data-testid="tidb-cloud"
-                value="tidb-cloud"
-                icon={TiDBCloudIcon}
-              >
+              <SelectItem data-testid="supabase-prisma" value="supabase-prisma" icon={BoltIcon}>
+                Supabase (w/ Prisma ORM)
+              </SelectItem>
+              <SelectItem data-testid="supabase-drizzle" value="supabase-drizzle" icon={BoltIcon}>
+                Supabase (w/ Drizzle)
+              </SelectItem>
+              <SelectItem data-testid="tidb-cloud" value="tidb-cloud" icon={TiDBCloudIcon}>
                 TiDB Cloud (serverless driver)
               </SelectItem>
               {/* <SelectItem data-testid="tigris" value="tigris" icon={TigrisIcon}>
@@ -199,11 +178,7 @@ export default function Page() {
               <SelectItem data-testid="turso" value="turso" icon={TursoIcon}>
                 Turso
               </SelectItem>
-              <SelectItem
-                data-testid="upstash"
-                value="upstash"
-                icon={UpstashIcon}
-              >
+              <SelectItem data-testid="upstash" value="upstash" icon={UpstashIcon}>
                 Upstash (SDK)
               </SelectItem>
               <SelectItem data-testid="xata" value="xata" icon={XataIcon}>
@@ -216,40 +191,55 @@ export default function Page() {
         <div className="flex flex-col gap-1">
           <p className="font-bold">Location</p>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
-            Vercel Edge Functions support multiple regions. By default
-            they&apos;re global, but it&apos;s possible to express a region
-            preference via the <Code className="text-xs">region</Code> setting.
+            Vercel Functions run in Edge or Node runtimes. In Edge runtimes, multiple regions are supported (by default
+            they&apos;re global, but it&apos;s possible to express a region preference via the{" "}
+            <Code className="text-xs">region</Code> setting).
           </p>
           <p className="text-sm flex gap-3 flex-wrap gap-y-1">
-            <label className="flex items-center gap-2 whitespace-nowrap">
-              <input
-                type="checkbox"
-                name="region"
-                value="global"
-                checked={shouldTestGlobal}
-                onChange={(e) => setShouldTestGlobal(e.target.checked)}
-              />{' '}
-              Test global function
-            </label>
-            <label className="flex items-center gap-2 whitespace-nowrap">
-              <input
-                type="checkbox"
-                name="region"
-                value="regional"
-                checked={shouldTestRegional}
-                onChange={(e) => setShouldTestRegional(e.target.checked)}
-              />{' '}
-              Test regional (US East) function
-            </label>
+            {!NODE_ONLY.includes(dataService) && (
+              <label className="flex items-center gap-2 whitespace-nowrap">
+                <input
+                  type="checkbox"
+                  name="region"
+                  value="global"
+                  checked={shouldTestGlobal}
+                  onChange={(e) => setShouldTestGlobal(e.target.checked)}
+                />{" "}
+                Global function (Edge)
+              </label>
+            )}
+            {!NODE_ONLY.includes(dataService) && (
+              <label className="flex items-center gap-2 whitespace-nowrap">
+                <input
+                  type="checkbox"
+                  name="region"
+                  value="regional"
+                  checked={shouldTestRegional}
+                  onChange={(e) => setShouldTestRegional(e.target.checked)}
+                />{" "}
+                Regional function (Edge | US East)
+              </label>
+            )}
+            {(NODE_AVAILABLE.includes(dataService) || NODE_ONLY.includes(dataService)) && (
+              <label className="flex items-center gap-2 whitespace-nowrap">
+                <input
+                  type="checkbox"
+                  name="node"
+                  value="node"
+                  checked={shouldTestNode}
+                  onChange={(e) => setShouldTestNode(e.target.checked)}
+                />{" "}
+                Serverless function (Node | US East)
+              </label>
+            )}
           </p>
         </div>
 
         <div className="flex flex-col gap-1">
           <p className="font-bold">Waterfall</p>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
-            Executing complex API routes globally can be slow when the database
-            is single-region, due to having multiple roundtrips to a single
-            server that&apos;s distant from the user.
+            Executing complex API routes globally can be slow when the database is single-region, due to having multiple
+            roundtrips to a single server that&apos;s distant from the user.
           </p>
           <p className="text-sm flex gap-3 flex-wrap gap-y-1">
             <label className="flex items-center gap-2 whitespace-nowrap">
@@ -259,7 +249,7 @@ export default function Page() {
                 value="1"
                 onChange={() => setQueryCount(1)}
                 checked={queryCount === 1}
-              />{' '}
+              />{" "}
               Single query (no waterfall)
             </label>
             <label className="flex items-center gap-2 whitespace-nowrap">
@@ -269,7 +259,7 @@ export default function Page() {
                 value="2"
                 onChange={() => setQueryCount(2)}
                 checked={queryCount === 2}
-              />{' '}
+              />{" "}
               2 serial queries
             </label>
             <label className="flex items-center gap-2 whitespace-nowrap">
@@ -279,7 +269,7 @@ export default function Page() {
                 value="5"
                 onChange={() => setQueryCount(5)}
                 checked={queryCount === 5}
-              />{' '}
+              />{" "}
               5 serial queries
             </label>
           </p>
@@ -291,20 +281,19 @@ export default function Page() {
             data-testid="run-test"
             onClick={onRunTest}
             loading={isTestRunning}
-            disabled={dataService === ''}
+            disabled={dataService === ""}
           >
             Run Test
           </Button>
         </div>
 
-        {data.regional.length || data.global.length ? (
+        {data.regional.length || data.global.length || data.node.length ? (
           <Grid className="gap-5" numItems={1} numItemsMd={2}>
             <Card>
               <Title>Latency distribution (processing time)</Title>
               <Text>
-                This is how long it takes for the edge function to run the
-                queries and return the result. Your internet connections{' '}
-                <b>will not</b> influence these results.
+                This is how long it takes for the function to run the queries and return the result. Your internet
+                connections <b>will not</b> influence these results.
               </Text>
 
               <AreaChart
@@ -312,17 +301,14 @@ export default function Page() {
                 data={new Array(ATTEMPTS).fill(0).map((_, i) => {
                   return {
                     attempt: `#${i + 1}`,
-                    Regional: data.regional[i]
-                      ? data.regional[i].queryDuration
-                      : null,
-                    Global: data.global[i]
-                      ? data.global[i].queryDuration
-                      : null,
+                    Regional: data.regional[i] ? data.regional[i].queryDuration : null,
+                    Global: data.global[i] ? data.global[i].queryDuration : null,
+                    Node: data.node[i] ? data.node[i].queryDuration : null,
                   };
                 })}
                 index="attempt"
-                categories={['Global', 'Regional']}
-                colors={['indigo', 'cyan']}
+                categories={["Global", "Regional", "Node"]}
+                colors={["indigo", "cyan", "purple"]}
                 valueFormatter={dataFormatter}
                 yAxisWidth={48}
               />
@@ -330,10 +316,8 @@ export default function Page() {
             <Card>
               <Title>Latency distribution (end-to-end)</Title>
               <Text>
-                This is the total latency from the client&apos;s perspective. It
-                considers the total roundtrip between browser and edge. Your
-                internet connection and location <b>will</b> influence these
-                results.
+                This is the total latency from the client&apos;s perspective. It considers the total roundtrip between
+                browser and compute location. Your internet connection and location <b>will</b> influence these results.
               </Text>
 
               <AreaChart
@@ -341,15 +325,14 @@ export default function Page() {
                 data={new Array(ATTEMPTS).fill(0).map((_, i) => {
                   return {
                     attempt: `#${i + 1}`,
-                    Regional: data.regional[i]
-                      ? data.regional[i].elapsed
-                      : null,
+                    Regional: data.regional[i] ? data.regional[i].elapsed : null,
                     Global: data.global[i] ? data.global[i].elapsed : null,
+                    Node: data.node[i] ? data.node[i].elapsed : null,
                   };
                 })}
                 index="attempt"
-                categories={['Global', 'Regional']}
-                colors={['indigo', 'cyan']}
+                categories={["Global", "Regional", "Node"]}
+                colors={["indigo", "cyan", "purple"]}
                 valueFormatter={dataFormatter}
                 yAxisWidth={48}
               />
@@ -361,17 +344,10 @@ export default function Page() {
   );
 }
 
-const dataFormatter = (number: number) =>
-  `${Intl.NumberFormat('us').format(number).toString()}ms`;
+const dataFormatter = (number: number) => `${Intl.NumberFormat("us").format(number).toString()}ms`;
 
-function Code({ className = '', children }) {
-  return (
-    <code
-      className={`bg-gray-200 dark:bg-gray-700 text-sm p-1 rounded ${className}`}
-    >
-      {children}
-    </code>
-  );
+function Code({ className = "", children }) {
+  return <code className={`bg-gray-200 dark:bg-gray-700 text-sm p-1 rounded ${className}`}>{children}</code>;
 }
 
 function VercelIcon() {
@@ -464,12 +440,7 @@ function UpstashIcon() {
 
 function FaunaIcon() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 400 400"
-      className="flex-none h-5 w-5 mr-3"
-      aria-hidden="true"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" className="flex-none h-5 w-5 mr-3" aria-hidden="true">
       <path
         d="M269.537 130.232C254.133 135.374 246.716 144.596 241.662 158.96C240.358 162.795 237.098 167.039 233.431 169.896L246.064 183.443L205.964 155.369L95.2812 78C95.2812 78 103.269 129.906 106.04 149.003C107.996 162.469 111.338 168.508 121.933 174.629L126.171 176.914L144.428 186.545L133.588 180.913L183.632 208.254L183.306 208.988L129.431 184.015C132.284 193.808 137.826 212.661 140.19 220.985C142.717 229.963 145.569 233.227 154.29 236.41L170.346 242.286L180.29 238.369L167.657 246.775L104.491 327C146.466 287.989 182.002 274.115 208.001 262.771C241.173 248.407 261.142 239.185 274.183 206.05C283.474 182.791 290.728 153.002 299.938 141.495L319.58 116.358C319.58 116.358 278.91 127.131 269.537 130.232Z"
         fill="rgb(156 163 175)"
@@ -585,20 +556,13 @@ function PolyScaleIcon() {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        fillRule: 'evenodd',
-        clipRule: 'evenodd',
-        strokeLinejoin: 'round',
+        fillRule: "evenodd",
+        clipRule: "evenodd",
+        strokeLinejoin: "round",
         strokeMiterlimit: 2,
       }}
     >
-      <rect
-        id="ArtBoard1"
-        x="0"
-        y="0"
-        width="60.002"
-        height="59.997"
-        style={{ fill: 'none' }}
-      />
+      <rect id="ArtBoard1" x="0" y="0" width="60.002" height="59.997" style={{ fill: "none" }} />
       <clipPath id="_clip1">
         <rect x="0" y="0" width="60.002" height="59.997" />
       </clipPath>
@@ -607,27 +571,27 @@ function PolyScaleIcon() {
           <path
             id="Shape"
             d="M24.1,38.914l6.8,-0c0.3,-0 0.6,0.3 0.6,0.6l-0,4.3c-0,8.1 -5.9,15.2 -13.9,16.1c-9.5,1.1 -17.6,-6.4 -17.6,-15.7c0,-6.7 4.2,-12.4 10.1,-14.7c0.4,-0.1 0.8,0.2 0.8,0.6l0,7.8c0,0.2 -0.1,0.3 -0.2,0.4c-2,1.8 -3.2,4.5 -2.5,7.5c0.6,3 3,5.4 6,6c5,1 9.3,-2.8 9.3,-7.6l0,-4.7c0,-0.4 0.2,-0.6 0.6,-0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
+            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
           />
           <path
             id="Shape1"
             d="M15.7,36.414l4.7,-0c0.3,-0 0.6,-0.3 0.6,-0.6l-0,-2.1c-0,-2.9 -2.4,-5.3 -5.3,-5.3c-0.7,-0 -1.4,0.1 -2.1,0.2c-0.3,-0 -0.5,0.3 -0.5,0.6l-0,6.9c-0,0.4 0.4,0.7 0.7,0.6c0.6,-0.2 1.3,-0.3 1.9,-0.3Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
+            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
           />
           <path
             id="Shape2"
             d="M33.9,29.014c0,4.1 3.3,7.4 7.3,7.4l0.1,-0c0.3,-0 0.6,-0.3 0.6,-0.6l0,-6.8c0,-0.3 -0.3,-0.6 -0.6,-0.6l-6.8,-0c-0.4,-0 -0.6,0.3 -0.6,0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
+            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
           />
           <path
             id="Shape3"
             d="M44.1,35.514l0,-7c0,-0.3 0.2,-0.5 0.4,-0.6c4.8,-1.4 8.1,-6.2 7.2,-11.6c-0.7,-4.1 -4,-7.5 -8.1,-8.2c-6.5,-1.2 -12.2,3.8 -12.2,10.1l0,7.4c0,0.3 -0.3,0.6 -0.6,0.6l-6.8,-0c-0.3,-0 -0.6,-0.3 -0.6,-0.6l0,-6.9c0,-9.9 7.7,-18.3 17.5,-18.7c10.4,-0.4 18.9,7.9 18.9,18.2c0,9 -6.5,16.5 -15.1,17.9c-0.2,0.1 -0.6,-0.2 -0.6,-0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
+            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
           />
           <path
             id="Shape4"
             d="M30.8,28.414l-6.8,-0c-0.3,-0 -0.6,0.3 -0.6,0.6l0,6.8c0,0.3 0.3,0.6 0.6,0.6l6.8,-0c0.3,-0 0.6,-0.3 0.6,-0.6l0,-6.8c0,-0.3 -0.2,-0.6 -0.6,-0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
+            style={{ fill: "#9ca3ae", fillRule: "nonzero" }}
           />
         </g>
       </g>
