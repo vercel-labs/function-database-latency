@@ -10,7 +10,7 @@ Here is an overview of all data service providers and the compute locations avai
 
 | Provider                         | Edge (Global) | Edge (Regional / US East) | Node |
 | :------------------------------- | :------------ | :------------------------ | ---- |
-| Convex (SDK)                     | ✅            | ✅                        | ❌   |
+| Convex (SDK)                     | ✅            | ✅                        | ✅   |
 | Fauna                            | ✅            | ✅                        | ❌   |
 | Grafbase (GraphQL)               | ✅            | ✅                        | ❌   |
 | Neon                             | ✅            | ✅                        | ❌   |
