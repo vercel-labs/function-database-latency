@@ -6,8 +6,13 @@ import Head from "next/head";
 import GithubCorner from "@/components/github-corner";
 
 const ATTEMPTS = 10;
-const NODE_AVAILABLE = ["planetscale-drizzle", "planetscale-prisma", "convex", "turso"];
-const NODE_ONLY = ["supabase-drizzle", "supabase-prisma"];
+const NODE_AVAILABLE = [
+  "planetscale-drizzle",
+  "planetscale-prisma",
+  "convex",
+  "turso",
+];
+const NODE_ONLY = ["supabase-drizzle", "supabase-prisma", "turso-drizzle"];
 
 type Region = "regional" | "global" | "node";
 
@@ -176,7 +181,10 @@ export default function Page() {
                 Tigris (HTTP API)
               </SelectItem> */}
               <SelectItem data-testid="turso" value="turso" icon={TursoIcon}>
-                Turso
+                Turso (@libsql/client)
+              </SelectItem>
+              <SelectItem data-testid="turso-drizzle" value="turso-drizzle" icon={TursoIcon}>
+                Turso (w/ Drizzle ORM)
               </SelectItem>
               <SelectItem data-testid="upstash" value="upstash" icon={UpstashIcon}>
                 Upstash (SDK)

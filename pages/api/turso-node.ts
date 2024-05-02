@@ -4,7 +4,7 @@ import { Client as LibsqlClient, createClient } from "@libsql/client";
 const start = Date.now();
 const client = buildLibsqlClient();
 
-function buildLibsqlClient(): LibsqlClient {
+export function buildLibsqlClient(): LibsqlClient {
   let url = process.env.TURSO_DB_URL?.trim();
   if (url === undefined) {
     throw new Error("TURSO_DB_URL env var is not defined");
