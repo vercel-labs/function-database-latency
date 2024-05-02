@@ -8,20 +8,6 @@ export const config = {
 const start = Date.now();
 const client = buildLibsqlClient();
 
-function buildLibsqlClient(): LibsqlClient {
-  const url = process.env.TURSO_DB_URL?.trim();
-  if (url === undefined) {
-    throw new Error("TURSO_DB_URL env var is not defined");
-  }
-
-  const authToken = process.env.TURSO_DB_AUTH_TOKEN?.trim();
-  if (authToken === undefined) {
-    throw new Error("TURSO_DB_AUTH_TOKEN env var is not defined");
-  }
-
-  return createClient({ url, authToken });
-}
-
 export default async function api(req: Request) {
   const count = toNumber(new URL(req.url).searchParams.get("count"));
   const time = Date.now();
@@ -53,4 +39,18 @@ export default async function api(req: Request) {
 function toNumber(queryParam: string | null, min = 1, max = 5) {
   const num = Number(queryParam);
   return Number.isNaN(num) ? null : Math.min(Math.max(num, min), max);
+}
+
+function buildLibsqlClient(): LibsqlClient {
+  const url = process.env.TURSO_DB_URL?.trim();
+  if (url === undefined) {
+    throw new Error("TURSO_DB_URL env var is not defined");
+  }
+
+  const authToken = process.env.TURSO_DB_AUTH_TOKEN?.trim();
+  if (authToken === undefined) {
+    throw new Error("TURSO_DB_AUTH_TOKEN env var is not defined");
+  }
+
+  return createClient({ url, authToken });
 }
