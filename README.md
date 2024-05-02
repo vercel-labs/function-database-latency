@@ -25,7 +25,7 @@ Here is an overview of all data service providers and the compute locations avai
 | Supabase w/ Drizzle              | ❌            | ❌                        | ✅   |
 | TiDB Cloud (serverless-js)       | ✅            | ✅                        | ❌   |
 | Tigris                           | ✅            | ✅                        | ❌   |
-| Turso                            | ✅            | ✅                        | ❌   |
+| Turso                            | ✅            | ✅                        | ✅   |
 | Upstash (SDK)                    | ✅            | ✅                        | ❌   |
 | Xata (TypeScript SDK)            | ✅            | ✅                        | ❌   |
 
