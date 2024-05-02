@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Client as LibsqlClient, createClient } from "@libsql/client/web";
+import { Client as LibsqlClient, createClient } from "@libsql/client";
 
 const start = Date.now();
 const client = buildLibsqlClient();
@@ -10,8 +10,8 @@ function buildLibsqlClient(): LibsqlClient {
     throw new Error("TURSO_DB_URL env var is not defined");
   }
 
-  // if (!url.startsWith("libsql://")) {
-  //   url = url.replace(/libsql$/g, "wss");
+  // if (!url.startsWith("https://")) {
+  //   url = url.replace(/https$/g, "wss");
   // }
 
   const authToken = process.env.TURSO_DB_AUTH_TOKEN?.trim();

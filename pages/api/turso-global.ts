@@ -9,17 +9,17 @@ const start = Date.now();
 const client = buildLibsqlClient();
 
 function buildLibsqlClient(): LibsqlClient {
-    const url = process.env.TURSO_DB_URL?.trim();
-    if (url === undefined) {
-        throw new Error("TURSO_DB_URL env var is not defined");
-    }
+  const url = process.env.TURSO_DB_URL?.trim();
+  if (url === undefined) {
+    throw new Error("TURSO_DB_URL env var is not defined");
+  }
 
-    const authToken = process.env.TURSO_DB_AUTH_TOKEN?.trim();
-    if (authToken === undefined) {
-        throw new Error("TURSO_DB_AUTH_TOKEN env var is not defined");
-    }
+  const authToken = process.env.TURSO_DB_AUTH_TOKEN?.trim();
+  if (authToken === undefined) {
+    throw new Error("TURSO_DB_AUTH_TOKEN env var is not defined");
+  }
 
-    return createClient({ url, authToken });
+  return createClient({ url, authToken });
 }
 
 export default async function api(req: Request) {
@@ -28,7 +28,9 @@ export default async function api(req: Request) {
 
   let data = null;
   for (let i = 0; i < count; i++) {
-    data = await client.execute("select emp_no, first_name, last_name from employees limit 10");
+    data = await client.execute(
+      "select emp_no, first_name, last_name from employees limit 10",
+    );
   }
 
   return Response.json(
@@ -43,7 +45,7 @@ export default async function api(req: Request) {
       headers: {
         "x-edge-is-cold": start === time ? "1" : "0",
       },
-    }
+    },
   );
 }
 
