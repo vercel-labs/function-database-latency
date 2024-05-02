@@ -2,7 +2,7 @@
 
 This demo helps observe the latency characteristics of querying different popular data services from [Vercel Functions](https://vercel.com/docs/functions).
 
-https://functions-latency.vercel.app/
+https://db-latency.vercel.app
 
 ## Providers
 
@@ -12,7 +12,7 @@ Here is an overview of all data service providers and the compute locations avai
 | :------------------------------- | :------------ | :------------------------ | ---- |
 | Convex (SDK)                     | ✅            | ✅                        | ✅   |
 | Fauna                            | ✅            | ✅                        | ❌   |
-| Grafbase (GraphQL)               | ✅            | ✅                        | ❌   |
+| Grafbase (GraphQL)               | ✅            | ✅                        | ✅   |
 | Neon                             | ✅            | ✅                        | ❌   |
 | Fauna                            | ✅            | ✅                        | ❌   |
 | PlanetScale w/ Kysely            | ✅            | ✅                        | ❌   |
@@ -28,7 +28,9 @@ Here is an overview of all data service providers and the compute locations avai
 | Turso                            | ✅            | ✅                        | ✅   |
 | Turso w/ Drizzle                 | ✅            | ✅                        | ✅   |
 | Upstash (SDK)                    | ✅            | ✅                        | ❌   |
-| Xata (TypeScript SDK)            | ✅            | ✅                        | ❌   |
+| Xata w/ TypeScript SDK           | ✅            | ✅                        | ✅   |
+| Xata w/ Prisma ORM               | ❌            | ❌                        | ✅   |
+| Xata w/ Drizzle                  | ❌            | ❌                        | ✅   |
 
 ## Testing Methodology
 
