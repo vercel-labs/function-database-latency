@@ -2,7 +2,7 @@
 
 This demo helps observe the latency characteristics of querying different popular data services from [Vercel Functions](https://vercel.com/docs/functions).
 
-https://functions-latency.vercel.app/
+https://db-latency.vercel.app
 
 ## Providers
 
@@ -10,7 +10,7 @@ Here is an overview of all data service providers and the compute locations avai
 
 | Provider                         | Edge (Global) | Edge (Regional / US East) | Node |
 | :------------------------------- | :------------ | :------------------------ | ---- |
-| Convex (SDK)                     | ✅            | ✅                        | ❌   |
+| Convex (SDK)                     | ✅            | ✅                        | ✅   |
 | Fauna                            | ✅            | ✅                        | ❌   |
 | Grafbase (GraphQL)               | ✅            | ✅                        | ✅   |
 | Neon                             | ✅            | ✅                        | ❌   |

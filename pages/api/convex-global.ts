@@ -6,12 +6,7 @@ export const config = {
   runtime: "edge",
 };
 
-// Make sure we use the Edge endpoints.
-let url = process.env.NEXT_PUBLIC_CONVEX_URL;
-if (!url.endsWith("edge.convex.cloud")) {
-  url = url.replace(/convex.cloud$/g, "edge.convex.cloud");
-}
-
+const url = process.env.NEXT_PUBLIC_CONVEX_URL;
 const convex = new ConvexHttpClient(url);
 
 const start = Date.now();
