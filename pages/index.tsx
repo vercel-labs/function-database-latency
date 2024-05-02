@@ -11,8 +11,9 @@ const NODE_AVAILABLE = [
   "planetscale-prisma",
   "convex",
   "turso",
+  "turso-drizzle"
 ];
-const NODE_ONLY = ["supabase-drizzle", "supabase-prisma", "turso-drizzle"];
+const NODE_ONLY = ["supabase-drizzle", "supabase-prisma"];
 
 type Region = "regional" | "global" | "node";
 
