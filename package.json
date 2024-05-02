@@ -5,7 +5,8 @@
     "build": "next build",
     "start": "next start",
     "gen:planetscale": "prisma generate --schema ./prisma-planetscale/schema.prisma",
-    "gen:supabase": "prisma generate --schema ./prisma-supabase/schema.prisma"
+    "gen:supabase": "prisma generate --schema ./prisma-supabase/schema.prisma",
+    "gen:xata": "prisma generate --schema ./prisma-xata/schema.prisma"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
@@ -25,7 +26,7 @@
     "@upstash/redis": "^1.28.4",
     "@vercel/kv": "^1.0.1",
     "@vercel/postgres": "^0.8.0",
-    "@xata.io/client": "^0.29.3",
+    "@xata.io/client": "^0.29.4",
     "autoprefixer": "^10.4.18",
     "convex": "1.11.2",
     "drizzle-orm": "^0.30.9",

@@ -10,8 +10,8 @@ import Head from "next/head";
 import GithubCorner from "@/components/github-corner";
 
 const ATTEMPTS = 10;
-const NODE_AVAILABLE = ["grafbase", "planetscale-drizzle", "planetscale-prisma", "convex"];
-const NODE_ONLY = ["supabase-drizzle", "supabase-prisma"];
+const NODE_AVAILABLE = ["planetscale-drizzle", "planetscale-prisma", "convex", "xata-sdk", "grafbase"];
+const NODE_ONLY = ["supabase-drizzle", "supabase-prisma", "xata-drizzle", "xata-prisma"];
 
 type Region = "regional" | "global" | "node";
 
@@ -253,8 +253,14 @@ export default function Page() {
               >
                 Upstash (SDK)
               </SelectItem>
-              <SelectItem data-testid="xata" value="xata" icon={XataIcon}>
+              <SelectItem data-testid="xata-sdk" value="xata-sdk" icon={XataIcon}>
                 Xata (SDK)
+              </SelectItem>
+              <SelectItem data-testid="xata-drizzle" value="xata-drizzle" icon={XataIcon}>
+                Xata (w/ Drizzle)
+              </SelectItem>
+              <SelectItem data-testid="xata-prisma" value="xata-prisma" icon={XataIcon}>
+                Xata (w/ Prisma ORM)
               </SelectItem>
             </Select>
           </div>
