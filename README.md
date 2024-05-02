@@ -12,7 +12,7 @@ Here is an overview of all data service providers and the compute locations avai
 | :------------------------------- | :------------ | :------------------------ | ---- |
 | Convex (SDK)                     | ✅            | ✅                        | ✅   |
 | Fauna                            | ✅            | ✅                        | ❌   |
-| Grafbase (GraphQL)               | ✅            | ✅                        | ❌   |
+| Grafbase (GraphQL)               | ✅            | ✅                        | ✅   |
 | Neon                             | ✅            | ✅                        | ❌   |
 | Fauna                            | ✅            | ✅                        | ❌   |
 | PlanetScale w/ Kysely            | ✅            | ✅                        | ❌   |
