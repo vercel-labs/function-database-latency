@@ -1,5 +1,9 @@
 import { NextRequest as Request, NextResponse as Response } from "next/server";
 
+export const config = {
+  runtime: "edge",
+};
+
 const start = Date.now();
 
 export default async function api(req: Request) {
