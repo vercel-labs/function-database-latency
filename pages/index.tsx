@@ -11,17 +11,22 @@ import GithubCorner from '@/components/github-corner';
 
 const ATTEMPTS = 10;
 const NODE_AVAILABLE = [
-  "planetscale-drizzle",
-  "planetscale-prisma",
-  "convex",
-  "xata-sdk",
-  "grafbase",
-  "turso",
-  "turso-drizzle",
+  'planetscale-drizzle',
+  'planetscale-prisma',
+  'convex',
+  'xata-sdk',
+  'grafbase',
+  'turso',
+  'turso-drizzle'
 ];
-const NODE_ONLY = ["supabase-drizzle", "supabase-prisma"];
+const NODE_ONLY = [
+  'supabase-drizzle',
+  'supabase-prisma',
+  'xata-drizzle',
+  'xata-prisma',
+];
 
-type Region = "regional" | "global" | "node";
+type Region = 'regional' | 'global' | 'node';
 
 export default function Page() {
   const [isTestRunning, setIsTestRunning] = useState(false);
