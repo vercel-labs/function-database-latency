@@ -17,7 +17,8 @@ const NODE_AVAILABLE = [
   'xata-sdk',
   'grafbase',
   'turso',
-  'turso-drizzle'
+  'turso-drizzle',
+  'turso-prisma',
 ];
 const NODE_ONLY = [
   'supabase-drizzle',
@@ -261,6 +262,9 @@ export default function Page() {
               </SelectItem>
               <SelectItem data-testid="turso-drizzle" value="turso-drizzle" icon={TursoIcon}>
                 Turso (w/ Drizzle ORM)
+              </SelectItem>
+              <SelectItem data-testid="turso-prisma" value="turso-prisma" icon={TursoIcon}>
+                Turso (w/ Prisma ORM)
               </SelectItem>
               <SelectItem
                 data-testid="upstash"

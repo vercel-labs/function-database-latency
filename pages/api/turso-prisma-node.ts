@@ -1,9 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@/prisma-xata/prisma-client";
+import { PrismaClient } from "@/prisma-turso/prisma-client";
+import { PrismaLibSQL } from "@prisma/adapter-libsql";
+import { createClient } from "@libsql/client";
 
-const prisma = new PrismaClient({
-  datasourceUrl: process.env.XATA_POSTGRES_URL,
+const libsql = createClient({
+  url: process.env.TURSO_DB_URL,
+  authToken: process.env.TURSO_DB_AUTH_TOKEN,
 });
+
+const adapter = new PrismaLibSQL(libsql);
+const prisma = new PrismaClient({ adapter });
 
 const start = Date.now();
 
