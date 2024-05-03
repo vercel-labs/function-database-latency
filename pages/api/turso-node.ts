@@ -4,7 +4,7 @@ import { createClient } from "@libsql/client";
 let url = process.env.TURSO_DB_URL as string;
 
 if (!url.startsWith("https://")) {
-  url = url.replace(/https$/g, "wss");
+  url = url.replace(/^https/, "wss");
 }
 
 const client = createClient({

@@ -7,10 +7,7 @@ const prisma = new PrismaClient({
 
 const start = Date.now();
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { count } = req.query;
   const time = Date.now();
 
