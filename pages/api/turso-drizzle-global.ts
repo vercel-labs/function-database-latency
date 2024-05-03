@@ -1,11 +1,16 @@
 import { NextRequest as Request, NextResponse as Response } from "next/server";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { drizzle } from "drizzle-orm/libsql";
-import { Client as LibsqlClient, createClient } from "@libsql/client/web";
+import { createClient } from "@libsql/client/web";
 
 export const config = {
   runtime: "edge",
 };
+
+const client = createClient({
+  url: process.env.TURSO_DB_URL as string,
+  authToken: process.env.TURSO_DB_AUTH_TOKEN,
+});
 
 export const employees = sqliteTable("employees", {
   id: integer("emp_no").primaryKey(),
@@ -14,7 +19,6 @@ export const employees = sqliteTable("employees", {
 });
 
 const start = Date.now();
-const client = buildLibsqlClient();
 
 const db = drizzle(client);
 
@@ -47,18 +51,4 @@ export default async function api(req: Request) {
 function toNumber(queryParam: string | string[] | null, min = 1, max = 5) {
   const num = Number(queryParam);
   return Number.isNaN(num) ? 1 : Math.min(Math.max(num, min), max);
-}
-
-function buildLibsqlClient(): LibsqlClient {
-  const url = process.env.TURSO_DB_URL?.trim();
-  if (url === undefined) {
-    throw new Error("TURSO_DB_URL env var is not defined");
-  }
-
-  const authToken = process.env.TURSO_DB_AUTH_TOKEN?.trim();
-  if (authToken === undefined) {
-    throw new Error("TURSO_DB_AUTH_TOKEN env var is not defined");
-  }
-
-  return createClient({ url, authToken });
 }

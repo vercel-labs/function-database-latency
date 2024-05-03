@@ -1,8 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { drizzle } from "drizzle-orm/libsql";
+import { createClient } from "@libsql/client";
 
-import { buildLibsqlClient } from "./turso-node";
+let url = process.env.TURSO_DB_URL as string;
+
+if (!url.startsWith("https://")) {
+  url = url.replace(/https$/g, "wss");
+}
+
+const client = createClient({
+  url,
+  authToken: process.env.TURSO_DB_AUTH_TOKEN,
+});
 
 export const employees = sqliteTable("employees", {
   id: integer("emp_no").primaryKey(),
@@ -11,7 +21,6 @@ export const employees = sqliteTable("employees", {
 });
 
 const start = Date.now();
-const client = buildLibsqlClient();
 
 const db = drizzle(client);
 
