@@ -14,7 +14,6 @@ Here is an overview of all data service providers and the compute locations avai
 | Fauna                            | ✅            | ✅                        | ❌   |
 | Grafbase (GraphQL)               | ✅            | ✅                        | ✅   |
 | Neon                             | ✅            | ✅                        | ❌   |
-| Fauna                            | ✅            | ✅                        | ❌   |
 | PlanetScale w/ Kysely            | ✅            | ✅                        | ❌   |
 | PlanetScale w/ Prisma ORM        | ✅            | ✅                        | ✅   |
 | PlanetScale w/ Drizzle           | ✅            | ✅                        | ✅   |
