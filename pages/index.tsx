@@ -33,7 +33,7 @@ export default function Page() {
   const [isTestRunning, setIsTestRunning] = useState(false);
   const [shouldTestGlobal, setShouldTestGlobal] = useState(true);
   const [shouldTestRegional, setShouldTestRegional] = useState(true);
-  const [shouldTestNode, setShouldTestNode] = useState(false);
+  const [shouldTestNode, setShouldTestNode] = useState(true);
   const [queryCount, setQueryCount] = useState(1);
   const [dataService, setDataService] = useState('');
   const [data, setData] = useState({
@@ -159,7 +159,13 @@ export default function Page() {
               data-testid="database-dropdown"
               className="max-w-xs"
               placeholder="Select Database"
-              onValueChange={(v) => setDataService(v)}
+              onValueChange={(v) => {
+                // Reset all checkbox values
+                setShouldTestGlobal(!NODE_ONLY.includes(v))
+                setShouldTestRegional(!NODE_ONLY.includes(v))
+                setShouldTestNode(NODE_ONLY.includes(v) || NODE_AVAILABLE.includes(v))
+                setDataService(v)
+              }}
             >
               <SelectItem
                 data-testid="vercel-kv"
@@ -245,7 +251,7 @@ export default function Page() {
                 value="supabase-drizzle"
                 icon={BoltIcon}
               >
-                Supabase (w/ Drizzle)
+                Supabase (w/ Drizzle ORM)
               </SelectItem>
               <SelectItem
                 data-testid="tidb-cloud"
@@ -285,7 +291,7 @@ export default function Page() {
                 value="xata-drizzle"
                 icon={XataIcon}
               >
-                Xata (w/ Drizzle)
+                Xata (w/ Drizzle ORM)
               </SelectItem>
               <SelectItem
                 data-testid="xata-prisma"
@@ -388,16 +394,20 @@ export default function Page() {
           </p>
         </div>
 
-        <div>
+        <div className="flex items-center">
           <Button
             type="button"
             data-testid="run-test"
             onClick={onRunTest}
             loading={isTestRunning}
-            disabled={dataService === ''}
+            disabled={dataService === '' || (!shouldTestGlobal && !shouldTestRegional && !shouldTestNode)}
           >
             Run Test
           </Button>
+          {(!shouldTestGlobal && !shouldTestRegional && !shouldTestNode) &&          
+           <p className="text-gray-600 dark:text-gray-300 text-sm ml-4">
+            You need to select at least one <strong>Location</strong> to run the benchmark.
+          </p>}
         </div>
 
         {data.regional.length || data.global.length || data.node.length ? (
