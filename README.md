@@ -27,7 +27,7 @@ Here is an overview of all data service providers and the compute locations avai
 | Turso                            | ✅            | ✅                        | ✅   |
 | Turso w/ Prisma ORM              | ✅            | ✅                        | ✅   |
 | Turso w/ Drizzle                 | ✅            | ✅                        | ✅   |
-| Upstash (SDK)                    | ✅            | ✅                        | ❌   |
+| Upstash (SDK)                    | ✅            | ✅                        | ✅   |
 | Xata w/ TypeScript SDK           | ✅            | ✅                        | ✅   |
 | Xata w/ Prisma ORM               | ❌            | ❌                        | ✅   |
 | Xata w/ Drizzle                  | ❌            | ❌                        | ✅   |
