@@ -251,7 +251,7 @@ export default function Page() {
                 value="supabase-drizzle"
                 icon={BoltIcon}
               >
-                Supabase (w/ Drizzle)
+                Supabase (w/ Drizzle ORM)
               </SelectItem>
               <SelectItem
                 data-testid="tidb-cloud"
@@ -291,7 +291,7 @@ export default function Page() {
                 value="xata-drizzle"
                 icon={XataIcon}
               >
-                Xata (w/ Drizzle)
+                Xata (w/ Drizzle ORM)
               </SelectItem>
               <SelectItem
                 data-testid="xata-prisma"
