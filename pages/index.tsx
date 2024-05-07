@@ -19,6 +19,7 @@ const NODE_AVAILABLE = [
   'turso',
   'turso-drizzle',
   'turso-prisma',
+  'upstash'
 ];
 const NODE_ONLY = [
   'supabase-drizzle',
