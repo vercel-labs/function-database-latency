@@ -113,8 +113,8 @@ export default function Page() {
           content="Observe the latency querying different data services from varying compute locations using the `edge` and `node` runtimes of Vercel Functions."
         />
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:image:url" content="/edge-data.png" />
-        <meta name="twitter:image" content="/edge-data.png" />
+        <meta property="og:image:url" content="/og.png" />
+        <meta name="twitter:image" content="/og.png" />
       </Head>
       <GithubCorner url="https://github.com/vercel-labs/edge-data-latency" />
 
