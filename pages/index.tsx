@@ -160,7 +160,7 @@ export default function Page() {
               className="max-w-xs"
               placeholder="Select Database"
               onValueChange={(v) => {
-                console.log(`set data service: `, v)
+                // Reset all checkbox values
                 setShouldTestGlobal(!NODE_ONLY.includes(v))
                 setShouldTestRegional(!NODE_ONLY.includes(v))
                 setShouldTestNode(NODE_ONLY.includes(v) || NODE_AVAILABLE.includes(v))
