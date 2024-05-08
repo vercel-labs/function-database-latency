@@ -19,7 +19,10 @@ const NODE_AVAILABLE = [
   'turso',
   'turso-drizzle',
   'turso-prisma',
-  'upstash'
+  'upstash',
+  'neon',
+  'neon-drizzle',
+  'neon-prisma'
 ];
 const NODE_ONLY = [
   'supabase-drizzle',
@@ -197,6 +200,12 @@ export default function Page() {
               </SelectItem>
               <SelectItem data-testid="neon" value="neon" icon={NeonIcon}>
                 Neon (@neondatabase/serverless driver)
+              </SelectItem>
+              <SelectItem data-testid="neon-drizzle" value="neon-drizzle" icon={NeonIcon}>
+                Neon (w/ Drizzle ORM)
+              </SelectItem>
+              <SelectItem data-testid="neon-prisma" value="neon-prisma" icon={NeonIcon}>
+                Neon (w/ Prisma ORM)
               </SelectItem>
               <SelectItem
                 data-testid="planetscale"

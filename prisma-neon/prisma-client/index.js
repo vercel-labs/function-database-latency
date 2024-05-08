@@ -142,7 +142,8 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../.env"
   },
   "relativePath": "..",
   "clientVersion": "5.13.0",
@@ -151,6 +152,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -169,8 +171,8 @@ const fs = require('fs')
 config.dirname = __dirname
 if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
   const alternativePaths = [
+    "prisma-neon/prisma-client",
     "prisma-client",
-    "",
   ]
   
   const alternativePath = alternativePaths.find((altPath) => {
@@ -199,11 +201,11 @@ Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
-path.join(process.cwd(), "prisma-client/libquery_engine-darwin-arm64.dylib.node")
+path.join(process.cwd(), "prisma-neon/prisma-client/libquery_engine-darwin-arm64.dylib.node")
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-rhel-openssl-3.0.x.so.node");
-path.join(process.cwd(), "prisma-client/libquery_engine-rhel-openssl-3.0.x.so.node")
+path.join(process.cwd(), "prisma-neon/prisma-client/libquery_engine-rhel-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
-path.join(process.cwd(), "prisma-client/schema.prisma")
+path.join(process.cwd(), "prisma-neon/prisma-client/schema.prisma")

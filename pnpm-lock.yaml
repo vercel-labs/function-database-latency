@@ -16,7 +16,7 @@ dependencies:
     version: 2.1.1(react@18.3.1)
   '@libsql/client':
     specifier: ^0.6.0
-    version: 0.6.0
+    version: 0.6.0(bufferutil@4.0.8)
   '@neondatabase/serverless':
     specifier: ^0.9.0
     version: 0.9.0
@@ -29,6 +29,9 @@ dependencies:
   '@prisma/adapter-libsql':
     specifier: ^5.13.0
     version: 5.13.0(@libsql/client@0.6.0)
+  '@prisma/adapter-neon':
+    specifier: ^5.13.0
+    version: 5.13.0(@neondatabase/serverless@0.9.0)
   '@prisma/adapter-planetscale':
     specifier: ^5.13.0
     version: 5.13.0(@planetscale/database@1.16.0)
@@ -37,7 +40,7 @@ dependencies:
     version: 5.13.0(prisma@5.13.0)
   '@supabase/supabase-js':
     specifier: ^2.39.8
-    version: 2.39.8
+    version: 2.39.8(bufferutil@4.0.8)
   '@tailwindcss/forms':
     specifier: ^0.5.7
     version: 0.5.7(tailwindcss@3.4.1)
@@ -107,6 +110,14 @@ dependencies:
   typescript:
     specifier: ^5.4.2
     version: 5.4.2
+  ws:
+    specifier: ^8.17.0
+    version: 8.17.0(bufferutil@4.0.8)
+
+optionalDependencies:
+  bufferutil:
+    specifier: ^4.0.8
+    version: 4.0.8
 
 packages:
 
@@ -433,11 +444,11 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: false
 
-  /@libsql/client@0.6.0:
+  /@libsql/client@0.6.0(bufferutil@4.0.8):
     resolution: {integrity: sha512-qhQzTG/y2IEVbL3+9PULDvlQFWJ/RnjFXECr/Nc3nRngGiiMysDaOV5VUzYk7DulUX98EA4wi+z3FspKrUplUA==}
     dependencies:
       '@libsql/core': 0.6.0
-      '@libsql/hrana-client': 0.6.0
+      '@libsql/hrana-client': 0.6.0(bufferutil@4.0.8)
       js-base64: 3.7.7
       libsql: 0.3.10
     transitivePeerDependencies:
@@ -467,11 +478,11 @@ packages:
     dev: false
     optional: true
 
-  /@libsql/hrana-client@0.6.0:
+  /@libsql/hrana-client@0.6.0(bufferutil@4.0.8):
     resolution: {integrity: sha512-k+fqzdjqg3IvWfKmVJK5StsbjeTcyNAXFelUbXbGNz3yH1gEVT9mZ6kmhsIXP30ZSyVV0AE1Gi25p82mxC9hwg==}
     dependencies:
       '@libsql/isomorphic-fetch': 0.2.1
-      '@libsql/isomorphic-ws': 0.1.5
+      '@libsql/isomorphic-ws': 0.1.5(bufferutil@4.0.8)
       js-base64: 3.7.7
       node-fetch: 3.3.2
     transitivePeerDependencies:
@@ -483,11 +494,11 @@ packages:
     resolution: {integrity: sha512-Sv07QP1Aw8A5OOrmKgRUBKe2fFhF2hpGJhtHe3d1aRnTESZCGkn//0zDycMKTGamVWb3oLYRroOsCV8Ukes9GA==}
     dev: false
 
-  /@libsql/isomorphic-ws@0.1.5:
+  /@libsql/isomorphic-ws@0.1.5(bufferutil@4.0.8):
     resolution: {integrity: sha512-DtLWIH29onUYR00i0GlQ3UdcTRC6EP4u9w/h9LxpUZJWRMARk6dQwZ6Jkd+QdwVpuAOrdxt18v0K2uIYR3fwFg==}
     dependencies:
       '@types/ws': 8.5.10
-      ws: 8.16.0
+      ws: 8.17.0(bufferutil@4.0.8)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -678,9 +689,19 @@ packages:
     peerDependencies:
       '@libsql/client': ^0.3.5 || ^0.4.0 || ^0.5.0 || ^0.6.0
     dependencies:
-      '@libsql/client': 0.6.0
+      '@libsql/client': 0.6.0(bufferutil@4.0.8)
       '@prisma/driver-adapter-utils': 5.13.0
       async-mutex: 0.5.0
+    dev: false
+
+  /@prisma/adapter-neon@5.13.0(@neondatabase/serverless@0.9.0):
+    resolution: {integrity: sha512-XIav2pP2lcyrvl0LHt8nvialytJPIW//hn1zTr426qMwnpag5avXnAx3/8ZMmYxGkZ4oKzizieu6mmh425RXcA==}
+    peerDependencies:
+      '@neondatabase/serverless': ^0.6.0 || ^0.7.0 || ^0.8.0 || ^0.9.0
+    dependencies:
+      '@neondatabase/serverless': 0.9.0
+      '@prisma/driver-adapter-utils': 5.13.0
+      postgres-array: 3.0.2
     dev: false
 
   /@prisma/adapter-planetscale@5.13.0(@planetscale/database@1.16.0):
@@ -768,13 +789,13 @@ packages:
       '@supabase/node-fetch': 2.6.15
     dev: false
 
-  /@supabase/realtime-js@2.9.3:
+  /@supabase/realtime-js@2.9.3(bufferutil@4.0.8):
     resolution: {integrity: sha512-lAp50s2n3FhGJFq+wTSXLNIDPw5Y0Wxrgt44eM5nLSA3jZNUUP3Oq2Ccd1CbZdVntPCWLZvJaU//pAd2NE+QnQ==}
     dependencies:
       '@supabase/node-fetch': 2.6.15
       '@types/phoenix': 1.6.4
       '@types/ws': 8.5.10
-      ws: 8.16.0
+      ws: 8.17.0(bufferutil@4.0.8)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -786,14 +807,14 @@ packages:
       '@supabase/node-fetch': 2.6.15
     dev: false
 
-  /@supabase/supabase-js@2.39.8:
+  /@supabase/supabase-js@2.39.8(bufferutil@4.0.8):
     resolution: {integrity: sha512-WpiawHjseIRcCQTZbMJtHUSOepz5+M9qE1jP9BDmg8X7ehALFwgEkiKyHAu59qm/pKP2ryyQXLtu2XZNRbUarw==}
     dependencies:
       '@supabase/functions-js': 2.1.5
       '@supabase/gotrue-js': 2.62.2
       '@supabase/node-fetch': 2.6.15
       '@supabase/postgrest-js': 1.9.2
-      '@supabase/realtime-js': 2.9.3
+      '@supabase/realtime-js': 2.9.3(bufferutil@4.0.8)
       '@supabase/storage-js': 2.5.5
     transitivePeerDependencies:
       - bufferutil
@@ -1382,7 +1403,7 @@ packages:
       sqlite3:
         optional: true
     dependencies:
-      '@libsql/client': 0.6.0
+      '@libsql/client': 0.6.0(bufferutil@4.0.8)
       '@neondatabase/serverless': 0.9.0
       '@planetscale/database': 1.16.0
       '@types/react': 18.3.1
@@ -2020,6 +2041,11 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
+  /postgres-array@3.0.2:
+    resolution: {integrity: sha512-6faShkdFugNQCLwucjPcY5ARoW1SlbnrZjmGl0IrrqewpvxvhSLHimCVzqeuULCbG0fQv7Dtk1yDbG3xv7Veog==}
+    engines: {node: '>=12'}
+    dev: false
+
   /postgres-bytea@1.0.0:
     resolution: {integrity: sha512-xy3pmLuQqRBZBXDULy7KbaitYqLcmxigw14Q5sj8QBVLqEwXfeybIKVWiqAXTlcvdvb0+xkOtDbfQMOf4lST1w==}
     engines: {node: '>=0.10.0'}
@@ -2498,8 +2524,8 @@ packages:
       utf-8-validate: 6.0.3
     dev: false
 
-  /ws@8.16.0:
-    resolution: {integrity: sha512-HS0c//TP7Ina87TfiPUz1rQzMhHrl/SG2guqRcTOIUYD2q8uhUdNHZYJUaQ8aTGPzCh+c6oawMKW35nFl1dxyQ==}
+  /ws@8.17.0(bufferutil@4.0.8):
+    resolution: {integrity: sha512-uJq6108EgZMAl20KagGkzCKfMEjxmKvZHG7Tlq0Z6nOky7YF7aq4mOx6xK8TJ/i1LeK4Qus7INktacctDgY8Ow==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -2509,6 +2535,8 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
+    dependencies:
+      bufferutil: 4.0.8
     dev: false
 
   /xtend@4.0.2:
