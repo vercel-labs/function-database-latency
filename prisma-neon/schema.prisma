@@ -1,0 +1,17 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  output          = "./prisma-client"
+  binaryTargets   = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("NEON_DATABASE_URL")
+}
+
+model employees {
+  emp_no     Int    @id @default(autoincrement())
+  first_name String
+  last_name  String
+}
