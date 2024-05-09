@@ -179,9 +179,9 @@ export default function Page() {
               <SelectItem data-testid="convex" value="convex" icon={ConvexIcon}>
                 Convex (SDK)
               </SelectItem>
-              <SelectItem data-testid="fauna" value="fauna" icon={FaunaIcon}>
+              {/* <SelectItem data-testid="fauna" value="fauna" icon={FaunaIcon}>
                 Fauna (faunadb.js)
-              </SelectItem>
+              </SelectItem> */}
               <SelectItem
                 data-testid="grafbase"
                 value="grafbase"
