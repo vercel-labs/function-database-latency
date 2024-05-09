@@ -11,7 +11,7 @@ Here is an overview of all data service providers and the compute locations avai
 | Provider                         | Edge (Global) | Edge (Regional / US East) | Node |
 | :------------------------------- | :------------ | :------------------------ | ---- |
 | Convex (SDK)                     | ✅            | ✅                        | ✅   |
-| Fauna                            | ✅            | ✅                        | ❌   |
+| Fauna                            | ✅            | ✅                        | ✅   |
 | Grafbase (GraphQL)               | ✅            | ✅                        | ✅   |
 | Neon w/ @neondatabase/serverless | ✅            | ✅                        | ✅   |
 | Neon w/ Drizzle ORM              | ✅            | ✅                        | ✅   |
@@ -20,7 +20,7 @@ Here is an overview of all data service providers and the compute locations avai
 | PlanetScale w/ Prisma ORM        | ✅            | ✅                        | ✅   |
 | PlanetScale w/ Drizzle           | ✅            | ✅                        | ✅   |
 | PolyScale                        | ✅            | ✅                        | ❌   |
-| Shopify (Storefront GraphQL API) | ✅            | ✅                        | ❌   |
+| Shopify (Storefront GraphQL API) | ✅            | ✅                        | ✅   |
 | Supabase w/ supabase-js          | ✅            | ✅                        | ❌   |
 | Supabase w/ Prisma ORM           | ❌            | ❌                        | ✅   |
 | Supabase w/ Drizzle              | ❌            | ❌                        | ✅   |

@@ -22,6 +22,8 @@ const NODE_AVAILABLE = [
   'neon',
   'neon-drizzle',
   'neon-prisma',
+  'fauna',
+  'shopify',
 ];
 const NODE_ONLY = [
   'supabase-drizzle',
