@@ -59,6 +59,9 @@ dependencies:
   '@upstash/redis':
     specifier: ^1.28.4
     version: 1.28.4
+  '@vercel/edge':
+    specifier: ^1.1.1
+    version: 1.1.1
   '@vercel/kv':
     specifier: ^1.0.1
     version: 1.0.1
@@ -968,6 +971,10 @@ packages:
     resolution: {integrity: sha512-UalkSAny/dz1m8giEhD3Y5ru1o+CPHI32wFyS3MyzDzj2TRvEN+lTw+mPwi20ojk0H2gs8TBW3qsrvwuLLy+pA==}
     dependencies:
       crypto-js: 4.2.0
+    dev: false
+
+  /@vercel/edge@1.1.1:
+    resolution: {integrity: sha512-NtKiIbn9Cq6HWGy+qRudz28mz5nxfOJWls5Pnckjw1yCfSX8rhXdvY/il3Sy3Zd5n/sKCM2h7VSCCpJF/oaDrQ==}
     dev: false
 
   /@vercel/kv@1.0.1:
