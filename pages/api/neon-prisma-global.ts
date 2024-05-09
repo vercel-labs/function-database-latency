@@ -2,7 +2,7 @@ import { NextRequest as Request, NextResponse as Response } from "next/server";
 import { Pool } from '@neondatabase/serverless'
 import { PrismaNeon } from '@prisma/adapter-neon'
 import { PrismaClient } from '@/prisma-neon/prisma-client'
-import { RequestContext } from "@vercel/edge";
+import { waitUntil } from "@vercel/functions";
 
 export const config = {
   runtime: "edge",
@@ -10,7 +10,7 @@ export const config = {
 
 const start = Date.now()
 
-export default async function api(req: Request, ctx: RequestContext) {
+export default async function api(req: Request) {
   const count = toNumber(new URL(req.url).searchParams.get("count"));
   const time = Date.now();
 
@@ -24,7 +24,7 @@ export default async function api(req: Request, ctx: RequestContext) {
     data = await prisma.employees.findMany({ take: 10 });
   }
 
-  ctx.waitUntil(pool.end());
+  waitUntil(pool.end());
   
   return Response.json(
     {
