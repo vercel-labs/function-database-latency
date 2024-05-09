@@ -1,5 +1,5 @@
 import { NextRequest as Request, NextResponse as Response } from "next/server";
-import { Pool, neonConfig } from '@neondatabase/serverless'
+import { Pool } from '@neondatabase/serverless'
 import { PrismaNeon } from '@prisma/adapter-neon'
 import { PrismaClient } from '@/prisma-neon/prisma-client'
 
