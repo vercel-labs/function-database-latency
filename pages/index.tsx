@@ -9,7 +9,6 @@ import {
 import Head from 'next/head';
 import GithubCorner from '@/components/github-corner';
 
-
 const NODE_AVAILABLE = [
   'planetscale-drizzle',
   'planetscale-prisma',
@@ -22,7 +21,7 @@ const NODE_AVAILABLE = [
   'upstash',
   'neon',
   'neon-drizzle',
-  'neon-prisma'
+  'neon-prisma',
 ];
 const NODE_ONLY = [
   'supabase-drizzle',
@@ -107,7 +106,7 @@ export default function Page() {
     shouldTestGlobal,
     shouldTestRegional,
     shouldTestNode,
-    sampleCount
+    sampleCount,
   ]);
 
   return (
@@ -122,7 +121,7 @@ export default function Page() {
         <meta property="og:image:url" content="/og.png" />
         <meta name="twitter:image" content="/og.png" />
       </Head>
-      <GithubCorner url="https://github.com/vercel-labs/edge-data-latency" />
+      <GithubCorner url="https://github.com/vercel-labs/function-database-latency" />
 
       <h1 className="text-2xl font-bold">
         Vercel Functions + Database Latency
@@ -148,7 +147,7 @@ export default function Page() {
         </a>
         {' or '}
         <a
-          href="https://vercel.com/templates/edge-functions"
+          href="https://vercel.com/templates"
           target="_blank"
           rel="noopener noreferrer"
           className="underline"
@@ -167,26 +166,14 @@ export default function Page() {
               placeholder="Select Database"
               onValueChange={(v) => {
                 // Reset all checkbox values
-                setShouldTestGlobal(!NODE_ONLY.includes(v))
-                setShouldTestRegional(!NODE_ONLY.includes(v))
-                setShouldTestNode(NODE_ONLY.includes(v) || NODE_AVAILABLE.includes(v))
-                setDataService(v)
+                setShouldTestGlobal(!NODE_ONLY.includes(v));
+                setShouldTestRegional(!NODE_ONLY.includes(v));
+                setShouldTestNode(
+                  NODE_ONLY.includes(v) || NODE_AVAILABLE.includes(v)
+                );
+                setDataService(v);
               }}
             >
-              <SelectItem
-                data-testid="vercel-kv"
-                value="vercel-kv"
-                icon={VercelIcon}
-              >
-                Vercel KV
-              </SelectItem>
-              <SelectItem
-                data-testid="vercel-postgres"
-                value="vercel-postgres"
-                icon={VercelIcon}
-              >
-                Vercel Postgres
-              </SelectItem>
               <SelectItem data-testid="convex" value="convex" icon={ConvexIcon}>
                 Convex (SDK)
               </SelectItem>
@@ -203,10 +190,18 @@ export default function Page() {
               <SelectItem data-testid="neon" value="neon" icon={NeonIcon}>
                 Neon (@neondatabase/serverless driver)
               </SelectItem>
-              <SelectItem data-testid="neon-drizzle" value="neon-drizzle" icon={NeonIcon}>
+              <SelectItem
+                data-testid="neon-drizzle"
+                value="neon-drizzle"
+                icon={NeonIcon}
+              >
                 Neon (w/ Drizzle ORM)
               </SelectItem>
-              <SelectItem data-testid="neon-prisma" value="neon-prisma" icon={NeonIcon}>
+              <SelectItem
+                data-testid="neon-prisma"
+                value="neon-prisma"
+                icon={NeonIcon}
+              >
                 Neon (w/ Prisma ORM)
               </SelectItem>
               <SelectItem
@@ -278,10 +273,18 @@ export default function Page() {
               <SelectItem data-testid="turso" value="turso" icon={TursoIcon}>
                 Turso (@libsql/client)
               </SelectItem>
-              <SelectItem data-testid="turso-drizzle" value="turso-drizzle" icon={TursoIcon}>
+              <SelectItem
+                data-testid="turso-drizzle"
+                value="turso-drizzle"
+                icon={TursoIcon}
+              >
                 Turso (w/ Drizzle ORM)
               </SelectItem>
-              <SelectItem data-testid="turso-prisma" value="turso-prisma" icon={TursoIcon}>
+              <SelectItem
+                data-testid="turso-prisma"
+                value="turso-prisma"
+                icon={TursoIcon}
+              >
                 Turso (w/ Prisma ORM)
               </SelectItem>
               <SelectItem
@@ -405,14 +408,15 @@ export default function Page() {
             </label>
           </p>
         </div>
-        
+
         <div className="flex flex-col gap-1">
           <p className="font-bold">Samples</p>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
-            The number of samples to run for each location. A larger number of samples provides a clearer pattern of the average latency.
+            The number of samples to run for each location. A larger number of
+            samples provides a clearer pattern of the average latency.
           </p>
           <p className="text-sm flex gap-3 flex-wrap gap-y-1">
-          <label className="flex items-center gap-2 whitespace-nowrap">
+            <label className="flex items-center gap-2 whitespace-nowrap">
               <input
                 type="radio"
                 name="samples"
@@ -451,14 +455,19 @@ export default function Page() {
             data-testid="run-test"
             onClick={onRunTest}
             loading={isTestRunning}
-            disabled={dataService === '' || (!shouldTestGlobal && !shouldTestRegional && !shouldTestNode)}
+            disabled={
+              dataService === '' ||
+              (!shouldTestGlobal && !shouldTestRegional && !shouldTestNode)
+            }
           >
             Run Test
           </Button>
-          {(!shouldTestGlobal && !shouldTestRegional && !shouldTestNode) &&          
-           <p className="text-gray-600 dark:text-gray-300 text-sm ml-4">
-            You need to select at least one <strong>Location</strong> to run the benchmark.
-          </p>}
+          {!shouldTestGlobal && !shouldTestRegional && !shouldTestNode && (
+            <p className="text-gray-600 dark:text-gray-300 text-sm ml-4">
+              You need to select at least one <strong>Location</strong> to run
+              the benchmark.
+            </p>
+          )}
         </div>
 
         {data.regional.length || data.global.length || data.node.length ? (
@@ -539,22 +548,6 @@ function Code({ className = '', children }) {
     >
       {children}
     </code>
-  );
-}
-
-function VercelIcon() {
-  return (
-    <svg
-      width="20"
-      height="20"
-      className="flex-none h-5 w-5 mr-3"
-      aria-hidden="true"
-      viewBox="0 0 76 65"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="rgb(156 163 175)" />
-    </svg>
   );
 }
 
