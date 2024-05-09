@@ -13,7 +13,9 @@ Here is an overview of all data service providers and the compute locations avai
 | Convex (SDK)                     | ✅            | ✅                        | ✅   |
 | Fauna                            | ✅            | ✅                        | ❌   |
 | Grafbase (GraphQL)               | ✅            | ✅                        | ✅   |
-| Neon                             | ✅            | ✅                        | ❌   |
+| Neon w/ @neondatabase/serverless | ✅            | ✅                        | ✅   |
+| Neon w/ Drizzle ORM              | ✅            | ✅                        | ✅   |
+| Neon w/ Prisma ORM               | ✅            | ✅                        | ✅   |
 | PlanetScale w/ Kysely            | ✅            | ✅                        | ❌   |
 | PlanetScale w/ Prisma ORM        | ✅            | ✅                        | ✅   |
 | PlanetScale w/ Drizzle           | ✅            | ✅                        | ✅   |
