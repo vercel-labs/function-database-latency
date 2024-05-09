@@ -315,7 +315,7 @@ export default function Page() {
             </Select>
           </div>
         </div>
-        
+
         <div className="flex flex-col gap-1">
           <p className="font-bold">Location</p>
           <p className="text-gray-600 dark:text-gray-300 text-sm">
