@@ -9,7 +9,7 @@ import {
 import Head from 'next/head';
 import GithubCorner from '@/components/github-corner';
 
-const ATTEMPTS = 10;
+
 const NODE_AVAILABLE = [
   'planetscale-drizzle',
   'planetscale-prisma',
@@ -39,6 +39,7 @@ export default function Page() {
   const [shouldTestRegional, setShouldTestRegional] = useState(true);
   const [shouldTestNode, setShouldTestNode] = useState(true);
   const [queryCount, setQueryCount] = useState(1);
+  const [sampleCount, setSampleCount] = useState(50);
   const [dataService, setDataService] = useState('');
   const [data, setData] = useState({
     regional: [],
@@ -71,7 +72,7 @@ export default function Page() {
     setIsTestRunning(true);
     setData({ regional: [], global: [], node: [] });
 
-    for (let i = 0; i < ATTEMPTS; i++) {
+    for (let i = 0; i < sampleCount; i++) {
       let regionalValue = null;
       let globalValue = null;
       let nodeValue = null;
@@ -106,10 +107,11 @@ export default function Page() {
     shouldTestGlobal,
     shouldTestRegional,
     shouldTestNode,
+    sampleCount
   ]);
 
   return (
-    <main className="p-6 max-w-5xl flex flex-col gap-3">
+    <main className="p-6 max-w-5xl flex flex-col gap-3 m-auto">
       <Head>
         <title>Vercel Functions + Database Latency</title>
         <meta
@@ -403,6 +405,45 @@ export default function Page() {
             </label>
           </p>
         </div>
+        
+        <div className="flex flex-col gap-1">
+          <p className="font-bold">Samples</p>
+          <p className="text-gray-600 dark:text-gray-300 text-sm">
+            The number of samples to run for each location. A larger number of samples provides a clearer pattern of the average latency.
+          </p>
+          <p className="text-sm flex gap-3 flex-wrap gap-y-1">
+          <label className="flex items-center gap-2 whitespace-nowrap">
+              <input
+                type="radio"
+                name="samples"
+                value="50"
+                onChange={() => setSampleCount(50)}
+                checked={sampleCount === 50}
+              />{' '}
+              50
+            </label>
+            <label className="flex items-center gap-2 whitespace-nowrap">
+              <input
+                type="radio"
+                name="samples"
+                value="25"
+                onChange={() => setSampleCount(25)}
+                checked={sampleCount === 25}
+              />{' '}
+              25
+            </label>
+            <label className="flex items-center gap-2 whitespace-nowrap">
+              <input
+                type="radio"
+                name="samples"
+                value="10"
+                onChange={() => setSampleCount(10)}
+                checked={sampleCount === 10}
+              />{' '}
+              10
+            </label>
+          </p>
+        </div>
 
         <div className="flex items-center">
           <Button
@@ -421,7 +462,7 @@ export default function Page() {
         </div>
 
         {data.regional.length || data.global.length || data.node.length ? (
-          <Grid className="gap-5" numItems={1} numItemsMd={2}>
+          <Grid className="gap-5" numItems={1}>
             <Card>
               <Title>Latency distribution (processing time)</Title>
               <Text>
@@ -432,7 +473,7 @@ export default function Page() {
 
               <AreaChart
                 className="mt-6"
-                data={new Array(ATTEMPTS).fill(0).map((_, i) => {
+                data={new Array(sampleCount).fill(0).map((_, i) => {
                   return {
                     attempt: `#${i + 1}`,
                     'Regional Edge': data.regional[i]
@@ -462,7 +503,7 @@ export default function Page() {
 
               <AreaChart
                 className="mt-6"
-                data={new Array(ATTEMPTS).fill(0).map((_, i) => {
+                data={new Array(sampleCount).fill(0).map((_, i) => {
                   return {
                     attempt: `#${i + 1}`,
                     'Regional Edge': data.regional[i]
