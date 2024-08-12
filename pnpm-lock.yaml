@@ -15,8 +15,8 @@ dependencies:
     specifier: 2.1.1
     version: 2.1.1(react@18.3.1)
   '@libsql/client':
-    specifier: ^0.6.0
-    version: 0.6.0(bufferutil@4.0.8)
+    specifier: ^0.8.0
+    version: 0.8.1(bufferutil@4.0.8)
   '@neondatabase/serverless':
     specifier: ^0.9.0
     version: 0.9.0
@@ -27,17 +27,17 @@ dependencies:
     specifier: ^1.4.0
     version: 1.4.0
   '@prisma/adapter-libsql':
-    specifier: ^5.13.0
-    version: 5.13.0(@libsql/client@0.6.0)
+    specifier: ^5.18.0
+    version: 5.18.0(@libsql/client@0.8.1)
   '@prisma/adapter-neon':
-    specifier: ^5.13.0
-    version: 5.13.0(@neondatabase/serverless@0.9.0)
+    specifier: ^5.18.0
+    version: 5.18.0(@neondatabase/serverless@0.9.0)
   '@prisma/adapter-planetscale':
-    specifier: ^5.13.0
-    version: 5.13.0(@planetscale/database@1.16.0)
+    specifier: ^5.18.0
+    version: 5.18.0(@planetscale/database@1.16.0)
   '@prisma/client':
-    specifier: 5.13.0
-    version: 5.13.0(prisma@5.13.0)
+    specifier: 5.18.0
+    version: 5.18.0(prisma@5.18.0)
   '@supabase/supabase-js':
     specifier: ^2.39.8
     version: 2.39.8(bufferutil@4.0.8)
@@ -73,7 +73,7 @@ dependencies:
     version: 1.11.2(react-dom@18.3.1)(react@18.3.1)
   drizzle-orm:
     specifier: ^0.30.9
-    version: 0.30.9(@libsql/client@0.6.0)(@neondatabase/serverless@0.9.0)(@planetscale/database@1.16.0)(@types/react@18.3.1)(@xata.io/client@0.29.4)(kysely@0.27.3)(mysql2@3.9.7)(postgres@3.4.4)(react@18.3.1)
+    version: 0.30.9(@libsql/client@0.8.1)(@neondatabase/serverless@0.9.0)(@planetscale/database@1.16.0)(@types/react@18.3.1)(@xata.io/client@0.29.4)(kysely@0.27.3)(mysql2@3.9.7)(postgres@3.4.4)(react@18.3.1)
   kysely:
     specifier: ^0.27.3
     version: 0.27.3
@@ -93,8 +93,8 @@ dependencies:
     specifier: ^3.4.4
     version: 3.4.4
   prisma:
-    specifier: ^5.13.0
-    version: 5.13.0
+    specifier: ^5.18.0
+    version: 5.18.0
   react:
     specifier: 18.3.1
     version: 18.3.1
@@ -441,20 +441,21 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: false
 
-  /@libsql/client@0.6.0(bufferutil@4.0.8):
-    resolution: {integrity: sha512-qhQzTG/y2IEVbL3+9PULDvlQFWJ/RnjFXECr/Nc3nRngGiiMysDaOV5VUzYk7DulUX98EA4wi+z3FspKrUplUA==}
+  /@libsql/client@0.8.1(bufferutil@4.0.8):
+    resolution: {integrity: sha512-xGg0F4iTDFpeBZ0r4pA6icGsYa5rG6RAG+i/iLDnpCAnSuTqEWMDdPlVseiq4Z/91lWI9jvvKKiKpovqJ1kZWA==}
     dependencies:
-      '@libsql/core': 0.6.0
-      '@libsql/hrana-client': 0.6.0(bufferutil@4.0.8)
+      '@libsql/core': 0.8.1
+      '@libsql/hrana-client': 0.6.2(bufferutil@4.0.8)
       js-base64: 3.7.7
       libsql: 0.3.10
+      promise-limit: 2.7.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
     dev: false
 
-  /@libsql/core@0.6.0:
-    resolution: {integrity: sha512-affAB8vSqQwqI9NBDJ5uJCVaHoOAS2pOpbv1kWConh1SBbmJBnHHd4KG73RAJ2sgd2+NbT9WA+XJBqxgp28YSw==}
+  /@libsql/core@0.8.1:
+    resolution: {integrity: sha512-u6nrj6HZMTPsgJ9EBhLzO2uhqhlHQJQmVHV+0yFLvfGf3oSP8w7TjZCNUgu1G8jHISx6KFi7bmcrdXW9lRt++A==}
     dependencies:
       js-base64: 3.7.7
     dev: false
@@ -475,8 +476,8 @@ packages:
     dev: false
     optional: true
 
-  /@libsql/hrana-client@0.6.0(bufferutil@4.0.8):
-    resolution: {integrity: sha512-k+fqzdjqg3IvWfKmVJK5StsbjeTcyNAXFelUbXbGNz3yH1gEVT9mZ6kmhsIXP30ZSyVV0AE1Gi25p82mxC9hwg==}
+  /@libsql/hrana-client@0.6.2(bufferutil@4.0.8):
+    resolution: {integrity: sha512-MWxgD7mXLNf9FXXiM0bc90wCjZSpErWKr5mGza7ERy2FJNNMXd7JIOv+DepBA1FQTIfI8TFO4/QDYgaQC0goNw==}
     dependencies:
       '@libsql/isomorphic-fetch': 0.2.1
       '@libsql/isomorphic-ws': 0.1.5(bufferutil@4.0.8)
@@ -675,37 +676,37 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@prisma/adapter-libsql@5.13.0(@libsql/client@0.6.0):
-    resolution: {integrity: sha512-vKzTtRwscsPRbhRb++hiJ8dXWxLELo3js7jKgJgiPzD10ybZEGgSTP4WYmivU5azVvnyN6JErgDtu4oBQZRvMA==}
+  /@prisma/adapter-libsql@5.18.0(@libsql/client@0.8.1):
+    resolution: {integrity: sha512-2Y+YqUdRFvZuhKg9pwzF46VghV6M5nydFdqgH7RuWA0hX5ftAXgLCjFXTUC1o3sM/R6+ClYirGQBnxdqjxQZmg==}
     peerDependencies:
-      '@libsql/client': ^0.3.5 || ^0.4.0 || ^0.5.0 || ^0.6.0
+      '@libsql/client': ^0.3.5 || ^0.4.0 || ^0.5.0 || ^0.6.0 || ^0.7.0 || ^0.8.0
     dependencies:
-      '@libsql/client': 0.6.0(bufferutil@4.0.8)
-      '@prisma/driver-adapter-utils': 5.13.0
+      '@libsql/client': 0.8.1(bufferutil@4.0.8)
+      '@prisma/driver-adapter-utils': 5.18.0
       async-mutex: 0.5.0
     dev: false
 
-  /@prisma/adapter-neon@5.13.0(@neondatabase/serverless@0.9.0):
-    resolution: {integrity: sha512-XIav2pP2lcyrvl0LHt8nvialytJPIW//hn1zTr426qMwnpag5avXnAx3/8ZMmYxGkZ4oKzizieu6mmh425RXcA==}
+  /@prisma/adapter-neon@5.18.0(@neondatabase/serverless@0.9.0):
+    resolution: {integrity: sha512-QdHBzBHtcy/3TF4/htklmWq5T8YqLJUcdkzrMEhQXRPLAR4LKzsjtsbzeyBEpyBm+kf5UItcp4XD0z4SuRWIMQ==}
     peerDependencies:
       '@neondatabase/serverless': ^0.6.0 || ^0.7.0 || ^0.8.0 || ^0.9.0
     dependencies:
       '@neondatabase/serverless': 0.9.0
-      '@prisma/driver-adapter-utils': 5.13.0
+      '@prisma/driver-adapter-utils': 5.18.0
       postgres-array: 3.0.2
     dev: false
 
-  /@prisma/adapter-planetscale@5.13.0(@planetscale/database@1.16.0):
-    resolution: {integrity: sha512-ygQ1BNDS7IBJxfAAJzcuM8LSmtY6dS6vGbtp4peI7QQpgeFW7j+y86oodmC1oGvE3yqbVJpvX6JaD05fBJgiWQ==}
+  /@prisma/adapter-planetscale@5.18.0(@planetscale/database@1.16.0):
+    resolution: {integrity: sha512-5P3dOT83TAwCDwTNZKQbZMaH2bH7+0jL9Epn4BxKnx60Nvcwh7al1t4IURFYeUEV9aaJ3HHyZxi7jjp23c11gA==}
     peerDependencies:
       '@planetscale/database': ^1.15.0
     dependencies:
       '@planetscale/database': 1.16.0
-      '@prisma/driver-adapter-utils': 5.13.0
+      '@prisma/driver-adapter-utils': 5.18.0
     dev: false
 
-  /@prisma/client@5.13.0(prisma@5.13.0):
-    resolution: {integrity: sha512-uYdfpPncbZ/syJyiYBwGZS8Gt1PTNoErNYMuqHDa2r30rNSFtgTA/LXsSk55R7pdRTMi5pHkeP9B14K6nHmwkg==}
+  /@prisma/client@5.18.0(prisma@5.18.0):
+    resolution: {integrity: sha512-BWivkLh+af1kqC89zCJYkHsRcyWsM8/JHpsDMM76DjP3ZdEquJhXa4IeX+HkWPnwJ5FanxEJFZZDTWiDs/Kvyw==}
     engines: {node: '>=16.13'}
     requiresBuild: true
     peerDependencies:
@@ -714,45 +715,45 @@ packages:
       prisma:
         optional: true
     dependencies:
-      prisma: 5.13.0
+      prisma: 5.18.0
     dev: false
 
-  /@prisma/debug@5.13.0:
-    resolution: {integrity: sha512-699iqlEvzyCj9ETrXhs8o8wQc/eVW+FigSsHpiskSFydhjVuwTJEfj/nIYqTaWFYuxiWQRfm3r01meuW97SZaQ==}
+  /@prisma/debug@5.18.0:
+    resolution: {integrity: sha512-f+ZvpTLidSo3LMJxQPVgAxdAjzv5OpzAo/eF8qZqbwvgi2F5cTOI9XCpdRzJYA0iGfajjwjOKKrVq64vkxEfUw==}
     dev: false
 
-  /@prisma/driver-adapter-utils@5.13.0:
-    resolution: {integrity: sha512-SaimwvGuvXJTsWH+FOfl7PlkZZlPiRGeMEchC0kvB08Xw9B3CLYo/Q7zaY5Fp+u5D8asrpcFQmCjXEgDvOmPkg==}
+  /@prisma/driver-adapter-utils@5.18.0:
+    resolution: {integrity: sha512-9WLOLcOOvYcxE4bzIL15XsJm9L5SaOX98FCFDFT6+/nt0p9PcAzAbFTtitF7dLNKnYO5tiuOVHs+3VQIP2LN1w==}
     dependencies:
-      '@prisma/debug': 5.13.0
+      '@prisma/debug': 5.18.0
     dev: false
 
-  /@prisma/engines-version@5.13.0-23.b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b:
-    resolution: {integrity: sha512-AyUuhahTINGn8auyqYdmxsN+qn0mw3eg+uhkp8zwknXYIqoT3bChG4RqNY/nfDkPvzWAPBa9mrDyBeOnWSgO6A==}
+  /@prisma/engines-version@5.18.0-25.4c784e32044a8a016d99474bd02a3b6123742169:
+    resolution: {integrity: sha512-a/+LpJj8vYU3nmtkg+N3X51ddbt35yYrRe8wqHTJtYQt7l1f8kjIBcCs6sHJvodW/EK5XGvboOiwm47fmNrbgg==}
     dev: false
 
-  /@prisma/engines@5.13.0:
-    resolution: {integrity: sha512-hIFLm4H1boj6CBZx55P4xKby9jgDTeDG0Jj3iXtwaaHmlD5JmiDkZhh8+DYWkTGchu+rRF36AVROLnk0oaqhHw==}
+  /@prisma/engines@5.18.0:
+    resolution: {integrity: sha512-ofmpGLeJ2q2P0wa/XaEgTnX/IsLnvSp/gZts0zjgLNdBhfuj2lowOOPmDcfKljLQUXMvAek3lw5T01kHmCG8rg==}
     requiresBuild: true
     dependencies:
-      '@prisma/debug': 5.13.0
-      '@prisma/engines-version': 5.13.0-23.b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
-      '@prisma/fetch-engine': 5.13.0
-      '@prisma/get-platform': 5.13.0
+      '@prisma/debug': 5.18.0
+      '@prisma/engines-version': 5.18.0-25.4c784e32044a8a016d99474bd02a3b6123742169
+      '@prisma/fetch-engine': 5.18.0
+      '@prisma/get-platform': 5.18.0
     dev: false
 
-  /@prisma/fetch-engine@5.13.0:
-    resolution: {integrity: sha512-Yh4W+t6YKyqgcSEB3odBXt7QyVSm0OQlBSldQF2SNXtmOgMX8D7PF/fvH6E6qBCpjB/yeJLy/FfwfFijoHI6sA==}
+  /@prisma/fetch-engine@5.18.0:
+    resolution: {integrity: sha512-I/3u0x2n31rGaAuBRx2YK4eB7R/1zCuayo2DGwSpGyrJWsZesrV7QVw7ND0/Suxeo/vLkJ5OwuBqHoCxvTHpOg==}
     dependencies:
-      '@prisma/debug': 5.13.0
-      '@prisma/engines-version': 5.13.0-23.b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
-      '@prisma/get-platform': 5.13.0
+      '@prisma/debug': 5.18.0
+      '@prisma/engines-version': 5.18.0-25.4c784e32044a8a016d99474bd02a3b6123742169
+      '@prisma/get-platform': 5.18.0
     dev: false
 
-  /@prisma/get-platform@5.13.0:
-    resolution: {integrity: sha512-B/WrQwYTzwr7qCLifQzYOmQhZcFmIFhR81xC45gweInSUn2hTEbfKUPd2keAog+y5WI5xLAFNJ3wkXplvSVkSw==}
+  /@prisma/get-platform@5.18.0:
+    resolution: {integrity: sha512-Tk+m7+uhqcKDgnMnFN0lRiH7Ewea0OEsZZs9pqXa7i3+7svS3FSCqDBCaM9x5fmhhkufiG0BtunJVDka+46DlA==}
     dependencies:
-      '@prisma/debug': 5.13.0
+      '@prisma/debug': 5.18.0
     dev: false
 
   /@supabase/functions-js@2.1.5:
@@ -1296,7 +1297,7 @@ packages:
       csstype: 3.1.3
     dev: false
 
-  /drizzle-orm@0.30.9(@libsql/client@0.6.0)(@neondatabase/serverless@0.9.0)(@planetscale/database@1.16.0)(@types/react@18.3.1)(@xata.io/client@0.29.4)(kysely@0.27.3)(mysql2@3.9.7)(postgres@3.4.4)(react@18.3.1):
+  /drizzle-orm@0.30.9(@libsql/client@0.8.1)(@neondatabase/serverless@0.9.0)(@planetscale/database@1.16.0)(@types/react@18.3.1)(@xata.io/client@0.29.4)(kysely@0.27.3)(mysql2@3.9.7)(postgres@3.4.4)(react@18.3.1):
     resolution: {integrity: sha512-VOiCFsexErmgqvNCOmbzmqDCZzZsHoz6SkWAjTFxsTr1AllKDbDJ2+GgedLXsXMDgpg/ljDG1zItIFeZtiO2LA==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -1376,7 +1377,7 @@ packages:
       sqlite3:
         optional: true
     dependencies:
-      '@libsql/client': 0.6.0(bufferutil@4.0.8)
+      '@libsql/client': 0.8.1(bufferutil@4.0.8)
       '@neondatabase/serverless': 0.9.0
       '@planetscale/database': 1.16.0
       '@types/react': 18.3.1
@@ -2047,13 +2048,17 @@ packages:
     hasBin: true
     dev: false
 
-  /prisma@5.13.0:
-    resolution: {integrity: sha512-kGtcJaElNRAdAGsCNykFSZ7dBKpL14Cbs+VaQ8cECxQlRPDjBlMHNFYeYt0SKovAVy2Y65JXQwB3A5+zIQwnTg==}
+  /prisma@5.18.0:
+    resolution: {integrity: sha512-+TrSIxZsh64OPOmaSgVPH7ALL9dfU0jceYaMJXsNrTkFHO7/3RANi5K2ZiPB1De9+KDxCWn7jvRq8y8pvk+o9g==}
     engines: {node: '>=16.13'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 5.13.0
+      '@prisma/engines': 5.18.0
+    dev: false
+
+  /promise-limit@2.7.0:
+    resolution: {integrity: sha512-7nJ6v5lnJsXwGprnGXga4wx6d1POjvi5Qmf1ivTRxTjH4Z/9Czja/UCMLVmB9N93GeWOU93XaFaEt6jbuoagNw==}
     dev: false
 
   /prop-types@15.8.1:
