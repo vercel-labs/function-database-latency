@@ -746,9 +746,6 @@ packages:
   '@types/d3-timer@3.0.2':
     resolution: {integrity: sha512-Ps3T8E8dZDam6fUyNiMkekK3XUsaUEik+idO9/YjPtfj2qruF8tFBXS7XhtE4iIXBLxhmLjP3SXpLhVf21I9Lw==}
 
-  '@types/node@20.12.8':
-    resolution: {integrity: sha512-NU0rJLJnshZWdE/097cdCBbyW1h4hEg0xpovcoAQYHl8dnEyp/NAOiE45pvc+Bd1Dt+2r94v2eGFpQJ4R7g+2w==}
-
   '@types/node@22.10.1':
     resolution: {integrity: sha512-qKgsUwfHZV2WCWLAnVP1JqnpE6Im6h3Y0+fYgMTasNQ7V++CBX5OT1as0g0f+OyubbFqhf6XVNIsmN4IIhEgGQ==}
 
@@ -1687,9 +1684,6 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  undici-types@5.26.5:
-    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
-
   undici-types@6.20.0:
     resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
 
@@ -2298,18 +2292,13 @@ snapshots:
 
   '@types/d3-timer@3.0.2': {}
 
-  '@types/node@20.12.8':
-    dependencies:
-      undici-types: 5.26.5
-    optional: true
-
   '@types/node@22.10.1':
     dependencies:
       undici-types: 6.20.0
 
   '@types/pg@8.11.10':
     dependencies:
-      '@types/node': 20.12.8
+      '@types/node': 22.10.1
       pg-protocol: 1.7.0
       pg-types: 4.0.2
     optional: true
@@ -3149,9 +3138,6 @@ snapshots:
   tslib@2.8.1: {}
 
   typescript@5.7.2: {}
-
-  undici-types@5.26.5:
-    optional: true
 
   undici-types@6.20.0: {}
 

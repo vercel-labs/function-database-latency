@@ -1,12 +1,16 @@
 import { NextRequest as Request, NextResponse as Response } from 'next/server';
-import { Pool } from '@neondatabase/serverless';
-import { PrismaNeon } from '@prisma/adapter-neon';
+import { neon } from '@neondatabase/serverless';
+import { PrismaNeonHTTP } from '@prisma/adapter-neon';
 import { PrismaClient } from '@prisma/client';
-import { waitUntil } from '@vercel/functions';
 
 export const config = {
   runtime: 'edge',
 };
+
+// Use the HTTP connection of the Serverless Driver
+const client = neon(process.env.NEON_DATABASE_URL);
+const adapter = new PrismaNeonHTTP(client);
+const prisma = new PrismaClient({ adapter });
 
 const start = Date.now();
 
@@ -14,16 +18,15 @@ export default async function api(req: Request) {
   const count = toNumber(new URL(req.url).searchParams.get('count'));
   const time = Date.now();
 
-  const pool = new Pool({ connectionString: process.env.NEON_DATABASE_URL });
-  const adapter = new PrismaNeon(pool);
-  const prisma = new PrismaClient({ adapter });
+  // Use the WebSocket connection of the Serverless Driver
+  // const pool = new Pool({ connectionString: process.env.NEON_DATABASE_URL });
+  // const adapter = new PrismaNeonHTTP(pool);
+  // const prisma = new PrismaClient({ adapter });
 
   let data = null;
   for (let i = 0; i < count; i++) {
     data = await prisma.employees.findMany({ take: 10 });
   }
-
-  waitUntil(pool.end());
 
   return Response.json(
     {
@@ -47,3 +50,4 @@ function toNumber(queryParam: string | null, min = 1, max = 5) {
   const num = Number(queryParam);
   return Number.isNaN(num) ? null : Math.min(Math.max(num, min), max);
 }
+

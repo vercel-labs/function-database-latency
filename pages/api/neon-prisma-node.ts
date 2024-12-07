@@ -1,11 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Pool } from '@neondatabase/serverless';
-import { PrismaNeon } from '@prisma/adapter-neon';
+import { neon } from '@neondatabase/serverless';
+import { PrismaNeonHTTP } from '@prisma/adapter-neon';
 import { PrismaClient } from '@prisma/client';
 
-const pool = new Pool({ connectionString: process.env.NEON_DATABASE_URL });
-const adapter = new PrismaNeon(pool);
+// Use the WebSocket connection of the Serverless Driver
+// const pool = new Pool({ connectionString: process.env.NEON_DATABASE_URL })
+// const adapter = new PrismaNeon(pool)
+
+// Use the HTTP connection of the Serverless Driver
+const client = neon(process.env.NEON_DATABASE_URL);
+const adapter = new PrismaNeonHTTP(client);
 const prisma = new PrismaClient({ adapter });
+
 const start = Date.now();
 
 export default async function handler(
@@ -32,3 +38,4 @@ function toNumber(queryParam: string | string[] | null, min = 1, max = 5) {
   const num = Number(queryParam);
   return Number.isNaN(num) ? 1 : Math.min(Math.max(num, min), max);
 }
+
