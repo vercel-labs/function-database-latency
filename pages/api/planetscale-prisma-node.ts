@@ -1,5 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@/prisma-planetscale/prisma-client";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient({
   datasourceUrl: process.env.PLANETSCALE_DATABASE_URL,
@@ -7,7 +7,10 @@ const prisma = new PrismaClient({
 
 const start = Date.now();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { count } = req.query;
   const time = Date.now();
 
@@ -22,7 +25,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     invocationIsCold: start === time,
   });
 }
-
 
 // convert a query parameter to a number, applying a min and max, defaulting to 1
 function toNumber(queryParam: string | string[] | null, min = 1, max = 5) {

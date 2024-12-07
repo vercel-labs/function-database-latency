@@ -1,10 +1,10 @@
-import { NextRequest as Request, NextResponse as Response } from "next/server";
-import { PrismaClient } from "@/prisma-turso/prisma-client";
-import { PrismaLibSQL } from "@prisma/adapter-libsql";
-import { createClient } from "@libsql/client/web";
+import { NextRequest as Request, NextResponse as Response } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import { PrismaLibSQL } from '@prisma/adapter-libsql';
+import { createClient } from '@libsql/client/web';
 
 export const config = {
-  runtime: "edge",
+  runtime: 'edge',
 };
 
 const libsql = createClient({
@@ -18,7 +18,7 @@ const prisma = new PrismaClient({ adapter });
 const start = Date.now();
 
 export default async function handler(req: Request) {
-  const count = toNumber(new URL(req.url).searchParams.get("count"));
+  const count = toNumber(new URL(req.url).searchParams.get('count'));
   const time = Date.now();
 
   let data = null;
@@ -32,11 +32,11 @@ export default async function handler(req: Request) {
       queryDuration: Date.now() - time,
       invocationIsCold: start === time,
       invocationRegion:
-        (req.headers.get("x-vercel-id") ?? "").split(":")[1] || null,
+        (req.headers.get('x-vercel-id') ?? '').split(':')[1] || null,
     },
     {
       headers: {
-        "x-edge-is-cold": start === time ? "1" : "0",
+        'x-edge-is-cold': start === time ? '1' : '0',
       },
     },
   );

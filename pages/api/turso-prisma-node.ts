@@ -1,12 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@/prisma-turso/prisma-client";
-import { PrismaLibSQL } from "@prisma/adapter-libsql";
-import { createClient } from "@libsql/client";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { PrismaClient } from '@prisma/client';
+import { PrismaLibSQL } from '@prisma/adapter-libsql';
+import { createClient } from '@libsql/client';
 
 let url = process.env.TURSO_DB_URL as string;
 
-if (!url.startsWith("https://")) {
-  url = url.replace(/^https/, "wss");
+if (!url.startsWith('https://')) {
+  url = url.replace(/^https/, 'wss');
 }
 
 const libsql = createClient({
