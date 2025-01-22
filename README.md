@@ -19,7 +19,6 @@ Here is an overview of all data service providers and the compute locations avai
 | PlanetScale w/ Kysely            | ✅            | ✅                        | ❌   |
 | PlanetScale w/ Prisma ORM        | ✅            | ✅                        | ✅   |
 | PlanetScale w/ Drizzle           | ✅            | ✅                        | ✅   |
-| PolyScale                        | ✅            | ✅                        | ❌   |
 | Shopify (Storefront GraphQL API) | ✅            | ✅                        | ✅   |
 | Supabase w/ supabase-js          | ✅            | ✅                        | ❌   |
 | Supabase w/ Prisma ORM           | ❌            | ❌                        | ✅   |

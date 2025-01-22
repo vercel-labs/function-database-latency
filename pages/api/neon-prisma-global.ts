@@ -1,7 +1,7 @@
 import { NextRequest as Request, NextResponse as Response } from 'next/server';
 import { neon } from '@neondatabase/serverless';
 import { PrismaNeonHTTP } from '@prisma/adapter-neon';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../prisma-neon/prisma-client';
 
 export const config = {
   runtime: 'edge',
@@ -50,4 +50,3 @@ function toNumber(queryParam: string | null, min = 1, max = 5) {
   const num = Number(queryParam);
   return Number.isNaN(num) ? null : Math.min(Math.max(num, min), max);
 }
-

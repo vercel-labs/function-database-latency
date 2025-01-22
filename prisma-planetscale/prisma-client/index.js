@@ -7,12 +7,12 @@ const {
   PrismaClientRustPanicError,
   PrismaClientInitializationError,
   PrismaClientValidationError,
-  NotFoundError,
   getPrismaClient,
   sqltag,
   empty,
   join,
   raw,
+  skip,
   Decimal,
   Debug,
   objectEnumValues,
@@ -31,12 +31,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.12.0
- * Query Engine version: 473ed3124229e22d881cb7addf559799debae1ab
+ * Prisma Client JS version: 6.0.1
+ * Query Engine version: 5dbef10bdbfb579e07d35cc85fb1518d357cb99e
  */
 Prisma.prismaVersion = {
-  client: "5.12.0",
-  engine: "473ed3124229e22d881cb7addf559799debae1ab"
+  client: "6.0.1",
+  engine: "5dbef10bdbfb579e07d35cc85fb1518d357cb99e"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -44,7 +44,6 @@ Prisma.PrismaClientUnknownRequestError = PrismaClientUnknownRequestError
 Prisma.PrismaClientRustPanicError = PrismaClientRustPanicError
 Prisma.PrismaClientInitializationError = PrismaClientInitializationError
 Prisma.PrismaClientValidationError = PrismaClientValidationError
-Prisma.NotFoundError = NotFoundError
 Prisma.Decimal = Decimal
 
 /**
@@ -76,6 +75,8 @@ Prisma.NullTypes = {
 }
 
 
+
+
   const path = require('path')
 
 /**
@@ -99,6 +100,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.employeesOrderByRelevanceFieldEnum = {
+  first_name: 'first_name',
+  last_name: 'last_name'
+};
+
 
 exports.Prisma.ModelName = {
   employees: 'employees'
@@ -114,7 +120,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/nikolasburk/Desktop/edge-data-latency/prisma-planetscale/prisma-client",
+      "value": "/Users/leerob/Developer/function-database-latency/prisma-planetscale/prisma-client",
       "fromEnvVar": null
     },
     "config": {
@@ -123,7 +129,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin",
+        "value": "darwin-arm64",
         "native": true
       },
       {
@@ -134,14 +140,16 @@ const config = {
     "previewFeatures": [
       "driverAdapters"
     ],
+    "sourceFilePath": "/Users/leerob/Developer/function-database-latency/prisma-planetscale/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../.env"
   },
   "relativePath": "..",
-  "clientVersion": "5.12.0",
-  "engineVersion": "473ed3124229e22d881cb7addf559799debae1ab",
+  "clientVersion": "6.0.1",
+  "engineVersion": "5dbef10bdbfb579e07d35cc85fb1518d357cb99e",
   "datasourceNames": [
     "db"
   ],
@@ -155,8 +163,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider        = \"prisma-client-js\"\n  previewFeatures = [\"driverAdapters\"]\n  output          = \"./prisma-client\"\n  binaryTargets   = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider          = \"mysql\"\n  url               = env(\"PLANETSCALE_DATABASE_URL\")\n  shadowDatabaseUrl = env(\"SHADOW_PLANETSCALE_DATABASE_URL\")\n  relationMode      = \"prisma\"\n}\n\nmodel employees {\n  emp_no     Int    @id @default(autoincrement())\n  first_name String\n  last_name  String\n}\n",
-  "inlineSchemaHash": "12fee8ac2b4e016abc9fb1f3e7190b8db30fe4aac6871b638d4f0139000c2a1a",
+  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  previewFeatures = [\"driverAdapters\"]\n  output          = \"./prisma-client\"\n  binaryTargets   = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider     = \"mysql\"\n  url          = env(\"PLANETSCALE_DATABASE_URL\")\n  relationMode = \"prisma\"\n}\n\nmodel employees {\n  emp_no     Int    @id @default(autoincrement())\n  first_name String\n  last_name  String\n}\n",
+  "inlineSchemaHash": "3d23eed498bb9b5f912f169fb48d355447665969a3fb86929f88d41bb0182a0e",
   "copyEngine": true
 }
 
@@ -177,7 +185,7 @@ if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
   config.isBundled = true
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"employees\":{\"dbName\":null,\"fields\":[{\"name\":\"emp_no\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"first_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"last_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"employees\":{\"dbName\":null,\"schema\":null,\"fields\":[{\"name\":\"emp_no\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"nativeType\":null,\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"first_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"last_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = undefined
 
@@ -194,8 +202,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "libquery_engine-darwin.dylib.node");
-path.join(process.cwd(), "prisma-planetscale/prisma-client/libquery_engine-darwin.dylib.node")
+path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
+path.join(process.cwd(), "prisma-planetscale/prisma-client/libquery_engine-darwin-arm64.dylib.node")
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-rhel-openssl-3.0.x.so.node");

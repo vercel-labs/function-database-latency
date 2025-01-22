@@ -77,16 +77,29 @@
       "import": "./generator-build/index.js",
       "default": "./generator-build/index.js"
     },
+    "./sql": {
+      "require": {
+        "types": "./sql.d.ts",
+        "node": "./sql.js",
+        "default": "./sql.js"
+      },
+      "import": {
+        "types": "./sql.d.ts",
+        "node": "./sql.mjs",
+        "default": "./sql.mjs"
+      },
+      "default": "./sql.js"
+    },
     "./*": "./*"
   },
-  "version": "5.13.0",
+  "version": "6.0.1",
   "sideEffects": false,
   "imports": {
     "#wasm-engine-loader": {
-      "edge-light": "./wasm-edge-light-loader.js",
-      "workerd": "./wasm-worker-loader.js",
-      "worker": "./wasm-worker-loader.js",
-      "default": "./wasm-worker-loader.js"
+      "edge-light": "./wasm-edge-light-loader.mjs",
+      "workerd": "./wasm-worker-loader.mjs",
+      "worker": "./wasm-worker-loader.mjs",
+      "default": "./wasm-worker-loader.mjs"
     },
     "#main-entry-point": {
       "require": {

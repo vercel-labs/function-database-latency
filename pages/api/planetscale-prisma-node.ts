@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../prisma-planetscale/prisma-client';
 
 const prisma = new PrismaClient({
   datasourceUrl: process.env.PLANETSCALE_DATABASE_URL,

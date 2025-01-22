@@ -1,5 +1,5 @@
 import { NextRequest as Request, NextResponse as Response } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../prisma-planetscale/prisma-client';
 import { PrismaPlanetScale } from '@prisma/adapter-planetscale';
 import { Client } from '@planetscale/database';
 

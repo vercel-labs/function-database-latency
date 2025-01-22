@@ -1,1 +1,1 @@
-module.exports = { ...require('#main-entry-point') }
+module.exports = { ...require('.') }

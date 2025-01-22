@@ -1,5 +1,5 @@
 import { NextRequest as Request, NextResponse as Response } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../prisma-turso/prisma-client';
 import { PrismaLibSQL } from '@prisma/adapter-libsql';
 import { createClient } from '@libsql/client/web';
 

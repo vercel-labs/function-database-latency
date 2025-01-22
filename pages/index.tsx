@@ -10,8 +10,7 @@ import Head from 'next/head';
 import GithubCorner from '@/components/github-corner';
 
 const NODE_AVAILABLE = [
-  'planetscale-drizzle',
-  'planetscale-prisma',
+  ,
   'convex',
   'xata-sdk',
   'grafbase',
@@ -53,7 +52,7 @@ export default function Page() {
       try {
         const start = Date.now();
         const res = await fetch(
-          `/api/${dataService}-${type}?count=${queryCount}`
+          `/api/${dataService}-${type}?count=${queryCount}`,
         );
         const data = await res.json();
         const end = Date.now();
@@ -66,7 +65,7 @@ export default function Page() {
         return null;
       }
     },
-    []
+    [],
   );
 
   const onRunTest = useCallback(async () => {
@@ -171,7 +170,7 @@ export default function Page() {
                 setShouldTestGlobal(!NODE_ONLY.includes(v));
                 setShouldTestRegional(!NODE_ONLY.includes(v));
                 setShouldTestNode(
-                  NODE_ONLY.includes(v) || NODE_AVAILABLE.includes(v)
+                  NODE_ONLY.includes(v) || NODE_AVAILABLE.includes(v),
                 );
                 setDataService(v);
               }}
@@ -206,7 +205,7 @@ export default function Page() {
               >
                 Neon (w/ Prisma ORM)
               </SelectItem>
-              <SelectItem
+              {/* <SelectItem
                 data-testid="planetscale"
                 value="planetscale"
                 icon={CircleStackIcon}
@@ -226,14 +225,7 @@ export default function Page() {
                 icon={CircleStackIcon}
               >
                 PlanetScale (w/ Drizzle ORM)
-              </SelectItem>
-              <SelectItem
-                data-testid="polyscale"
-                value="polyscale"
-                icon={PolyScaleIcon}
-              >
-                PolyScale (@polyscale/serverless-js driver)
-              </SelectItem>
+              </SelectItem> */}
               <SelectItem
                 data-testid="shopify"
                 value="shopify"
@@ -732,66 +724,6 @@ function TursoIcon() {
         d="M200.035 48.61C195.365 20.67 170.875 0 170.875 0V30.78L156.335 34.53L147.225 23.56L142.415 33.02C132.495 30.32 118.835 28.58 100.045 28.58C81.2549 28.58 67.5949 30.33 57.6749 33.02L52.8649 23.56L43.7549 34.53L29.2149 30.78V0C29.2149 0 4.72493 20.67 0.0549316 48.61L32.1949 59.73C33.2449 79.16 41.9849 131.61 44.4849 136.37C47.1449 141.44 61.2649 155.93 72.3149 161.5C72.3149 161.5 76.3149 157.27 78.7549 153.54C81.8549 157.19 97.8649 169.99 100.055 169.99C102.245 169.99 118.255 157.2 121.355 153.54C123.795 157.27 127.795 161.5 127.795 161.5C138.845 155.93 152.965 141.44 155.625 136.37C158.125 131.61 166.865 79.16 167.915 59.73L200.055 48.61H200.035ZM153.845 93.35L132.095 95.29L134.005 121.96C134.005 121.96 120.775 132.91 100.045 132.91C79.3149 132.91 66.0849 121.96 66.0849 121.96L67.9949 95.29L46.2449 93.35L42.5249 63.31L78.5749 75.79L75.7749 113.18C82.4749 114.88 89.5249 116.57 100.055 116.57C110.585 116.57 117.625 114.88 124.325 113.18L121.525 75.79L157.575 63.31L153.855 93.35H153.845Z"
         fill="#A2A3A8"
       />
-    </svg>
-  );
-}
-
-function PolyScaleIcon() {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 61 60"
-      className="flex-none h-5 w-5 mr-3"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{
-        fillRule: 'evenodd',
-        clipRule: 'evenodd',
-        strokeLinejoin: 'round',
-        strokeMiterlimit: 2,
-      }}
-    >
-      <rect
-        id="ArtBoard1"
-        x="0"
-        y="0"
-        width="60.002"
-        height="59.997"
-        style={{ fill: 'none' }}
-      />
-      <clipPath id="_clip1">
-        <rect x="0" y="0" width="60.002" height="59.997" />
-      </clipPath>
-      <g clip-path="url(#_clip1)">
-        <g id="Artboard">
-          <path
-            id="Shape"
-            d="M24.1,38.914l6.8,-0c0.3,-0 0.6,0.3 0.6,0.6l-0,4.3c-0,8.1 -5.9,15.2 -13.9,16.1c-9.5,1.1 -17.6,-6.4 -17.6,-15.7c0,-6.7 4.2,-12.4 10.1,-14.7c0.4,-0.1 0.8,0.2 0.8,0.6l0,7.8c0,0.2 -0.1,0.3 -0.2,0.4c-2,1.8 -3.2,4.5 -2.5,7.5c0.6,3 3,5.4 6,6c5,1 9.3,-2.8 9.3,-7.6l0,-4.7c0,-0.4 0.2,-0.6 0.6,-0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
-          />
-          <path
-            id="Shape1"
-            d="M15.7,36.414l4.7,-0c0.3,-0 0.6,-0.3 0.6,-0.6l-0,-2.1c-0,-2.9 -2.4,-5.3 -5.3,-5.3c-0.7,-0 -1.4,0.1 -2.1,0.2c-0.3,-0 -0.5,0.3 -0.5,0.6l-0,6.9c-0,0.4 0.4,0.7 0.7,0.6c0.6,-0.2 1.3,-0.3 1.9,-0.3Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
-          />
-          <path
-            id="Shape2"
-            d="M33.9,29.014c0,4.1 3.3,7.4 7.3,7.4l0.1,-0c0.3,-0 0.6,-0.3 0.6,-0.6l0,-6.8c0,-0.3 -0.3,-0.6 -0.6,-0.6l-6.8,-0c-0.4,-0 -0.6,0.3 -0.6,0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
-          />
-          <path
-            id="Shape3"
-            d="M44.1,35.514l0,-7c0,-0.3 0.2,-0.5 0.4,-0.6c4.8,-1.4 8.1,-6.2 7.2,-11.6c-0.7,-4.1 -4,-7.5 -8.1,-8.2c-6.5,-1.2 -12.2,3.8 -12.2,10.1l0,7.4c0,0.3 -0.3,0.6 -0.6,0.6l-6.8,-0c-0.3,-0 -0.6,-0.3 -0.6,-0.6l0,-6.9c0,-9.9 7.7,-18.3 17.5,-18.7c10.4,-0.4 18.9,7.9 18.9,18.2c0,9 -6.5,16.5 -15.1,17.9c-0.2,0.1 -0.6,-0.2 -0.6,-0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
-          />
-          <path
-            id="Shape4"
-            d="M30.8,28.414l-6.8,-0c-0.3,-0 -0.6,0.3 -0.6,0.6l0,6.8c0,0.3 0.3,0.6 0.6,0.6l6.8,-0c0.3,-0 0.6,-0.3 0.6,-0.6l0,-6.8c0,-0.3 -0.2,-0.6 -0.6,-0.6Z"
-            style={{ fill: '#9ca3ae', fillRule: 'nonzero' }}
-          />
-        </g>
-      </g>
     </svg>
   );
 }

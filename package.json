@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "gen:planetscale": "prisma generate --schema ./prisma-planetscale/schema.prisma",
@@ -17,7 +17,6 @@
     "@libsql/client": "^0.14.0",
     "@neondatabase/serverless": "^0.10.4",
     "@planetscale/database": "^1.19.0",
-    "@polyscale/serverless-js": "^1.4.0",
     "@prisma/adapter-libsql": "^6.0.1",
     "@prisma/adapter-neon": "^6.0.1",
     "@prisma/adapter-planetscale": "^6.0.1",
@@ -37,7 +36,7 @@
     "kysely": "^0.27.4",
     "kysely-planetscale": "^1.5.0",
     "mysql2": "^3.11.5",
-    "next": "15.0.4",
+    "next": "15.1.6",
     "postcss": "^8.4.49",
     "postgres": "^3.4.5",
     "prisma": "^6.0.1",

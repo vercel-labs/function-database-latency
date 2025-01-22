@@ -7,12 +7,12 @@ const {
   PrismaClientRustPanicError,
   PrismaClientInitializationError,
   PrismaClientValidationError,
-  NotFoundError,
   getPrismaClient,
   sqltag,
   empty,
   join,
   raw,
+  skip,
   Decimal,
   Debug,
   objectEnumValues,
@@ -31,12 +31,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.13.0
- * Query Engine version: b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
+ * Prisma Client JS version: 6.0.1
+ * Query Engine version: 5dbef10bdbfb579e07d35cc85fb1518d357cb99e
  */
 Prisma.prismaVersion = {
-  client: "5.13.0",
-  engine: "b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b"
+  client: "6.0.1",
+  engine: "5dbef10bdbfb579e07d35cc85fb1518d357cb99e"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -44,7 +44,6 @@ Prisma.PrismaClientUnknownRequestError = PrismaClientUnknownRequestError
 Prisma.PrismaClientRustPanicError = PrismaClientRustPanicError
 Prisma.PrismaClientInitializationError = PrismaClientInitializationError
 Prisma.PrismaClientValidationError = PrismaClientValidationError
-Prisma.NotFoundError = NotFoundError
 Prisma.Decimal = Decimal
 
 /**
@@ -74,6 +73,8 @@ Prisma.NullTypes = {
   JsonNull: objectEnumValues.classes.JsonNull,
   AnyNull: objectEnumValues.classes.AnyNull
 }
+
+
 
 
   const path = require('path')
@@ -119,7 +120,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/evanshortiss/workspaces/function-database-latency/prisma-neon/prisma-client",
+      "value": "/Users/leerob/Developer/function-database-latency/prisma-neon/prisma-client",
       "fromEnvVar": null
     },
     "config": {
@@ -139,6 +140,7 @@ const config = {
     "previewFeatures": [
       "driverAdapters"
     ],
+    "sourceFilePath": "/Users/leerob/Developer/function-database-latency/prisma-neon/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -146,8 +148,8 @@ const config = {
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "..",
-  "clientVersion": "5.13.0",
-  "engineVersion": "b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b",
+  "clientVersion": "6.0.1",
+  "engineVersion": "5dbef10bdbfb579e07d35cc85fb1518d357cb99e",
   "datasourceNames": [
     "db"
   ],
@@ -161,8 +163,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  previewFeatures = [\"driverAdapters\"]\n  output          = \"./prisma-client\"\n  binaryTargets   = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider     = \"postgresql\"\n  url          = env(\"NEON_DATABASE_URL\")\n}\n\nmodel employees {\n  emp_no     Int    @id @default(autoincrement())\n  first_name String\n  last_name  String\n}\n",
-  "inlineSchemaHash": "171ae6cfb3d57568586d606ebe46f5782b080e248cc8aee04de5024df09a060f",
+  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  previewFeatures = [\"driverAdapters\"]\n  output          = \"./prisma-client\"\n  binaryTargets   = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"NEON_DATABASE_URL\")\n}\n\nmodel employees {\n  emp_no     Int    @id @default(autoincrement())\n  first_name String\n  last_name  String\n}\n",
+  "inlineSchemaHash": "ba092e335e64ca2e72125eba5a6b69bd3f5c9ff482a4e348a36c8f3924672d58",
   "copyEngine": true
 }
 
@@ -183,7 +185,7 @@ if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
   config.isBundled = true
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"employees\":{\"dbName\":null,\"fields\":[{\"name\":\"emp_no\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"first_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"last_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"employees\":{\"dbName\":null,\"schema\":null,\"fields\":[{\"name\":\"emp_no\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"nativeType\":null,\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"first_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"last_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = undefined
 

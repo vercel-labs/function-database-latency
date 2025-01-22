@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { neon } from '@neondatabase/serverless';
 import { PrismaNeonHTTP } from '@prisma/adapter-neon';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../prisma-neon/prisma-client';
 
 // Use the WebSocket connection of the Serverless Driver
 // const pool = new Pool({ connectionString: process.env.NEON_DATABASE_URL })
@@ -38,4 +38,3 @@ function toNumber(queryParam: string | string[] | null, min = 1, max = 5) {
   const num = Number(queryParam);
   return Number.isNaN(num) ? 1 : Math.min(Math.max(num, min), max);
 }
-
