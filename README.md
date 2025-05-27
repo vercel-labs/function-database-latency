@@ -11,8 +11,6 @@ Here is an overview of all data service providers and the compute locations avai
 | Provider                         | Edge (Global) | Edge (Regional / US East) | Node |
 | :------------------------------- | :------------ | :------------------------ | ---- |
 | Convex (SDK)                     | ✅            | ✅                        | ✅   |
-| Fauna                            | ✅            | ✅                        | ✅   |
-| Grafbase (GraphQL)               | ✅            | ✅                        | ✅   |
 | Neon w/ @neondatabase/serverless | ✅            | ✅                        | ✅   |
 | Neon w/ Drizzle ORM              | ✅            | ✅                        | ✅   |
 | Neon w/ Prisma ORM               | ✅            | ✅                        | ✅   |
