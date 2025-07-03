@@ -15,7 +15,7 @@
     "@headlessui/tailwindcss": "^0.2.1",
     "@heroicons/react": "2.2.0",
     "@libsql/client": "^0.14.0",
-    "@neondatabase/serverless": "^0.10.4",
+    "@neondatabase/serverless": "^1.0.1",
     "@planetscale/database": "^1.19.0",
     "@prisma/adapter-libsql": "^6.0.1",
     "@prisma/adapter-neon": "^6.0.1",

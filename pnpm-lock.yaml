@@ -21,8 +21,8 @@ importers:
         specifier: ^0.14.0
         version: 0.14.0(bufferutil@4.0.8)
       '@neondatabase/serverless':
-        specifier: ^0.10.4
-        version: 0.10.4
+        specifier: ^1.0.1
+        version: 1.0.1
       '@planetscale/database':
         specifier: ^1.19.0
         version: 1.19.0
@@ -31,7 +31,7 @@ importers:
         version: 6.0.1(@libsql/client@0.14.0(bufferutil@4.0.8))
       '@prisma/adapter-neon':
         specifier: ^6.0.1
-        version: 6.0.1(@neondatabase/serverless@0.10.4)
+        version: 6.0.1(@neondatabase/serverless@1.0.1)
       '@prisma/adapter-planetscale':
         specifier: ^6.0.1
         version: 6.0.1(@planetscale/database@1.19.0)
@@ -73,7 +73,7 @@ importers:
         version: 1.17.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       drizzle-orm:
         specifier: ^0.37.0
-        version: 0.37.0(@libsql/client@0.14.0(bufferutil@4.0.8))(@neondatabase/serverless@0.10.4)(@planetscale/database@1.19.0)(@prisma/client@6.0.1(prisma@6.0.1))(@tidbcloud/serverless@0.2.0)(@types/pg@8.11.10)(@types/react@19.0.1)(@xata.io/client@0.30.1(typescript@5.7.2))(kysely@0.27.4)(mysql2@3.11.5)(postgres@3.4.5)(prisma@6.0.1)(react@19.0.0)
+        version: 0.37.0(@libsql/client@0.14.0(bufferutil@4.0.8))(@neondatabase/serverless@1.0.1)(@planetscale/database@1.19.0)(@prisma/client@6.0.1(prisma@6.0.1))(@tidbcloud/serverless@0.2.0)(@types/pg@8.11.10)(@types/react@19.0.1)(@xata.io/client@0.30.1(typescript@5.7.2))(kysely@0.27.4)(mysql2@3.11.5)(postgres@3.4.5)(prisma@6.0.1)(react@19.0.0)
       kysely:
         specifier: ^0.27.4
         version: 0.27.4
@@ -522,8 +522,9 @@ packages:
   '@neon-rs/load@0.0.4':
     resolution: {integrity: sha512-kTPhdZyTQxB+2wpiRcFWrDcejc4JI6tkPuS7UZCG4l6Zvc5kU/gGQ/ozvHTh1XR5tS+UlfAfGuPajjzQjCiHCw==}
 
-  '@neondatabase/serverless@0.10.4':
-    resolution: {integrity: sha512-2nZuh3VUO9voBauuh+IGYRhGU/MskWHt1IuZvHcJw6GLjDgtqj/KViKo7SIrLdGLdot7vFbiRRw+BgEy3wT9HA==}
+  '@neondatabase/serverless@1.0.1':
+    resolution: {integrity: sha512-O6yC5TT0jbw86VZVkmnzCZJB0hfxBl0JJz6f+3KHoZabjb/X08r9eFA+vuY06z1/qaovykvdkrXYq3SPUuvogA==}
+    engines: {node: '>=19.0.0'}
 
   '@next/env@15.3.2':
     resolution: {integrity: sha512-xURk++7P7qR9JG1jJtLzPzf0qEvqCN0A/T3DXf8IPMKo9/6FfjxtEffRJIIew/bIL4T3C2jLLqBor8B/zVlx6g==}
@@ -751,11 +752,11 @@ packages:
   '@types/node@22.10.1':
     resolution: {integrity: sha512-qKgsUwfHZV2WCWLAnVP1JqnpE6Im6h3Y0+fYgMTasNQ7V++CBX5OT1as0g0f+OyubbFqhf6XVNIsmN4IIhEgGQ==}
 
+  '@types/node@22.16.0':
+    resolution: {integrity: sha512-B2egV9wALML1JCpv3VQoQ+yesQKAmNMBIAY7OteVrikcOcAkWm+dGL6qpeCktPjAv6N1JLnhbNiqS35UpFyBsQ==}
+
   '@types/pg@8.11.10':
     resolution: {integrity: sha512-LczQUW4dbOQzsH2RQ5qoeJ6qJPdrcM/DcMLoqWQkMLMsq83J5lAX3LXjdkWdpscFy67JSOWDnh7Ny/sPFykmkg==}
-
-  '@types/pg@8.11.6':
-    resolution: {integrity: sha512-/2WmmBXHLsfRqzfHW7BNZ8SbYzE8OSk7i3WjFYvfgRHj7S1xj+16Je5fUKv3lVdVzk/zn9TXOqf+avFCFIE0yQ==}
 
   '@types/phoenix@1.6.6':
     resolution: {integrity: sha512-PIzZZlEppgrpoT2QgbnDU+MMzuR6BbCjllj0bM70lWoejMeNJAxCchxnv7J3XFkI8MpygtRpzXrIlmWUBclP5A==}
@@ -1241,6 +1242,7 @@ packages:
 
   libsql@0.4.7:
     resolution: {integrity: sha512-T9eIRCs6b0J1SHKYIvD8+KCJMcWZ900iZyxdnSCdqxN12Z1ijzT+jY5nrk72Jw4B0HGzms2NgpryArlJqvc3Lw==}
+    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lilconfig@3.1.3:
@@ -1688,6 +1690,9 @@ packages:
   undici-types@6.20.0:
     resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
 
+  undici-types@6.21.0:
+    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
   update-browserslist-db@1.1.1:
     resolution: {integrity: sha512-R8UzCaa9Az+38REPiJ1tXlImTJXlVfgHZsglwBD/k6nj76ctsH1E3q4doGrukiLQd3sGQYu56r5+lo5r94l29A==}
     hasBin: true
@@ -2053,9 +2058,10 @@ snapshots:
 
   '@neon-rs/load@0.0.4': {}
 
-  '@neondatabase/serverless@0.10.4':
+  '@neondatabase/serverless@1.0.1':
     dependencies:
-      '@types/pg': 8.11.6
+      '@types/node': 22.16.0
+      '@types/pg': 8.11.10
 
   '@next/env@15.3.2': {}
 
@@ -2106,9 +2112,9 @@ snapshots:
       '@prisma/driver-adapter-utils': 6.0.1
       async-mutex: 0.5.0
 
-  '@prisma/adapter-neon@6.0.1(@neondatabase/serverless@0.10.4)':
+  '@prisma/adapter-neon@6.0.1(@neondatabase/serverless@1.0.1)':
     dependencies:
-      '@neondatabase/serverless': 0.10.4
+      '@neondatabase/serverless': 1.0.1
       '@prisma/driver-adapter-utils': 6.0.1
       postgres-array: 3.0.2
 
@@ -2292,14 +2298,11 @@ snapshots:
     dependencies:
       undici-types: 6.20.0
 
-  '@types/pg@8.11.10':
+  '@types/node@22.16.0':
     dependencies:
-      '@types/node': 22.10.1
-      pg-protocol: 1.7.0
-      pg-types: 4.0.2
-    optional: true
+      undici-types: 6.21.0
 
-  '@types/pg@8.11.6':
+  '@types/pg@8.11.10':
     dependencies:
       '@types/node': 22.10.1
       pg-protocol: 1.7.0
@@ -2513,10 +2516,10 @@ snapshots:
       '@babel/runtime': 7.26.0
       csstype: 3.1.3
 
-  drizzle-orm@0.37.0(@libsql/client@0.14.0(bufferutil@4.0.8))(@neondatabase/serverless@0.10.4)(@planetscale/database@1.19.0)(@prisma/client@6.0.1(prisma@6.0.1))(@tidbcloud/serverless@0.2.0)(@types/pg@8.11.10)(@types/react@19.0.1)(@xata.io/client@0.30.1(typescript@5.7.2))(kysely@0.27.4)(mysql2@3.11.5)(postgres@3.4.5)(prisma@6.0.1)(react@19.0.0):
+  drizzle-orm@0.37.0(@libsql/client@0.14.0(bufferutil@4.0.8))(@neondatabase/serverless@1.0.1)(@planetscale/database@1.19.0)(@prisma/client@6.0.1(prisma@6.0.1))(@tidbcloud/serverless@0.2.0)(@types/pg@8.11.10)(@types/react@19.0.1)(@xata.io/client@0.30.1(typescript@5.7.2))(kysely@0.27.4)(mysql2@3.11.5)(postgres@3.4.5)(prisma@6.0.1)(react@19.0.0):
     optionalDependencies:
       '@libsql/client': 0.14.0(bufferutil@4.0.8)
-      '@neondatabase/serverless': 0.10.4
+      '@neondatabase/serverless': 1.0.1
       '@planetscale/database': 1.19.0
       '@prisma/client': 6.0.1(prisma@6.0.1)
       '@tidbcloud/serverless': 0.2.0
@@ -3138,6 +3141,8 @@ snapshots:
   typescript@5.7.2: {}
 
   undici-types@6.20.0: {}
+
+  undici-types@6.21.0: {}
 
   update-browserslist-db@1.1.1(browserslist@4.24.2):
     dependencies:
