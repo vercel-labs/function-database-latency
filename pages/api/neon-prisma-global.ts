@@ -1,6 +1,6 @@
 import { NextRequest as Request, NextResponse as Response } from 'next/server';
-import { neon } from '@neondatabase/serverless';
-import { PrismaNeonHTTP } from '@prisma/adapter-neon';
+import { neonConfig } from '@neondatabase/serverless';
+import { PrismaNeon } from '@prisma/adapter-neon'
 import { PrismaClient } from '../../prisma-neon/prisma-client';
 
 export const config = {
@@ -8,8 +8,8 @@ export const config = {
 };
 
 // Use the HTTP connection of the Serverless Driver
-const client = neon(process.env.NEON_DATABASE_URL);
-const adapter = new PrismaNeonHTTP(client);
+neonConfig.poolQueryViaFetch = true
+const adapter = new PrismaNeon({ connectionString: process.env.NEON_DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
 const start = Date.now();
@@ -17,11 +17,6 @@ const start = Date.now();
 export default async function api(req: Request) {
   const count = toNumber(new URL(req.url).searchParams.get('count'));
   const time = Date.now();
-
-  // Use the WebSocket connection of the Serverless Driver
-  // const pool = new Pool({ connectionString: process.env.NEON_DATABASE_URL });
-  // const adapter = new PrismaNeonHTTP(pool);
-  // const prisma = new PrismaClient({ adapter });
 
   let data = null;
   for (let i = 0; i < count; i++) {
