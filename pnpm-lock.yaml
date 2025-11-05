@@ -21,8 +21,8 @@ importers:
         specifier: ^0.14.0
         version: 0.14.0(bufferutil@4.0.8)
       '@neondatabase/serverless':
-        specifier: ^1.0.1
-        version: 1.0.1
+        specifier: ^1.0.2
+        version: 1.0.2
       '@planetscale/database':
         specifier: ^1.19.0
         version: 1.19.0
@@ -30,8 +30,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(@libsql/client@0.14.0(bufferutil@4.0.8))
       '@prisma/adapter-neon':
-        specifier: ^6.0.1
-        version: 6.0.1(@neondatabase/serverless@1.0.1)
+        specifier: ^6.19.0
+        version: 6.19.0
       '@prisma/adapter-planetscale':
         specifier: ^6.0.1
         version: 6.0.1(@planetscale/database@1.19.0)
@@ -72,8 +72,8 @@ importers:
         specifier: 1.17.3
         version: 1.17.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       drizzle-orm:
-        specifier: ^0.37.0
-        version: 0.37.0(@libsql/client@0.14.0(bufferutil@4.0.8))(@neondatabase/serverless@1.0.1)(@planetscale/database@1.19.0)(@prisma/client@6.0.1(prisma@6.0.1))(@tidbcloud/serverless@0.2.0)(@types/pg@8.11.10)(@types/react@19.0.1)(@xata.io/client@0.30.1(typescript@5.7.2))(kysely@0.27.4)(mysql2@3.11.5)(postgres@3.4.5)(prisma@6.0.1)(react@19.0.0)
+        specifier: ^0.44.7
+        version: 0.44.7(@libsql/client@0.14.0(bufferutil@4.0.8))(@neondatabase/serverless@1.0.2)(@planetscale/database@1.19.0)(@prisma/client@6.0.1(prisma@6.0.1))(@tidbcloud/serverless@0.2.0)(@types/pg@8.11.10)(@upstash/redis@1.34.3)(@xata.io/client@0.30.1(typescript@5.7.2))(kysely@0.27.4)(mysql2@3.11.5)(postgres@3.4.5)(prisma@6.0.1)
       kysely:
         specifier: ^0.27.4
         version: 0.27.4
@@ -522,8 +522,11 @@ packages:
   '@neon-rs/load@0.0.4':
     resolution: {integrity: sha512-kTPhdZyTQxB+2wpiRcFWrDcejc4JI6tkPuS7UZCG4l6Zvc5kU/gGQ/ozvHTh1XR5tS+UlfAfGuPajjzQjCiHCw==}
 
-  '@neondatabase/serverless@1.0.1':
-    resolution: {integrity: sha512-O6yC5TT0jbw86VZVkmnzCZJB0hfxBl0JJz6f+3KHoZabjb/X08r9eFA+vuY06z1/qaovykvdkrXYq3SPUuvogA==}
+  '@neondatabase/serverless@0.10.4':
+    resolution: {integrity: sha512-2nZuh3VUO9voBauuh+IGYRhGU/MskWHt1IuZvHcJw6GLjDgtqj/KViKo7SIrLdGLdot7vFbiRRw+BgEy3wT9HA==}
+
+  '@neondatabase/serverless@1.0.2':
+    resolution: {integrity: sha512-I5sbpSIAHiB+b6UttofhrN/UJXII+4tZPAq1qugzwCwLIL8EZLV7F/JyHUrEIiGgQpEXzpnjlJ+zwcEhheGvCw==}
     engines: {node: '>=19.0.0'}
 
   '@next/env@15.3.2':
@@ -602,10 +605,8 @@ packages:
     peerDependencies:
       '@libsql/client': ^0.3.5 || ^0.4.0 || ^0.5.0 || ^0.6.0 || ^0.7.0 || ^0.8.0
 
-  '@prisma/adapter-neon@6.0.1':
-    resolution: {integrity: sha512-H6WV/pKTa1ttEVfLh6WPldf7EKonFnul2J+U36WCDTWBGwcAKyzDCBYM3qTRrs0siz7FJ/CMxbOoubJqeMHBog==}
-    peerDependencies:
-      '@neondatabase/serverless': ^0.6.0 || ^0.7.0 || ^0.8.0 || ^0.9.0 || ^0.10.0
+  '@prisma/adapter-neon@6.19.0':
+    resolution: {integrity: sha512-tFhLMdMB+/GIR5Bm7JV6b0sctux8Axah4u0qsOBA1o30Lwx8m8d5R/EvSvJRzHy2Xd+6Bp+OE8mMagMfk/LTcw==}
 
   '@prisma/adapter-planetscale@6.0.1':
     resolution: {integrity: sha512-B6PaKdIm7tYBsmSbxnHJDOlcV2OD8KkKcg6s50WsMiMUuPSR5qQj3+IlGxCe0gcN0BjSdYlfZDe89IePsqEPYw==}
@@ -624,8 +625,14 @@ packages:
   '@prisma/debug@6.0.1':
     resolution: {integrity: sha512-jQylgSOf7ibTVxqBacnAlVGvek6fQxJIYCQOeX2KexsfypNzXjJQSS2o5s+Mjj2Np93iSOQUaw6TvPj8syhG4w==}
 
+  '@prisma/debug@6.19.0':
+    resolution: {integrity: sha512-8hAdGG7JmxrzFcTzXZajlQCidX0XNkMJkpqtfbLV54wC6LSSX6Vni25W/G+nAANwLnZ2TmwkfIuWetA7jJxJFA==}
+
   '@prisma/driver-adapter-utils@6.0.1':
     resolution: {integrity: sha512-er0UqOPcqg/A15Ozf9+O9MQ0p81nbG1dI771VROSmSMlqnwVNOOoBRG51x6+4MRzeL50W0Xgu34pb87+kIoDew==}
+
+  '@prisma/driver-adapter-utils@6.19.0':
+    resolution: {integrity: sha512-VAC/wFebV569Jk7iEqzLxekM2A5toKYAr6cPM2KWVHiRHgyjsh/IHf++Xo67q8uor/JxY8mwOuyQyuxkstSf5w==}
 
   '@prisma/engines-version@5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e':
     resolution: {integrity: sha512-JmIds0Q2/vsOmnuTJYxY4LE+sajqjYKhLtdOT6y4imojqv5d/aeVEfbBGC74t8Be1uSp0OP8lxIj2OqoKbLsfQ==}
@@ -752,11 +759,14 @@ packages:
   '@types/node@22.10.1':
     resolution: {integrity: sha512-qKgsUwfHZV2WCWLAnVP1JqnpE6Im6h3Y0+fYgMTasNQ7V++CBX5OT1as0g0f+OyubbFqhf6XVNIsmN4IIhEgGQ==}
 
-  '@types/node@22.16.0':
-    resolution: {integrity: sha512-B2egV9wALML1JCpv3VQoQ+yesQKAmNMBIAY7OteVrikcOcAkWm+dGL6qpeCktPjAv6N1JLnhbNiqS35UpFyBsQ==}
+  '@types/node@22.19.0':
+    resolution: {integrity: sha512-xpr/lmLPQEj+TUnHmR+Ab91/glhJvsqcjB+yY0Ix9GO70H6Lb4FHH5GeqdOE5btAx7eIMwuHkp4H2MSkLcqWbA==}
 
   '@types/pg@8.11.10':
     resolution: {integrity: sha512-LczQUW4dbOQzsH2RQ5qoeJ6qJPdrcM/DcMLoqWQkMLMsq83J5lAX3LXjdkWdpscFy67JSOWDnh7Ny/sPFykmkg==}
+
+  '@types/pg@8.11.6':
+    resolution: {integrity: sha512-/2WmmBXHLsfRqzfHW7BNZ8SbYzE8OSk7i3WjFYvfgRHj7S1xj+16Je5fUKv3lVdVzk/zn9TXOqf+avFCFIE0yQ==}
 
   '@types/phoenix@1.6.6':
     resolution: {integrity: sha512-PIzZZlEppgrpoT2QgbnDU+MMzuR6BbCjllj0bM70lWoejMeNJAxCchxnv7J3XFkI8MpygtRpzXrIlmWUBclP5A==}
@@ -1000,8 +1010,8 @@ packages:
   dom-helpers@5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
 
-  drizzle-orm@0.37.0:
-    resolution: {integrity: sha512-AsCNACQ/T2CyZUkrBRUqFT2ibHJ9ZHz3+lzYJFFn3hnj7ylIeItMz5kacRG89uSE74nXYShqehr6u+6ks4JR1A==}
+  drizzle-orm@0.44.7:
+    resolution: {integrity: sha512-quIpnYznjU9lHshEOAYLoZ9s3jweleHlZIAWR/jX9gAWNg/JhQ1wj0KGRf7/Zm+obRrYd9GjPVJg790QY9N5AQ==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=4'
@@ -1011,25 +1021,25 @@ packages:
       '@neondatabase/serverless': '>=0.10.0'
       '@op-engineering/op-sqlite': '>=2'
       '@opentelemetry/api': ^1.4.1
-      '@planetscale/database': '>=1'
+      '@planetscale/database': '>=1.13'
       '@prisma/client': '*'
       '@tidbcloud/serverless': '*'
       '@types/better-sqlite3': '*'
       '@types/pg': '*'
-      '@types/react': '>=18'
       '@types/sql.js': '*'
+      '@upstash/redis': '>=1.34.7'
       '@vercel/postgres': '>=0.8.0'
       '@xata.io/client': '*'
       better-sqlite3: '>=7'
       bun-types: '*'
       expo-sqlite: '>=14.0.0'
+      gel: '>=2'
       knex: '*'
       kysely: '*'
       mysql2: '>=2'
       pg: '>=8'
       postgres: '>=3'
       prisma: '*'
-      react: '>=18'
       sql.js: '>=1'
       sqlite3: '>=5'
     peerDependenciesMeta:
@@ -1059,9 +1069,9 @@ packages:
         optional: true
       '@types/pg':
         optional: true
-      '@types/react':
-        optional: true
       '@types/sql.js':
+        optional: true
+      '@upstash/redis':
         optional: true
       '@vercel/postgres':
         optional: true
@@ -1072,6 +1082,8 @@ packages:
       bun-types:
         optional: true
       expo-sqlite:
+        optional: true
+      gel:
         optional: true
       knex:
         optional: true
@@ -1084,8 +1096,6 @@ packages:
       postgres:
         optional: true
       prisma:
-        optional: true
-      react:
         optional: true
       sql.js:
         optional: true
@@ -1455,6 +1465,10 @@ packages:
 
   postgres-array@3.0.2:
     resolution: {integrity: sha512-6faShkdFugNQCLwucjPcY5ARoW1SlbnrZjmGl0IrrqewpvxvhSLHimCVzqeuULCbG0fQv7Dtk1yDbG3xv7Veog==}
+    engines: {node: '>=12'}
+
+  postgres-array@3.0.4:
+    resolution: {integrity: sha512-nAUSGfSDGOaOAEGwqsRY27GPOea7CNipJPOA7lPbdEpx5Kg3qzdP0AaWC5MlhTWV9s4hFX39nomVZ+C4tnGOJQ==}
     engines: {node: '>=12'}
 
   postgres-bytea@3.0.0:
@@ -2058,9 +2072,13 @@ snapshots:
 
   '@neon-rs/load@0.0.4': {}
 
-  '@neondatabase/serverless@1.0.1':
+  '@neondatabase/serverless@0.10.4':
     dependencies:
-      '@types/node': 22.16.0
+      '@types/pg': 8.11.6
+
+  '@neondatabase/serverless@1.0.2':
+    dependencies:
+      '@types/node': 22.19.0
       '@types/pg': 8.11.10
 
   '@next/env@15.3.2': {}
@@ -2112,11 +2130,11 @@ snapshots:
       '@prisma/driver-adapter-utils': 6.0.1
       async-mutex: 0.5.0
 
-  '@prisma/adapter-neon@6.0.1(@neondatabase/serverless@1.0.1)':
+  '@prisma/adapter-neon@6.19.0':
     dependencies:
-      '@neondatabase/serverless': 1.0.1
-      '@prisma/driver-adapter-utils': 6.0.1
-      postgres-array: 3.0.2
+      '@neondatabase/serverless': 0.10.4
+      '@prisma/driver-adapter-utils': 6.19.0
+      postgres-array: 3.0.4
 
   '@prisma/adapter-planetscale@6.0.1(@planetscale/database@1.19.0)':
     dependencies:
@@ -2129,9 +2147,15 @@ snapshots:
 
   '@prisma/debug@6.0.1': {}
 
+  '@prisma/debug@6.19.0': {}
+
   '@prisma/driver-adapter-utils@6.0.1':
     dependencies:
       '@prisma/debug': 6.0.1
+
+  '@prisma/driver-adapter-utils@6.19.0':
+    dependencies:
+      '@prisma/debug': 6.19.0
 
   '@prisma/engines-version@5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e': {}
 
@@ -2298,11 +2322,17 @@ snapshots:
     dependencies:
       undici-types: 6.20.0
 
-  '@types/node@22.16.0':
+  '@types/node@22.19.0':
     dependencies:
       undici-types: 6.21.0
 
   '@types/pg@8.11.10':
+    dependencies:
+      '@types/node': 22.10.1
+      pg-protocol: 1.7.0
+      pg-types: 4.0.2
+
+  '@types/pg@8.11.6':
     dependencies:
       '@types/node': 22.10.1
       pg-protocol: 1.7.0
@@ -2516,21 +2546,20 @@ snapshots:
       '@babel/runtime': 7.26.0
       csstype: 3.1.3
 
-  drizzle-orm@0.37.0(@libsql/client@0.14.0(bufferutil@4.0.8))(@neondatabase/serverless@1.0.1)(@planetscale/database@1.19.0)(@prisma/client@6.0.1(prisma@6.0.1))(@tidbcloud/serverless@0.2.0)(@types/pg@8.11.10)(@types/react@19.0.1)(@xata.io/client@0.30.1(typescript@5.7.2))(kysely@0.27.4)(mysql2@3.11.5)(postgres@3.4.5)(prisma@6.0.1)(react@19.0.0):
+  drizzle-orm@0.44.7(@libsql/client@0.14.0(bufferutil@4.0.8))(@neondatabase/serverless@1.0.2)(@planetscale/database@1.19.0)(@prisma/client@6.0.1(prisma@6.0.1))(@tidbcloud/serverless@0.2.0)(@types/pg@8.11.10)(@upstash/redis@1.34.3)(@xata.io/client@0.30.1(typescript@5.7.2))(kysely@0.27.4)(mysql2@3.11.5)(postgres@3.4.5)(prisma@6.0.1):
     optionalDependencies:
       '@libsql/client': 0.14.0(bufferutil@4.0.8)
-      '@neondatabase/serverless': 1.0.1
+      '@neondatabase/serverless': 1.0.2
       '@planetscale/database': 1.19.0
       '@prisma/client': 6.0.1(prisma@6.0.1)
       '@tidbcloud/serverless': 0.2.0
       '@types/pg': 8.11.10
-      '@types/react': 19.0.1
+      '@upstash/redis': 1.34.3
       '@xata.io/client': 0.30.1(typescript@5.7.2)
       kysely: 0.27.4
       mysql2: 3.11.5
       postgres: 3.4.5
       prisma: 6.0.1
-      react: 19.0.0
 
   eastasianwidth@0.2.0: {}
 
@@ -2885,6 +2914,8 @@ snapshots:
       source-map-js: 1.2.1
 
   postgres-array@3.0.2: {}
+
+  postgres-array@3.0.4: {}
 
   postgres-bytea@3.0.0:
     dependencies:
