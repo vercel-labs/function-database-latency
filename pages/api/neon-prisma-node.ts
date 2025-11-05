@@ -1,15 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { neon } from '@neondatabase/serverless';
-import { PrismaNeonHTTP } from '@prisma/adapter-neon';
+import { neonConfig } from '@neondatabase/serverless';
+import { PrismaNeon } from '@prisma/adapter-neon'
 import { PrismaClient } from '../../prisma-neon/prisma-client';
 
-// Use the WebSocket connection of the Serverless Driver
-// const pool = new Pool({ connectionString: process.env.NEON_DATABASE_URL })
-// const adapter = new PrismaNeon(pool)
-
 // Use the HTTP connection of the Serverless Driver
-const client = neon(process.env.NEON_DATABASE_URL);
-const adapter = new PrismaNeonHTTP(client);
+neonConfig.poolQueryViaFetch = true
+const adapter = new PrismaNeon({ connectionString: process.env.NEON_DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
 const start = Date.now();
