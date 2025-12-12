@@ -84,8 +84,8 @@ importers:
         specifier: ^3.11.5
         version: 3.11.5
       next:
-        specifier: 15.3.7
-        version: 15.3.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: 15.3.8
+        version: 15.3.8(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       postcss:
         specifier: ^8.4.49
         version: 8.4.49
@@ -546,8 +546,8 @@ packages:
   '@neondatabase/serverless@0.10.4':
     resolution: {integrity: sha512-2nZuh3VUO9voBauuh+IGYRhGU/MskWHt1IuZvHcJw6GLjDgtqj/KViKo7SIrLdGLdot7vFbiRRw+BgEy3wT9HA==}
 
-  '@next/env@15.3.7':
-    resolution: {integrity: sha512-1fzTVgpRoCwd0zo0/Xs5dt0vM4Ir7/uoeC3FjmuluNALQlllIPQ1zCOL6GMV8QTwK92e9htZTwqaRedzudD7Bg==}
+  '@next/env@15.3.8':
+    resolution: {integrity: sha512-SAfHg0g91MQVMPioeFeDjE+8UPF3j3BvHjs8ZKJAUz1BG7eMPvfCKOAgNWJ6s1MLNeP6O2InKQRTNblxPWuq+Q==}
 
   '@next/swc-darwin-arm64@15.3.5':
     resolution: {integrity: sha512-lM/8tilIsqBq+2nq9kbTW19vfwFve0NR7MxfkuSUbRSgXlMQoJYg+31+++XwKVSXk4uT23G2eF/7BRIKdn8t8w==}
@@ -1319,8 +1319,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  next@15.3.7:
-    resolution: {integrity: sha512-7dzkjUftt7PAtspscMY+n7dx6Gg+/si89AwwwEMiupSd5bozpQNEbkYczzcIVaYloohZUTsGImq96FGrh0rFUw==}
+  next@15.3.8:
+    resolution: {integrity: sha512-L+4c5Hlr84fuaNADZbB9+ceRX9/CzwxJ+obXIGHupboB/Q1OLbSUapFs4bO8hnS/E6zV/JDX7sG1QpKVR2bguA==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
     hasBin: true
     peerDependencies:
@@ -1343,6 +1343,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-fetch@3.3.2:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
@@ -2082,7 +2083,7 @@ snapshots:
     dependencies:
       '@types/pg': 8.11.6
 
-  '@next/env@15.3.7': {}
+  '@next/env@15.3.8': {}
 
   '@next/swc-darwin-arm64@15.3.5':
     optional: true
@@ -2765,9 +2766,9 @@ snapshots:
 
   nanoid@3.3.8: {}
 
-  next@15.3.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  next@15.3.8(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
-      '@next/env': 15.3.7
+      '@next/env': 15.3.8
       '@swc/counter': 0.1.3
       '@swc/helpers': 0.5.15
       busboy: 1.6.0
